@@ -1,0 +1,218 @@
+unit,farm_name,lat,lon,capacity_mw,located_by
+GU_400021,Dunneill Wind Farm,54.21,-8.848,11.1,name
+GU_400030,Culliagh Wind Farm,54.87,-7.889,11.9,name
+GU_400050,Bindoo Wind Farm,54.014,-7.106,48.0,name
+GU_400060,Midas Wind Farm,51.917,-9.309,32.45,name
+GU_400070,Meentycat Wind Farm,54.877,-7.863,88.5,name
+GU_400080,Richfield Wind Farm,52.215,-6.592,27.0,name
+GU_400550,Sorne Hill Wind Farm,55.131,-7.364,38.0,name
+GU_400591,Coomacheo Wind Farm,52.013,-9.143,41.4,name
+GU_400600,Tournafulla Wind Farm,52.385,-9.158,27.0,name
+GU_400620,Mountain Lodge Wind Farm,54.001,-7.14,37.5,name
+GU_400660,Pallas Wind Farm,52.368,-9.533,53.8,name
+GU_400730,,,,,
+GU_400731,,,,,
+GU_400840,Lisheen Mines Wind Farm,52.759,-7.675,88.8,name
+GU_400910,Boggeragh Wind Farm,52.05,-8.901,57.0,name
+GU_400920,Dromada Wind Farm,52.445,-9.213,28.5,name
+GU_400940,Tullynahaw Wind Farm,54.114,-8.126,22.0,name
+GU_400950,Garvagh Glebe Wind Farm,54.149,-8.199,26.0,name
+GU_400960,Muingnaminnane Wind Farm,52.291,-9.533,15.0,name
+GU_401060,Gortahile Wind Farm,52.813,-7.058,20.0,name
+GU_401070,Carrigcannon Wind Farm,52.07,-8.9,23.0,name
+GU_401080,Rathcahill Wind Farm,52.395,-9.135,12.5,name
+GU_401090,Grouselodge Wind Farm,52.523,-9.104,15.0,name
+GU_401150,Carriganima Wind Farm (Bawnmore 2),51.974,-8.97,13.8,name
+GU_401240,Dromdeeveen Windfarm,52.329,-9.048,28.0,name
+GU_401280,Carrowleagh Wind Farm,54.141,-8.951,39.1,name
+GU_401290,Ballycadden Wind Farm,52.653,-6.522,24.0,name
+GU_401340,Gibbet Hill Wind Farm,52.672,-6.589,15.0,name
+GU_401350,Knocknagoum Windfarm,52.331,-9.536,23.0,name
+GU_401360,Ballycadden Wind Farm,52.653,-6.522,24.0,name
+GU_401380,Athea Wind Farm,52.438,-9.284,34.0,name
+GU_401440,,,,,
+GU_401500,Leitir Guingaid Leitir Peic Wind Farm,53.286,-9.24,44.0,name
+GU_401540,Monaincha Wind Farm,52.936,-7.723,36.0,name
+GU_401670,An Cnoc Wind Farm,52.647,-7.529,11.5,name
+GU_401680,Woodhouse Wind Farm,52.082,-7.778,20.0,name
+GU_401690,Mountlucas Wind Farm,53.273,-7.239,84.0,name
+GU_401700,Bruckana Wind Farm,52.783,-7.67,42.0,name
+GU_401710,Ballymartin Wind Farm,52.39,-7.107,16.1,name
+GU_401720,Booltiagh Wind Farm,52.782,-9.246,30.0,name
+GU_401730,Booltiagh Wind Farm,52.782,-9.246,30.0,name
+GU_401740,Garracummer Wind Farm,52.65,-8.153,42.5,name
+GU_401750,Lisheen Mines Wind Farm,52.759,-7.675,88.8,name
+GU_401760,Ballymartin Wind Farm,52.39,-7.107,16.1,name
+GU_401770,Knockacummer Wind Farm,52.251,-9.133,100.0,name
+GU_401780,,,,,
+GU_401790,Ballybane Wind Farm,51.629,-9.381,48.3,name
+GU_401810,Barranafaddock Wind Farm,52.179,-8.103,34.2,name
+GU_401820,Acres Wind Farm,54.529,-8.187,17.1,name
+GU_401840,Boggeragh Wind Farm,52.05,-8.901,57.0,name
+GU_401890,,,,,
+GU_401900,Sliabh Bawn Wind Farm,53.733,-8.062,58.0,name
+GU_401920,Meenadreen Wind Farm,54.664,-7.942,95.0,name
+GU_401930,,,,,
+GU_401940,Raheenleagh Wind Farm,52.794,-6.303,35.2,name
+GU_401950,Killaveenoge Wind Farm,51.671,-9.171,25.0,name
+GU_401960,Galway Wind Park,53.358,-9.368,174.0,correction
+GU_401980,,,,,
+GU_401990,Galway Wind Park,53.358,-9.368,174.0,correction
+GU_402010,Ballybane Wind Farm,51.629,-9.381,48.3,name
+GU_402050,Tullabrack Wind Farm,52.684,-9.487,13.8,name
+GU_402080,Moneypoint Wind Farm,52.609,-9.426,17.25,name
+GU_402110,Cordal Wind Farm,52.231,-9.285,89.6,name
+GU_402130,Cordal Wind Farm,52.231,-9.285,89.6,name
+GU_402150,Cappawhite Wind Farm,52.609,-8.168,51.0,name
+GU_402160,Tullynamoyle Wind Farm,54.229,-8.123,9.0,name
+GU_402190,Castlepook Wind Farm,52.295,-8.56,35.0,name
+GU_402200,Tullynamoyle Wind Farm,54.229,-8.123,9.0,name
+GU_402210,Leanamore Wind Farm,52.548,-9.426,18.0,name
+GU_402220,Carrickallen Wind Farm,54.002,-7.144,20.0,name
+GU_402250,Scartaglen Wind Farm,52.163,-9.307,37.5,name
+GU_402260,Scartaglen Wind Farm,52.163,-9.307,37.5,name
+GU_402270,,,,,
+GU_402280,Cloghaneleskirt Wind Farm,52.342,-9.54,11.5,name
+GU_402300,,,,,
+GU_402340,Cappawhite B wind farm,52.686,-8.086,14.4,name
+GU_403380,Knockalough Wind Farm,53.307,-9.257,35.2,name
+GU_403390,Castledockrell Wind Farm,52.583,-6.665,41.4,name
+GU_403400,Magheramore Wind Farm,53.766,-8.9,15.0,name
+GU_403750,Killala Wind Farm,54.198,-9.229,20.4,name
+GU_403760,Oweninny Wind Farm,54.152,-9.554,192.0,name
+GU_403770,Boolynagleragh Wind Farm,52.778,-9.143,40.0,name
+GU_403790,Grousemount Wind Farm,51.879,-9.336,114.0,name
+GU_403800,Sorrell Island (Glenmore) Wind Farm,52.766,-9.243,34.2,name
+GU_403810,Cleanrath Wind Farm,51.874,-9.181,42.6,name
+GU_403840,Cronalaght Wind Farm,55.064,-8.217,5.0,name
+GU_403880,Bunnyconnellan Wind Farm,54.092,-8.992,28.0,name
+GU_403920,Coollegrean Wind Farm,52.262,-9.271,17.5,name
+GU_403930,,,,,
+GU_403940,,,,,
+GU_403950,,,,,
+GU_403970,Raragh Wind Farm,53.926,-6.826,11.5,name
+GU_403980,Mauricetown Wind Farm,52.344,-9.041,13.8,name
+GU_403990,Black Lough Wind Farm,54.169,-8.944,14.0,name
+GU_404000,,,,,
+GU_404200,Knockawarriga Wind Farm,52.342,-9.205,22.5,name
+GU_404210,Coomagearlahy II Wind Farm,51.911,-9.307,8.5,name
+GU_404290,Knockawarriga Wind Farm,52.342,-9.205,22.5,name
+GU_404330,Carrigdangan Wind Farm,51.803,-9.183,54.3,name
+GU_404340,Esk Wind Farm,52.057,-8.786,23.0,name
+GU_404420,Lisheen Mines Wind Farm,52.759,-7.675,88.8,name
+GU_404460,Ballycumber Wind Farm,52.837,-6.468,19.2,name
+GU_404470,Glencarbry Wind Farm,52.63,-8.067,35.6,name
+GU_404480,Sorrell Island (Glenmore) Wind Farm,52.766,-9.243,34.2,name
+GU_404490,Glanaruddery Wind Farm,52.31,-9.455,36.0,name
+GU_404500,Glanaruddery Wind Farm,52.31,-9.455,36.0,name
+GU_404560,Beam Hill Wind Farm,55.199,-7.438,14.0,name
+GU_404570,,,,,
+GU_404580,,,,,
+GU_404630,Clogheravaddy Wind Farm,54.707,-8.273,10.35,name
+GU_404930,Meenbog Wind Farm,54.719,-7.89,50.0,name
+GU_404990,Taurbeg Wind Farm,52.251,-9.135,25.3,name
+GU_405080,,,,,
+GU_405100,,,,,
+GU_405110,Taghart Wind Farm,53.949,-6.894,23.0,name
+GU_405130,Oweninny Wind Farm,54.152,-9.554,192.0,name
+GU_405140,Cloncreen Wind Farm,53.287,-7.121,75.6,name
+GU_405150,,,,,
+GU_405160,Cloghan Wind Farm,53.197,-7.871,34.2,name
+GU_405190,,,,,
+GU_405210,,,,,
+GU_405830,,,,,
+GU_405840,,,,,
+GU_405870,Airoshin Wind Farm,54.693,-8.486,12.0,name
+GU_405890,Ballywater Wind Farm,52.541,-6.233,42.0,name
+GU_405930,Lenalea Wind Farm,54.896,-7.853,30.0,name
+GU_406470,,,,,
+GU_406520,,,,,
+GU_406560,,,,,
+GU_406580,,,,,
+GU_406590,,,,,
+GU_406600,,,,,
+GU_406610,Drumlins Park Wind Farm,54.131,-7.169,48.8,name
+GU_406620,Derrinlough Wind Farm,53.186,-7.882,126.0,name
+GU_406710,,,,,
+GU_407030,,,,,
+GU_407040,,,,,
+GU_407330,Moanvane Windfarm,53.222,-7.255,57.6,name
+GU_407340,,,,,
+GU_407510,Yellow River Wind Farm,53.393,-7.224,104.4,name
+GU_407630,,,,,
+GU_407650,,,,,
+GU_407660,,,,,
+GU_407670,,,,,
+GU_407690,,,,,
+GU_407700,,,,,
+GU_407710,Ballincollig Hill Wind Farm,52.308,-9.591,15.0,name
+GU_407910,,,,,
+GU_408040,,,,,
+GU_408050,,,,,
+GU_408060,,,,,
+GU_408070,,,,,
+GU_408080,,,,,
+GU_408100,,,,,
+GU_408120,,,,,
+GU_408130,,,,,
+GU_408140,,,,,
+GU_408150,,,,,
+GU_408160,,,,,
+GU_408180,,,,,
+GU_408190,,,,,
+GU_500010,Tappaghan Mountain wind farm,54.563,-7.554,28.5,name
+GU_500020,Callagheen Windfarm,54.444,-8.014,16.9,name
+GU_500720,Garves Wind Farm,54.999,-6.445,15.0,name
+GU_500740,Slieve Divena Wind Farm,54.504,-7.103,,name
+GU_501040,Hunter's Hill/Lendrum's Bridge Wind Farm,54.44,-7.347,20.0,name
+GU_501050,Crockagarran Wind Farm,54.552,-7.018,17.5,name
+GU_501150,Curryfree,54.929,-7.31,15.0,name
+GU_501160,Slieve Kirk Wind Farm,54.912,-7.255,27.6,name
+GU_501190,Carrickatane Wind Farm,54.915,-7.33,20.7,name
+GU_501210,Carn Hill Wind Farm,54.724,-5.923,,name
+GU_501250,Dunmore Wind Farm,55.097,-6.824,21.0,name
+GU_501360,,,,,
+GU_501390,,,,,
+GU_501410,Corby Knowe Wind Farm,54.777,-6.18,5.0,name
+GU_501430,Crockandun Windfarm,54.738,-6.778,18.0,name
+GU_501440,Eglish Mountain Wind Farm,54.892,-7.22,13.8,name
+GU_501500,Tievenamenta Wind Farm,54.636,-7.758,34.5,name
+GU_501520,Ora More Wind Farm,54.337,-7.889,15.0,name
+GU_501550,Slieve Divena Wind Farm,54.504,-7.103,,name
+GU_501620,Altaveedan Wind Farm,55.078,-6.262,17.9,name
+GU_501630,,,,,
+GU_501660,,,,,
+GU_501670,Brockaghboy Wind Farm,54.933,-6.731,47.5,name
+GU_501680,Rathsherry Wind Farm,54.938,-6.198,21.15,name
+GU_501700,Shantavny Scotch,54.493,-7.096,16.1,name
+GU_501710,Crockandun Windfarm,54.738,-6.778,18.0,name
+GU_501720,Elginny / Broughshane Wind Farm,54.93,-6.218,,name
+GU_501730,Castlecraig Wind Farm,54.621,-7.591,25.0,name
+GU_501740,Teiges Wind Farm,54.303,-7.337,12.5,name
+GU_501750,Cornavarrow Wind Farm,54.582,-7.439,38.4,name
+GU_503400,,,,,
+GU_503780,,,,,
+GU_503790,,,,,
+GU_503800,,,,,
+GU_503810,,,,,
+GU_503820,,,,,
+GU_503830,,,,,
+GU_503840,,,,,
+GU_503850,,,,,
+GU_503860,,,,,
+GU_503900,,,,,
+GU_503920,,,,,
+GU_503930,,,,,
+GU_503940,,,,,
+GU_504030,,,,,
+GU_504040,,,,,
+GU_504050,,,,,
+GU_504060,,,,,
+GU_504070,,,,,
+GU_504090,,,,,
+GU_504160,,,,,
+GU_504200,,,,,
+GU_504230,,,,,
+GU_504240,,,,,
+GU_504260,,,,,
+GU_504460,,,,,

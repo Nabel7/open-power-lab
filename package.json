@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "update-data": "scripts/update-data.sh",
+    "dev": "observable preview",
+    "build": "observable build",
+    "clean": "rm -rf src/.observablehq/cache dist"
+  },
+  "dependencies": {
+    "@observablehq/framework": "1.13.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
