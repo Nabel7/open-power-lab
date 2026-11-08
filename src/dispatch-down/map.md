@@ -3,10 +3,6 @@ title: Map
 ---
 
 <style>
-/* OpenStreetMap's tiles are light only; in dark mode, invert them so the map isn't a bright block. */
-.dark-tiles .leaflet-tile-pane {
-  filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9);
-}
 .leaflet-interactive:focus {
   outline: none;
 }
@@ -17,15 +13,16 @@ title: Map
 }
 </style>
 
-<p class="eyebrow">Map · ${monthName(month)}</p>
-
-# Where wind power is turned down
-
-<p class="lede">Each dot is a wind farm. Bigger dots lost more energy that month; darker dots lost a bigger share of what the wind allowed. Hover or tap a dot for details, and click through to the farm's own page.</p>
+<div class="page-head">
+  <p class="eyebrow">Map · ${monthName(month)}</p>
+  <h1>Where wind power is turned down</h1>
+  <p class="lede">Each dot is a wind farm. Bigger dots lost more energy that month; stronger colour means a bigger share of what the wind allowed. Hover or tap a dot for details, and click through to the farm's own page.</p>
+  ${monthInput}
+</div>
 
 ```js
-import "./components/nav.js";
-import {REGION_NAMES, monthName, percent, gwh, euros} from "./components/format.js";
+import "../components/nav.js";
+import {REGION_NAMES, monthName, shortMonth, percent, gwh, euros, plotStyle} from "../components/format.js";
 
 const monthly = FileAttachment("data/monthly.csv").csv({typed: true});
 const farms = FileAttachment("data/farms.csv").csv({typed: true});
@@ -38,16 +35,13 @@ const meta = FileAttachment("data/meta.json").json();
 // Same default as the Overview: the latest month with most of its days covered.
 const allMonths = monthly.filter((d) => d.region === "ALL");
 const mostlyCovered = allMonths.filter((d) => d.days_with_data >= 0.8 * d.days_in_month);
-const monthInput = Inputs.select(
+const monthInput = Inputs.radio(
   allMonths.map((d) => d.month),
-  {value: (mostlyCovered.at(-1) ?? allMonths.at(-1)).month, format: monthName}
+  {value: (mostlyCovered.at(-1) ?? allMonths.at(-1)).month, format: shortMonth}
 );
+monthInput.classList.add("chips");
 const month = Generators.input(monthInput);
 ```
-
-<div style="display: flex; align-items: center; gap: 0.75rem; margin: 1.5rem 0 1.25rem;">
-  <span class="muted">Month</span> ${monthInput}
-</div>
 
 ```js
 const sameMonth = (date) =>
@@ -58,7 +52,7 @@ const where = new Map(places.filter((d) => d.located_by).map((d) => [d.unit, d])
 
 // This month's numbers for every unit with a known position. Units on the same farm
 // page (phases like Oweninney 1 and 2) are added together into one dot.
-const rows = farmMonthly.filter((d) => sameMonth(d.month));
+const rows = farmMonthly.filter((d) => sameMonth(d.month) && info.get(d.unit)?.technology !== "solar");
 const placed = rows.filter((d) => where.has(d.unit)).map((d) => ({...d, ...where.get(d.unit)}));
 const onMap = d3
   .groups(placed, (d) => info.get(d.unit)?.farm_id ?? d.unit)
@@ -89,8 +83,9 @@ const lostOnMap = d3.sum(onMap, (d) => d.lost_mwh);
 ```
 
 ```js
-// Colour: share dispatched down, one hue from light to dark. Size: energy lost (area).
-const colour = d3.scaleSequential([0, 50], d3.interpolateOranges).clamp(true);
+// Colour: share dispatched down, one hue from dim to bright. Size: energy lost (area).
+const colourRange = dark ? ["#6e5c0c", "#ffe14d"] : ["#efd98c", "#946800"];
+const colour = d3.scaleLinear([0, 50], colourRange).clamp(true);
 const biggest = window.innerWidth < 640 ? 14 : 22; // smaller dots on a phone
 const radius = d3.scaleSqrt([0, d3.max(onMap, (d) => d.lost_mwh) || 1], [2, biggest]);
 
@@ -110,7 +105,7 @@ function farmLabel(d) {
 const farmLink = (d) => `./farms/${d.id}`;
 ```
 
-<div class="card" style="padding: 0; overflow: hidden;">
+<div class="card" style="padding: 0; overflow: hidden; margin-bottom: 1rem;">
 
 ```js
 const container = display(document.createElement("div"));
@@ -138,9 +133,9 @@ details.style.cursor = "default";
 for (const d of onMap) {
   const dot = L.circleMarker([d.lat, d.lon], {
     radius: d.lost_mwh > 0 ? radius(d.lost_mwh) : 2,
-    color: dark ? "#1a1a19" : "#ffffff",
+    color: dark ? "#080c11" : "#ffffff",
     weight: 1,
-    fillColor: d.lost_mwh > 0 ? colour(d.dispatch_down_pct) : "#9a9a9a",
+    fillColor: d.lost_mwh > 0 ? colour(d.dispatch_down_pct) : "#7c8d9b",
     fillOpacity: 0.9
   });
   // Hover where there's a mouse; on a touch screen, a tap shows the details under the
@@ -162,8 +157,9 @@ invalidation.then(() => map.remove());
 
 ```js
 Plot.legend({
-  color: {type: "sequential", domain: [0, 50], scheme: "oranges", label: "Dispatched down (%), 50 or more is darkest"},
-  width: 320
+  color: {type: "linear", domain: [0, 50], range: colourRange, label: "Dispatched down (%), 50 or more is strongest"},
+  width: 320,
+  style: plotStyle
 })
 ```
 

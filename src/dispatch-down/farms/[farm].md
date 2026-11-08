@@ -4,17 +4,17 @@ title: Wind farm
 
 <style>
 .unit-list { margin: 0; padding: 0; list-style: none; }
-.unit-list li { padding: 0.35rem 0; border-top: 1px solid var(--border); font-size: 14px; }
-.unit-list li:first-child { border-top: none; }
-.unit-list code { font-size: 12.5px; color: var(--ink-faint); }
-.farm-map { height: 240px; border-radius: 10px; overflow: hidden; margin-top: 0.75rem; }
-.dark-tiles .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.9); }
-.crumbs { margin: 0 0 1rem; font-size: 14px; }
+.unit-list li { padding: 0.55rem 0; border-top: 1px solid var(--line); font-size: 14px; max-width: none !important; }
+.unit-list li:first-child { border-top: none; padding-top: 0; }
+.unit-list code { font-size: 11.5px; color: var(--ink-faint); }
+.farm-map { height: 240px; overflow: hidden; }
+.crumbs { margin: 0 0 1.5rem; font: 500 11.5px var(--monospace); letter-spacing: 0.08em; text-transform: uppercase; }
+.crumbs a { color: var(--ink-muted); text-decoration: none; }
 </style>
 
 ```js
-import "../components/nav.js";
-import {COLOURS, REGION_NAMES, monthName, dayName, percent, energy, euros, shareDown} from "../components/format.js";
+import "../../components/nav.js";
+import {COLOURS, REGION_NAMES, monthName, dayName, percent, energy, euros, shareDown, key, reasonKey, plotStyle} from "../../components/format.js";
 
 const farm = FileAttachment(`../data/farms/${observable.params.farm}.json`).json();
 const farmList = FileAttachment("../data/farms.csv").csv({typed: true});
@@ -22,7 +22,7 @@ const farmList = FileAttachment("../data/farms.csv").csv({typed: true});
 
 ```js
 // The browser tab shows the farm's name.
-document.title = `${farm.name} | Irish Wind Dispatch-Down Tracker`;
+document.title = `${farm.name} | Dispatch-down | Irish Power Lab`;
 
 // Totals over everything we have for this farm.
 const lost = d3.sum(farm.daily, (d) => d.lost_mwh);
@@ -38,45 +38,43 @@ const rank = byFarm.sort((a, b) => d3.descending(a[1], b[1])).findIndex(([id]) =
 
 const region = farm.regions.map((r) => REGION_NAMES[r]).join(" and ");
 const period = `${dayName(new Date(farm.first_day))} to ${dayName(new Date(farm.last_day))} ${farm.last_day.slice(0, 4)}`;
-const key = (colour) => html`<span style="color: ${colour}">■</span>`;
 const ordinal = (n) => {
   const ending = n % 100 >= 11 && n % 100 <= 13 ? "th" : ({1: "st", 2: "nd", 3: "rd"}[n % 10] ?? "th");
   return `${n}${ending}`;
 };
 ```
 
-<p class="crumbs"><a href="./">← All farms</a></p>
+<div class="page-head">
+  <p class="crumbs"><a href="./">← All farms</a></p>
+  <p class="eyebrow">${farm.technology === "solar" ? "Solar farm" : "Wind farm"} · ${region}</p>
+  <h1>${farm.name}</h1>
+  <p class="lede">From ${period}, <strong>${percent(pct)}</strong> of the energy the ${farm.technology === "solar" ? "sun" : "wind"} allowed here was turned down: ${energy(lost)}, worth about ${euros(value)} at market prices. That's the ${rank === 1 ? "most" : `${ordinal(rank)} most`} of ${byFarm.length} farms.</p>
+</div>
 
-<p class="eyebrow">${farm.technology === "solar" ? "Solar farm" : "Wind farm"} · ${region}</p>
-
-# ${farm.name}
-
-<p class="lede">From ${period}, <strong>${percent(pct)}</strong> of the energy the ${farm.technology === "solar" ? "sun" : "wind"} allowed here was turned down: ${energy(lost)}, worth about ${euros(value)} at market prices. That's the ${rank === 1 ? "most" : `${ordinal(rank)} most`} of ${byFarm.length} farms.</p>
-
-<div class="grid grid-cols-4" style="margin-top: 2rem;">
-  <div class="card">
-    <h2>Turned down</h2>
-    <span class="big">${percent(pct)}</span>
+<div class="stats">
+  <div class="stat">
+    <span class="label">Turned down</span>
+    <span class="value accent">${percent(pct)}</span>
     <p>of what the ${farm.technology === "solar" ? "sun" : "wind"} allowed</p>
   </div>
-  <div class="card">
-    <h2>Energy lost</h2>
-    <span class="big">${energy(lost)}</span>
+  <div class="stat">
+    <span class="label">Energy lost</span>
+    <span class="value">${energy(lost)}</span>
     <p>${energy(produced)} was produced</p>
   </div>
-  <div class="card">
-    <h2>Market value</h2>
-    <span class="big">${euros(value)}</span>
+  <div class="stat">
+    <span class="label">Market value</span>
+    <span class="value">${euros(value)}</span>
     <p>The lost energy at day-ahead prices. Not the owners' loss</p>
   </div>
-  <div class="card">
-    <h2>Why it was lost</h2>
-    <span class="big">${lost > 0 ? percent(100 * constraintShare) : "–"}</span>
+  <div class="stat">
+    <span class="label">Why it was lost</span>
+    <span class="value">${lost > 0 ? percent(100 * constraintShare) : "–"}</span>
     ${html`<div class="split">
       <span style="width: ${100 * constraintShare}%; background: ${COLOURS.constraint}"></span>
       <span style="width: ${100 * (1 - constraintShare)}%; background: ${COLOURS.curtailment}"></span>
     </div>`}
-    <p>${key(COLOURS.constraint)} Constraint: local grid full<br>${key(COLOURS.curtailment)} Curtailment: too much for the island</p>
+    <p>${key(COLOURS.constraint)}Constraint: local grid full<br>${key(COLOURS.curtailment)}Curtailment: too much for the island</p>
   </div>
 </div>
 
@@ -93,15 +91,24 @@ const heldDown = halfHours.filter((d) => d.reason);
 const recentMax = d3.max(halfHours, (d) => d.available) || 1;
 ```
 
-<div class="card chart" style="margin-top: 1rem;">
-  <h2>The last two weeks</h2>
-  <h3>Output against what the ${farm.technology === "solar" ? "sun" : "wind"} allowed, MW, half-hour by half-hour. Shaded: held down by the grid operator. Times are your local time.</h3>
+<div class="hatch" style="margin-top: clamp(2.5rem, 5vw, 4rem);"></div>
+
+<div class="section">
+<div class="section-head">
+  <div>
+    <p class="label" style="margin-bottom: 0.8rem;">01 / Half-hour by half-hour</p>
+    <h2 class="section-title">The last two weeks</h2>
+  </div>
+  <span class="label" style="flex-wrap: wrap;"><span>${key("var(--ink)")}Made</span> <span>${key("var(--ink-faint)")}Could have made</span> <span>${key(COLOURS.constraint)}Constraint on</span> <span>${key(COLOURS.curtailment)}Curtailment on</span></span>
+</div>
+<div class="card">
+  <div class="card-head"><span class="label">Output vs availability</span><span class="label">MW · your local time</span></div>
   ${resize((width) =>
     Plot.plot({
       width,
       height: 300,
-      marginLeft: 44,
-      style: {fontFamily: "var(--sans-serif)", fontSize: "12px"},
+      marginLeft: 40,
+      style: plotStyle,
       x: {type: "utc", label: null},
       y: {label: null, grid: true, domain: [0, recentMax * 1.05]},
       color: {domain: ["Constraint", "Curtailment"], range: [COLOURS.constraint, COLOURS.curtailment]},
@@ -118,7 +125,7 @@ const recentMax = d3.max(halfHours, (d) => d.available) || 1;
         Plot.areaY(halfHours, {x: "time", y: "available", fill: "var(--ink-faint)", fillOpacity: 0.25, curve: "step-after"}),
         Plot.lineY(halfHours, {x: "time", y: "available", stroke: "var(--ink-faint)", strokeWidth: 1, curve: "step-after"}),
         Plot.lineY(halfHours, {x: "time", y: "output", stroke: "var(--ink)", strokeWidth: 1.5, curve: "step-after"}),
-        Plot.ruleY([0], {stroke: "var(--border)"}),
+        Plot.ruleY([0], {stroke: "var(--line-strong)"}),
         Plot.tip(halfHours, Plot.pointerX({
           x: "time",
           y: "output",
@@ -128,7 +135,8 @@ const recentMax = d3.max(halfHours, (d) => d.available) || 1;
       ]
     })
   )}
-  <p class="muted" style="margin-top: 0.5rem;">${key("var(--ink)")} Made &nbsp; ${key("var(--ink-faint)")} Could have made (SEMO availability) &nbsp; ${key(COLOURS.constraint)} Constraint on &nbsp; ${key(COLOURS.curtailment)} Curtailment on. The gap inside a shaded band is energy lost to dispatch-down.</p>
+  <p class="muted" style="margin-top: 0.75rem;">"Could have made" is SEMO's availability figure. The gap inside a shaded band is energy lost to dispatch-down.</p>
+</div>
 </div>
 
 ```js
@@ -147,58 +155,69 @@ const hours = d3
     {hour, reason: "Constraint", mwh: s.constraint, held: s.held},
     {hour, reason: "Curtailment", mwh: s.curtailment, held: s.held}
   ]);
-const reasonColour = {domain: ["Constraint", "Curtailment"], range: [COLOURS.constraint, COLOURS.curtailment], legend: true};
+const reasonColour = {domain: ["Constraint", "Curtailment"], range: [COLOURS.constraint, COLOURS.curtailment]};
 ```
 
-<div class="grid grid-cols-2" style="margin-top: 1rem;">
-  <div class="card chart">
-    <h2>Energy lost each day</h2>
-    <h3>MWh, ${period}</h3>
+<div class="section">
+<div class="section-head">
+  <div>
+    <p class="label" style="margin-bottom: 0.8rem;">02 / The whole period</p>
+    <h2 class="section-title">When it's held down</h2>
+  </div>
+  ${reasonKey()}
+</div>
+<div class="grid grid-cols-2">
+  <div class="card">
+    <div class="card-head"><span class="label">Energy lost each day</span><span class="label">MWh · ${period}</span></div>
     ${resize((width) =>
       Plot.plot({
         width,
         height: 260,
         marginLeft: 44,
-        style: {fontFamily: "var(--sans-serif)", fontSize: "12px"},
+        style: plotStyle,
         x: {type: "utc", label: null, tickFormat: dayName, ticks: Math.max(2, Math.floor(width / 90))},
         y: {label: null, grid: true},
         color: reasonColour,
         marks: [
           Plot.rectY(days, {
-            x: "day", interval: "day", y: "mwh", fill: "reason", insetLeft: 1, insetRight: 1, rx: 1.5,
+            x: "day", interval: "day", y: "mwh", fill: "reason", insetLeft: 1, insetRight: 1,
             tip: {format: {x: dayName, y: (v) => `${d3.format(",.0f")(v)} MWh`}}
           }),
-          Plot.ruleY([0], {stroke: "var(--border)"})
+          Plot.ruleY([0], {stroke: "var(--line-strong)"})
         ]
       })
     )}
   </div>
-  <div class="card chart">
-    <h2>When in the day</h2>
-    <h3>MWh lost by hour of day (Irish time), whole period</h3>
+  <div class="card">
+    <div class="card-head"><span class="label">When in the day</span><span class="label">MWh by hour · Irish time</span></div>
     ${resize((width) =>
       Plot.plot({
         width,
         height: 260,
         marginLeft: 44,
-        style: {fontFamily: "var(--sans-serif)", fontSize: "12px"},
+        style: plotStyle,
         x: {label: null, tickFormat: (h) => `${String(h).padStart(2, "0")}:00`, ticks: [0, 6, 12, 18]},
         y: {label: null, grid: true},
         color: reasonColour,
         marks: [
           Plot.barY(hours, {
-            x: "hour", y: "mwh", fill: "reason", rx: 1.5,
+            x: "hour", y: "mwh", fill: "reason",
             tip: {channels: {"Held down": (d) => percent(100 * d.held) + " of half-hours"}, format: {x: (h) => `${h}:00`, y: (v) => `${d3.format(",.0f")(v)} MWh`}}
           }),
-          Plot.ruleY([0], {stroke: "var(--border)"})
+          Plot.ruleY([0], {stroke: "var(--line-strong)"})
         ]
       })
     )}
   </div>
 </div>
 
-## Month by month
-
+<div class="section">
+<div class="section-head">
+  <div>
+    <p class="label" style="margin-bottom: 0.8rem;">03 / Month by month</p>
+    <h2 class="section-title">The figures</h2>
+  </div>
+</div>
 <div class="card" style="padding: 0.5rem 1rem;">
 
 ```js
@@ -231,10 +250,12 @@ Inputs.table(
 ```
 
 </div>
+</div>
 
-<div class="grid grid-cols-2" style="margin-top: 2rem;">
+<div class="section">
+<div class="grid grid-cols-2">
   <div class="card">
-    <h2>About this farm</h2>
+    <div class="card-head"><span class="label">About this farm</span></div>
     ${html`<ul class="unit-list">
       <li>Sold by ${farm.companies.length ? farm.companies.join(", ") : "unknown"}</li>
       ${farm.capacity_mw ? html`<li>About ${d3.format(",.0f")(farm.capacity_mw)} MW, according to OpenStreetMap</li>` : ""}
@@ -243,9 +264,10 @@ Inputs.table(
     <p class="muted" style="margin-top: 0.75rem;">${farm.units.length > 1 ? "These market units are matched to the same farm (for example, its phases), so the figures above add them together." : "SEMO's market unit for this farm."} Names are SEMO's own.</p>
   </div>
   <div class="card">
-    <h2>Where</h2>
+    <div class="card-head"><span class="label">Where</span></div>
     ${farmMap}
   </div>
+</div>
 </div>
 
 ```js
@@ -260,7 +282,7 @@ if (farm.lat != null) {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 13
   }).addTo(map);
-  L.circleMarker([farm.lat, farm.lon], {radius: 9, color: dark ? "#1a1a19" : "#fff", weight: 2, fillColor: COLOURS.curtailment, fillOpacity: 0.95}).addTo(map);
+  L.circleMarker([farm.lat, farm.lon], {radius: 9, color: dark ? "#080c11" : "#ffffff", weight: 2, fillColor: dark ? "#ffd60a" : "#b88200", fillOpacity: 0.95}).addTo(map);
   requestAnimationFrame(() => map.invalidateSize());
   invalidation.then(() => map.remove());
 }

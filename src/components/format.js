@@ -1,18 +1,35 @@
 // Shared number formats and colours, so every page says things the same way.
 
 import * as d3 from "npm:d3";
+import {html} from "npm:htl";
 
-// One colour per thing, always the same thing (a colour-blind-safe palette).
+// One colour per thing, always the same thing. These follow light and dark mode (style.css).
 export const COLOURS = {
-  constraint: "#2a78d6", // blue
-  curtailment: "#eb6834", // orange
-  ROI: "#1baf7a", // aqua
-  NI: "#6250d6" // violet
+  constraint: "var(--constraint)",
+  curtailment: "var(--curtailment)",
+  ROI: "var(--roi)",
+  NI: "var(--ni)"
 };
+
+// The same axes and type on every chart.
+export const plotStyle = {
+  fontFamily: "var(--monospace)",
+  fontSize: "11px",
+  color: "var(--ink-muted)",
+  background: "transparent"
+};
+
+// A small square of colour for keys and legends.
+export const key = (colour) => html`<span class="key" style="background: ${colour}"></span>`;
+
+// The constraint / curtailment key, used next to most charts.
+export const reasonKey = () =>
+  html`<span class="label"><span>${key(COLOURS.constraint)}Constraint</span> <span>${key(COLOURS.curtailment)}Curtailment</span></span>`;
 
 export const REGION_NAMES = {ALL: "All-island", ROI: "Ireland", NI: "Northern Ireland"};
 
 export const monthName = d3.utcFormat("%B %Y");
+export const shortMonth = d3.utcFormat("%b %Y");
 export const dayName = d3.utcFormat("%-d %b");
 
 export const percent = (x) => `${d3.format(".1f")(x)}%`;

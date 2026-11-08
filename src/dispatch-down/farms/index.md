@@ -2,15 +2,15 @@
 title: Farms
 ---
 
-<p class="eyebrow">Farms</p>
-
-# Every wind farm, one page each
-
-<p class="lede">Search for a farm, or sort by how much it lost. Open one to see its last two weeks half-hour by half-hour, when in the day it's held down, and its month-by-month figures.</p>
+<div class="page-head">
+  <p class="eyebrow">Farms</p>
+  <h1>Every wind farm, one page each</h1>
+  <p class="lede">Search for a farm, or sort by how much it lost. Open one to see its last two weeks half-hour by half-hour, when in the day it's held down, and its month-by-month figures.</p>
+</div>
 
 ```js
-import "../components/nav.js";
-import {REGION_NAMES, monthName, percent, energy, euros} from "../components/format.js";
+import "../../components/nav.js";
+import {REGION_NAMES, monthName, percent, energy, euros} from "../../components/format.js";
 
 const farmList = FileAttachment("../data/farms.csv").csv({typed: true});
 const farmMonthly = FileAttachment("../data/farm_monthly.csv").csv({typed: true});
@@ -54,9 +54,9 @@ const searchInput = Inputs.search(farms, {placeholder: "Search farms, companies,
 const found = Generators.input(searchInput);
 ```
 
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin: 1.5rem 0 1rem;">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin: 0 0 1rem;">
   ${searchInput}
-  <span class="muted">Period</span> ${periodInput}
+  <span class="label">Period</span> ${periodInput}
 </div>
 
 <div class="card" style="padding: 0.5rem 1rem;">
