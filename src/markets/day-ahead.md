@@ -28,7 +28,8 @@ const toTime = new Intl.DateTimeFormat("en-IE", {timeZone: "Europe/Dublin", hour
 const halfHours = pricesHH
   .map((d) => {
     const time = toTime.format(d.timestamp_utc);
-    return {...d, day: new Date(`${toDay.format(d.timestamp_utc)}T00:00Z`), time, slot: 2 * +time.slice(0, 2) + (time.slice(3) === "30" ? 1 : 0)};
+    // Trading days run 23:00 to 23:00 Irish time: 23:00 belongs to the next day.
+    return {...d, day: new Date(`${toDay.format(new Date(+d.timestamp_utc + 3600e3))}T00:00Z`), time, slot: 2 * +time.slice(0, 2) + (time.slice(3) === "30" ? 1 : 0)};
   })
   .filter((d) => d.day >= first && d.day < last);
 const slotName = (i) => `${String(Math.floor(i / 2)).padStart(2, "0")}:${i % 2 ? "30" : "00"}`;
@@ -73,9 +74,9 @@ const zoneVolumes = d3
   <h1>Day-ahead prices</h1>
   <p class="lede">Results of the SEM day-ahead auction, run by SEMOpx the day before delivery. Ireland and Northern Ireland are one coupled market, so they share one price; volumes are shown for each zone.</p>
   <div class="meta">
-    <span>Latest complete day: ${longDay(pricesDaily.at(-1).day)}</span>
+    <span>Latest complete trading day: ${longDay(pricesDaily.at(-1).day)}</span>
     <span>Source: SEMOpx, via SEMO's published market results</span>
-    <span>Times are Irish time</span>
+    <span>Times are Irish time; a trading day runs 23:00 to 23:00</span>
   </div>
 </div>
 

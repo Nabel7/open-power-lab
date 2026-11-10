@@ -22,7 +22,8 @@ const change = priceDay.avg - pricePrev.avg;
 const systemDay = systemDaily.at(-1);
 
 // When the latest day's lowest and highest prices were, in Irish time.
-const sameDay = (t, day) => t.toLocaleDateString("en-CA", {timeZone: "Europe/Dublin"}) === day.toISOString().slice(0, 10);
+// Trading days run 23:00 to 23:00 Irish time, so shift by an hour to find a half-hour's day.
+const sameDay = (t, day) => new Date(+t + 3600e3).toLocaleDateString("en-CA", {timeZone: "Europe/Dublin"}) === day.toISOString().slice(0, 10);
 const dayHalfHours = pricesRecent.filter((d) => sameDay(d.timestamp_utc, priceDay.day));
 const clock = (t) => t.toLocaleTimeString("en-IE", {timeZone: "Europe/Dublin", hour: "2-digit", minute: "2-digit"});
 const lowAt = clock(dayHalfHours.find((d) => d.price === priceDay.low).timestamp_utc);
@@ -59,7 +60,7 @@ const spark = (rows, y, colour) =>
   <h1>Irish electricity market</h1>
   <p class="lede">The latest day-ahead prices, wind and demand on the island of Ireland, from public SEMOpx and EirGrid data.</p>
   <div class="meta">
-    <span>Day-ahead results: ${longDay(priceDay.day)}</span>
+    <span>Day-ahead results: trading day ${longDay(priceDay.day)}</span>
     <span>System data to ${irishTime(new Date(latest.system_last_utc))}</span>
     <span>Updated daily · not live</span>
   </div>

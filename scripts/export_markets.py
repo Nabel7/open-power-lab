@@ -8,7 +8,7 @@ Run with isem-data's Python, so it can read isem-data's archive:
 |-------------------|---------------------------------------------------------------|
 | prices_hh.csv     | half-hour: SEM day-ahead price, and volume in each zone       |
 | prices_recent.csv | the same, last 60 days only (for the Today page)              |
-| prices_daily.csv  | Irish day: average, lowest and highest price, negative hours  |
+| prices_daily.csv  | trading day: average, lowest and highest price, negative hours |
 | system_hh.csv     | half-hour, last 60 days: wind (actual, EirGrid forecast), demand |
 | system_daily.csv  | Irish day: wind and demand energy, wind share, forecast error |
 | latest.json       | the newest reading of each series, for the top-of-page strip  |
@@ -34,6 +34,12 @@ def local_day(times: pd.Series) -> pd.Series:
     return times.dt.tz_convert(LOCAL).dt.strftime("%Y-%m-%d")
 
 
+def trading_day(times: pd.Series) -> pd.Series:
+    """The market's trading day: it runs from 23:00 to 23:00 Irish time, so 23:00 on
+    9 Nov belongs to the 10 Nov trading day. Prices are summarised by trading day."""
+    return (times + pd.Timedelta(hours=1)).dt.tz_convert(LOCAL).dt.strftime("%Y-%m-%d")
+
+
 def half_hours_in(days: pd.Index) -> pd.Series:
     """How many half-hours each Irish day has: 48, or 46 / 50 on clock-change days."""
     start = pd.to_datetime(days).tz_localize(LOCAL)
@@ -51,7 +57,7 @@ def prices() -> tuple[pd.DataFrame, pd.DataFrame]:
             "volume_ni_mw": table[("dam_volume_mw", "NI")],
         }
     ).reset_index()
-    hh["day"] = local_day(hh["timestamp_utc"])
+    hh["day"] = trading_day(hh["timestamp_utc"])
     daily = hh.groupby("day").agg(
         avg=("price", "mean"),
         low=("price", "min"),
