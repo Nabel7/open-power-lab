@@ -59,28 +59,47 @@ toggle.addEventListener("click", () => {
 
 // ---- Latest data strip ------------------------------------------------------------------
 
+// A ticker of the latest figures, moving slowly from right to left. It pauses while the
+// pointer is over it, and stays still for people whose device asks for less motion.
+
 const strip = header.querySelector(".strip");
 const latestFile = FileAttachment("../data/markets/latest.json");
+const ddFile = FileAttachment("../generation/dispatch-down/data/monthly.csv");
 const at = (iso, options) =>
   new Date(iso).toLocaleString("en-IE", {timeZone: "Europe/Dublin", ...options});
 const day = (date) => at(`${date}T12:00Z`, {day: "numeric", month: "short"});
-const euro = (x) => `€${x.toFixed(2)}`;
+const euro = (x) => `€${x.toLocaleString("en-IE", {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+const number = (x) => x.toLocaleString("en-IE");
 
-latestFile.json().then((d) => {
+Promise.all([latestFile.json(), ddFile.csv({typed: true})]).then(([d, dd]) => {
   const up = d.price_avg_change >= 0;
-  const link = (path, text) => `<a href="${new URL(path, root).href}">${text}</a>`;
-  strip.innerHTML = [
-    link(
-      "markets/day-ahead",
-      `<span class="strip-label">Day-ahead ${day(d.price_day)}</span> <b>${euro(d.price_avg)}</b>/MWh avg <span class="${up ? "up" : "down"}">${up ? "▲" : "▼"} ${euro(Math.abs(d.price_avg_change))}</span>`
-    ),
-    link("generation/wind", `<span class="strip-label">Wind ${day(d.system_day)}</span> <b>${d.wind_share.toFixed(0)}%</b> of demand`),
-    link(
-      "generation/wind",
-      `<span class="strip-label">Latest ${at(d.system_last_utc, {day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"})}</span> wind <b>${d.wind_mw.toLocaleString("en-IE")}</b> MW · demand <b>${d.demand_mw.toLocaleString("en-IE")}</b> MW`
-    ),
-    `<span class="strip-note">Data to ${at(d.system_last_utc, {day: "numeric", month: "short"})} · not live</span>`
-  ].join("");
+  const link = (path, label, value) =>
+    `<a class="tick" href="${new URL(path, root).href}"><span class="strip-label">${label}</span> ${value}</a>`;
+  const island = dd.filter((r) => r.region === "ALL");
+  const month = island.filter((r) => r.days_with_data >= 0.8 * r.days_in_month).at(-1) ?? island.at(-1);
+  const monthName = month.month.toLocaleDateString("en-IE", {month: "long", timeZone: "UTC"});
+  const items = [
+    link("markets/day-ahead", `Day-ahead ${day(d.price_day)}`, `<b>${euro(d.price_avg)}</b>/MWh <span class="${up ? "up" : "down"}">${up ? "▲" : "▼"} ${euro(Math.abs(d.price_avg_change))}</span>`),
+    link("markets/day-ahead", "Range", `<b>${euro(d.price_low)}</b> – <b>${euro(d.price_high)}</b>`),
+    link("markets/day-ahead", "Volume-weighted", `<b>${euro(d.price_vwap)}</b>/MWh`),
+    link("generation/wind", `Wind ${day(d.system_day)}`, `<b>${d.wind_share.toFixed(0)}%</b> of demand`),
+    link("generation/wind", `Wind ${at(d.system_last_utc, {hour: "2-digit", minute: "2-digit"})}`, `<b>${number(d.wind_mw)}</b> MW`),
+    link("generation/wind", "Demand", `<b>${number(d.demand_mw)}</b> MW`),
+    link("generation/dispatch-down/", `Wind turned down, ${monthName}`, `<b>${month.dispatch_down_pct.toFixed(1)}%</b>`)
+  ].join('<span class="tick-dot" aria-hidden="true">·</span>');
+  // The items twice in a row, so the loop has no visible join.
+  strip.innerHTML = `<div class="ticker"><div class="ticker-track">
+      <div class="ticker-group">${items}</div>
+      <div class="ticker-group" aria-hidden="true">${items.replaceAll('<a class="tick"', '<a class="tick" tabindex="-1"')}</div>
+    </div></div>
+    <span class="strip-note">Data to ${at(d.system_last_utc, {day: "numeric", month: "short"})} · not live</span>`;
+  // A steady reading speed whatever the screen width: about 40 pixels a second.
+  const track = strip.querySelector(".ticker-track");
+  requestAnimationFrame(() => {
+    const width = strip.querySelector(".ticker-group").getBoundingClientRect().width;
+    track.style.animationDuration = `${Math.max(20, width / 40)}s`;
+    track.classList.add("moving");
+  });
 });
 
 // ---- Search ---------------------------------------------------------------------------
