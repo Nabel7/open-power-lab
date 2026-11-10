@@ -3,9 +3,8 @@ title: Dispatch-down
 ---
 
 ```js
-import "../components/nav.js";
-import {COLOURS, REGION_NAMES, monthName, shortMonth as monthChip, dayName, percent, gwh, energy, euros, key, reasonKey, plotStyle} from "../components/format.js";
-import {dotField} from "../components/dotfield.js";
+import "../../components/shell.js";
+import {COLOURS, REGION_NAMES, monthName, shortMonth as monthChip, dayName, percent, gwh, energy, euros, key, reasonKey, plotStyle} from "../../components/format.js";
 
 const monthly = FileAttachment("data/monthly.csv").csv({typed: true});
 const daily = FileAttachment("data/daily.csv").csv({typed: true});
@@ -55,7 +54,7 @@ const split = html`<div class="split">
 
 <div class="hero">
   <div>
-    <p class="eyebrow">Irish wind power · ${monthName(month)}</p>
+    <p class="crumbs">Generation / Dispatch-down</p>
     <h1>In ${shortMonth}, <span class="headline-number">${percent(all.dispatch_down_pct)}</span> of Irish wind power was turned down</h1>
     <p class="lede">Wind farms were told to produce <strong>${gwh(all.lost_mwh)}</strong> less than the wind allowed, worth about <strong>${euros(all.lost_value_eur)}</strong> at market prices. About ${d3.format(".0f")(100 * constraintShare)}% of it was because the local grid was full.</p>
     ${monthInput}
@@ -63,10 +62,6 @@ const split = html`<div class="split">
       ? html`<p class="muted chip-note">Partial month: ${all.days_with_data} of ${all.days_in_month} days have data</p>`
       : ""}
   </div>
-  <figure class="hero-art">
-    ${resize((width) => (dark, dotField(windDaily, places, {width, month})))}
-    <figcaption class="label"><span>Each square: one farm, one day</span><span>North ← → South</span><span>${key(COLOURS.constraint)}Constraint</span><span>${key(COLOURS.curtailment)}Curtailment</span></figcaption>
-  </figure>
 </div>
 
 <div class="stats">

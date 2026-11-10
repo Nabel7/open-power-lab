@@ -8,13 +8,11 @@ title: Wind farm
 .unit-list li:first-child { border-top: none; padding-top: 0; }
 .unit-list code { font-size: 11.5px; color: var(--ink-faint); }
 .farm-map { height: 240px; overflow: hidden; }
-.crumbs { margin: 0 0 1.5rem; font: 500 11.5px var(--monospace); letter-spacing: 0.08em; text-transform: uppercase; }
-.crumbs a { color: var(--ink-muted); text-decoration: none; }
 </style>
 
 ```js
-import "../../components/nav.js";
-import {COLOURS, REGION_NAMES, monthName, dayName, percent, energy, euros, shareDown, key, reasonKey, plotStyle} from "../../components/format.js";
+import "../../../components/shell.js";
+import {COLOURS, REGION_NAMES, monthName, dayName, percent, energy, euros, shareDown, key, reasonKey, plotStyle} from "../../../components/format.js";
 
 const farm = FileAttachment(`../data/farms/${observable.params.farm}.json`).json();
 const farmList = FileAttachment("../data/farms.csv").csv({typed: true});
@@ -276,13 +274,12 @@ let farmMap = html`<p>Not placed on the map yet: SEMO's name for it didn't match
 if (farm.lat != null) {
   const box = html`<div class="farm-map"></div>`;
   farmMap = html`${box}<p class="muted" style="margin-top: 0.5rem;">Position from OpenStreetMap, matched by name. <a href="../map">Open the full map</a></p>`;
-  box.classList.toggle("dark-tiles", dark);
   const map = L.map(box, {scrollWheelZoom: false, attributionControl: true}).setView([farm.lat, farm.lon], 9);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 13
   }).addTo(map);
-  L.circleMarker([farm.lat, farm.lon], {radius: 9, color: dark ? "#080c11" : "#ffffff", weight: 2, fillColor: dark ? "#ffd60a" : "#b88200", fillOpacity: 0.95}).addTo(map);
+  L.circleMarker([farm.lat, farm.lon], {radius: 9, color: "#ffffff", weight: 2, fillColor: "#b88200", fillOpacity: 0.95}).addTo(map);
   requestAnimationFrame(() => map.invalidateSize());
   invalidation.then(() => map.remove());
 }

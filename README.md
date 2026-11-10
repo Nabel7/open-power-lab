@@ -1,8 +1,8 @@
 # Irish Power Lab
 
-A home for independent projects on the Irish electricity market, built from public data. The name is a working title, set in `observablehq.config.js` and `src/index.md`.
+Independent data and analysis on the Irish electricity market (I-SEM), built from public data: day-ahead prices, wind and demand, dispatch-down, and later intraday, imbalance and published forecasts. The name is a working title, set in `observablehq.config.js`.
 
-Project 1 is the Irish wind dispatch-down tracker, in `src/dispatch-down/`. Later projects (prices, a forecast scoreboard, a grid model) each get their own folder under `src/`, with their own `data/`.
+The site is a light, open data tool: dropdown menus (Markets, Generation, Forecasts, Data), search on every page (⌘K or `/`) over pages, farms and companies, and a strip of the latest figures. Planned pages appear in the menus marked "Soon".
 
 ## Dispatch-down
 
@@ -17,7 +17,8 @@ SEMO reports ──daily──► isem-data (raw archive, on this Mac)
                               │
               scripts/update-data.sh   (python -m isem_data.tracker)
                               ▼
-                    src/dispatch-down/data/*.csv, meta.json   (small summaries, committed here)
+         src/generation/dispatch-down/data/   (dispatch-down summaries, committed here)
+         src/data/markets/                    (prices, wind and demand: scripts/export_markets.py)
                               │
                      Observable Framework
                               ▼
@@ -32,7 +33,7 @@ Needs Node 18 or newer, and isem-data set up at `~/Developer/isem-data` (or set 
 
 ```bash
 npm install
-npm run update-data   # refresh src/dispatch-down/data from isem-data
+npm run update-data   # refresh src/generation/dispatch-down/data and src/data/markets from isem-data
 npm run dev           # preview at http://127.0.0.1:3000, reloads as you edit
 npm run build         # build the static site into dist/
 ```
@@ -43,18 +44,21 @@ Observable Framework sends anonymous usage telemetry unless `OBSERVABLE_TELEMETR
 
 | Page | File | What it shows |
 |---|---|---|
-| Home | `src/index.md` | The lab: what it is and its projects |
-| Dispatch-down overview | `src/dispatch-down/index.md` | A chosen month: % dispatched down, energy lost, market value, constraint share, Ireland vs NI; day-by-day chart; month-by-month chart; most affected farms |
-| Map | `src/dispatch-down/map.md` | Every placed wind farm as a dot: size = energy lost that month, colour = % dispatched down. Hover (or tap, on a phone) for details; click for the farm's page. Uses Leaflet and OpenStreetMap tiles |
-| Farms | `src/dispatch-down/farms/index.md` | Every farm in a searchable, sortable table, for the whole period or one month. Each name links to its page |
-| One page per farm | `src/dispatch-down/farms/[farm].md` | A template: one page per file in `src/dispatch-down/data/farms/` (listed in `dynamicPaths` in `observablehq.config.js`). Headline figures, the last two weeks half-hour by half-hour (output vs availability, with constraint and curtailment shaded), energy lost each day, by hour of day, month by month, its units and a small map |
-| Methods & data | `src/dispatch-down/methods.md` | How it's calculated, the check against EirGrid's official figures, known limits, months covered, downloads, licence |
+| Today (home) | `src/index.md` | Latest day-ahead average and range, wind share, dispatch-down; 7-day and 90-day charts |
+| Day-ahead | `src/markets/day-ahead.md` | 30 days to 1 year: daily average and range, a heatmap of every half-hour, volume by zone, price by time of day, monthly table |
+| Wind & demand | `src/generation/wind.md` | Wind against demand, and EirGrid's wind forecast against what happened (error, bias, monthly table) |
+| Datasets | `src/data.md` | Sources, update frequency, licences, every download |
+| Dispatch-down overview | `src/generation/dispatch-down/index.md` | A chosen month: % dispatched down, energy lost, market value, constraint share, Ireland vs NI; day-by-day chart; month-by-month chart; most affected farms |
+| Map | `src/generation/dispatch-down/map.md` | Every placed wind farm as a dot: size = energy lost that month, colour = % dispatched down. Hover (or tap, on a phone) for details; click for the farm's page. Uses Leaflet and OpenStreetMap tiles |
+| Farms | `src/generation/dispatch-down/farms/index.md` | Every farm in a searchable, sortable table, for the whole period or one month. Each name links to its page |
+| One page per farm | `src/generation/dispatch-down/farms/[farm].md` | A template: one page per file in `src/generation/dispatch-down/data/farms/` (listed in `dynamicPaths` in `observablehq.config.js`). Headline figures, the last two weeks half-hour by half-hour (output vs availability, with constraint and curtailment shaded), energy lost each day, by hour of day, month by month, its units and a small map |
+| Methods & data | `src/generation/dispatch-down/methods.md` | How it's calculated, the check against EirGrid's official figures, known limits, months covered, downloads, licence |
 
-Shared formats and colours are in `src/components/format.js`. Site settings (title, footer credit, light/dark theme) are in `observablehq.config.js`.
+Shared formats and colours are in `src/components/format.js`; the look in `src/style.css`. Every page imports `src/components/shell.js` (menus, search, latest-data strip), which loads `motion.js` (charts draw in, numbers count up; off when the device asks for less motion). Menus, footer and site name are in `observablehq.config.js`.
 
 ## Farm positions
 
-`src/dispatch-down/data/farm_locations.csv` comes from isem-data, which matches SEMO's unit names to OpenStreetMap's wind farms (`isem_data/locations.py`; hand fixes in `isem_data/corrections.csv`). Refresh the names and positions now and then, not every day:
+`src/generation/dispatch-down/data/farm_locations.csv` comes from isem-data, which matches SEMO's unit names to OpenStreetMap's wind farms (`isem_data/locations.py`; hand fixes in `isem_data/corrections.csv`). Refresh the names and positions now and then, not every day:
 
 ```bash
 cd ~/Developer/isem-data && .venv/bin/python -m isem_data --datasets farm_names osm_wind_farms
@@ -64,4 +68,4 @@ cd ~/Developer/isem-data && .venv/bin/python -m isem_data --datasets farm_names 
 
 1. Check isem-data's daily download has the whole month.
 2. `npm run update-data`, then `npm run dev` and look over the pages.
-3. Commit the changed `src/dispatch-down/data/` files and push.
+3. Commit the changed `src/generation/dispatch-down/data/` and `src/data/markets/` files and push.

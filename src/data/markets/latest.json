@@ -1,0 +1,12 @@
+{
+  "built_at_utc": "2026-11-10T14:41:48Z",
+  "price_day": "2026-11-08",
+  "price_avg": 377.7,
+  "price_avg_change": -77.2,
+  "price_last_utc": "2026-11-09T22:30Z",
+  "system_day": "2026-11-09",
+  "wind_share": 43.9,
+  "system_last_utc": "2026-11-09T23:30Z",
+  "wind_mw": 2804,
+  "demand_mw": 4868
+}

@@ -9,8 +9,8 @@ title: Farms
 </div>
 
 ```js
-import "../../components/nav.js";
-import {REGION_NAMES, monthName, percent, energy, euros} from "../../components/format.js";
+import "../../../components/shell.js";
+import {REGION_NAMES, monthName, percent, energy, euros} from "../../../components/format.js";
 
 const farmList = FileAttachment("../data/farms.csv").csv({typed: true});
 const farmMonthly = FileAttachment("../data/farm_monthly.csv").csv({typed: true});
@@ -50,7 +50,8 @@ const farms = d3
       constraint: lost > 0 ? (100 * d3.sum(units, (d) => d.constraint_mwh)) / lost : NaN
     };
   });
-const searchInput = Inputs.search(farms, {placeholder: "Search farms, companies, regions…"});
+// A link from site search can pass a company or farm name as ?q=...
+const searchInput = Inputs.search(farms, {placeholder: "Search farms, companies, regions…", query: new URLSearchParams(location.search).get("q") ?? ""});
 const found = Generators.input(searchInput);
 ```
 

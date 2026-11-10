@@ -9,8 +9,8 @@ title: Methods & data
 </div>
 
 ```js
-import "../components/nav.js";
-import {REGION_NAMES, monthName, percent, gwh, euros} from "../components/format.js";
+import "../../components/shell.js";
+import {REGION_NAMES, monthName, percent, gwh, euros} from "../../components/format.js";
 
 const monthly = FileAttachment("data/monthly.csv").csv({typed: true});
 const meta = FileAttachment("data/meta.json").json();

@@ -21,8 +21,8 @@ title: Map
 </div>
 
 ```js
-import "../components/nav.js";
-import {REGION_NAMES, monthName, shortMonth, percent, gwh, euros, plotStyle} from "../components/format.js";
+import "../../components/shell.js";
+import {REGION_NAMES, monthName, shortMonth, percent, gwh, euros, plotStyle} from "../../components/format.js";
 
 const monthly = FileAttachment("data/monthly.csv").csv({typed: true});
 const farms = FileAttachment("data/farms.csv").csv({typed: true});
@@ -84,7 +84,7 @@ const lostOnMap = d3.sum(onMap, (d) => d.lost_mwh);
 
 ```js
 // Colour: share dispatched down, one hue from dim to bright. Size: energy lost (area).
-const colourRange = dark ? ["#6e5c0c", "#ffe14d"] : ["#efd98c", "#946800"];
+const colourRange = ["#efd98c", "#946800"];
 const colour = d3.scaleLinear([0, 50], colourRange).clamp(true);
 const biggest = window.innerWidth < 640 ? 14 : 22; // smaller dots on a phone
 const radius = d3.scaleSqrt([0, d3.max(onMap, (d) => d.lost_mwh) || 1], [2, biggest]);
@@ -110,7 +110,6 @@ const farmLink = (d) => `./farms/${d.id}`;
 ```js
 const container = display(document.createElement("div"));
 container.style = "height: min(75vh, 720px);";
-container.classList.toggle("dark-tiles", dark);
 
 const ireland = [
   [51.35, -10.6],
@@ -133,7 +132,7 @@ details.style.cursor = "default";
 for (const d of onMap) {
   const dot = L.circleMarker([d.lat, d.lon], {
     radius: d.lost_mwh > 0 ? radius(d.lost_mwh) : 2,
-    color: dark ? "#080c11" : "#ffffff",
+    color: "#ffffff",
     weight: 1,
     fillColor: d.lost_mwh > 0 ? colour(d.dispatch_down_pct) : "#7c8d9b",
     fillOpacity: 0.9
