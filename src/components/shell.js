@@ -3,6 +3,7 @@
 
 import {FileAttachment} from "observablehq:stdlib";
 import "./motion.js";
+import {escapeHtml} from "./format.js";
 
 const header = document.querySelector("#observablehq-header");
 
@@ -174,8 +175,8 @@ function render() {
   list.innerHTML = results.length
     ? results
         .map(
-          (d, i) => `<li role="option" aria-selected="${i === selected}"><${d.href ? `a href="${d.href}"` : 'span class="result-soon"'}>
-          <span class="result-kind">${d.kind}</span><span class="result-title">${d.title}</span><span class="result-detail">${d.detail}</span></${d.href ? "a" : "span"}></li>`
+          (d, i) => `<li role="option" aria-selected="${i === selected}"><${d.href ? `a href="${escapeHtml(d.href)}"` : 'span class="result-soon"'}>
+          <span class="result-kind">${escapeHtml(d.kind)}</span><span class="result-title">${escapeHtml(d.title)}</span><span class="result-detail">${escapeHtml(d.detail)}</span></${d.href ? "a" : "span"}></li>`
         )
         .join("")
     : `<li class="search-empty">Nothing found. Try a farm, a company, or a page such as "day-ahead".</li>`;

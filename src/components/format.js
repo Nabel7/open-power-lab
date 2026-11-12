@@ -26,6 +26,12 @@ export const plotStyle = {
 // A small square of colour for keys and legends.
 export const key = (colour) => html`<span class="key" style="background: ${colour}"></span>`;
 
+// Make text safe to put inside HTML. Farm and company names come from outside (SEMO's
+// lists, OpenStreetMap, which anyone can edit), so any name written into HTML by hand,
+// rather than through html`...`, goes through this first.
+export const escapeHtml = (text) =>
+  String(text ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
+
 // Prices and times, the same way everywhere.
 export const eurMwh = (x) => (x == null || isNaN(x) ? "–" : `€${d3.format(",.2f")(x)}`);
 export const mw = (x) => `${d3.format(",.0f")(x)} MW`;

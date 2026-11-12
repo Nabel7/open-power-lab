@@ -22,7 +22,7 @@ title: Map
 
 ```js
 import "../../components/shell.js";
-import {REGION_NAMES, monthName, shortMonth, percent, gwh, euros, plotStyle} from "../../components/format.js";
+import {REGION_NAMES, monthName, shortMonth, percent, gwh, euros, plotStyle, escapeHtml} from "../../components/format.js";
 
 const monthly = FileAttachment("data/monthly.csv").csv({typed: true});
 const farms = FileAttachment("data/farms.csv").csv({typed: true});
@@ -96,13 +96,14 @@ function farmLabel(d) {
     d.lost_mwh > 0
       ? `${percent((100 * d.constraint_mwh) / d.lost_mwh)} constraint, ${percent((100 * d.curtailment_mwh) / d.lost_mwh)} curtailment`
       : "nothing lost";
-  return `<strong>${name}</strong><br>
-    ${d.company ?? ""} · ${REGION_NAMES[d.region] ?? ""}<br>
+  // Names come from SEMO and OpenStreetMap, so they're escaped before going into HTML.
+  return `<strong>${escapeHtml(name)}</strong><br>
+    ${escapeHtml(d.company)} · ${REGION_NAMES[d.region] ?? ""}<br>
     <strong>${percent(d.dispatch_down_pct)}</strong> dispatched down · ${gwh(d.lost_mwh)} lost<br>
     ${split}<br>
-    Market value ${euros(d.lost_value_eur)} · <span class="muted">${d.units.join(", ")}</span>`;
+    Market value ${euros(d.lost_value_eur)} · <span class="muted">${escapeHtml(d.units.join(", "))}</span>`;
 }
-const farmLink = (d) => `./farms/${d.id}`;
+const farmLink = (d) => `./farms/${encodeURIComponent(d.id)}`;
 ```
 
 <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 1rem;">
