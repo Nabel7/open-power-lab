@@ -1,0 +1,28 @@
+unit,company,region,name,size_mw
+GU_404920,ESB,ROI,Aghada BESS 2B,75.0
+GU_403660,ESB,ROI,Poolbeg BESS,75.0
+GU_403570,ESB,ROI,Aghada BESS 2A,75.0
+GU_404650,Shannonbridge Power (B) Limited,ROI,Shannonbridge BESS,63.0
+GU_404900,Statkraft Markets GmbH,ROI,Lisdrumdoagh BESS,60.0
+GU_503960,Statkraft Markets GmbH,NI,Battery GU_503960,50.0
+GU_503950,Statkraft Markets GmbH,NI,Battery GU_503950,50.0
+GU_503350,Energia Customer Solutions NI Limited,NI,Battery GU_503350,50.0
+GU_407530,Lumcloon Power Limited,ROI,Battery GU_407530,50.0
+GU_407520,Lumcloon Power Limited,ROI,Battery GU_407520,50.0
+GU_404380,Shannonbridge Power Limited,ROI,Shannonbridge BESS A1,50.0
+GU_404260,SCOTTISHPOWER RENEWABLES (UK) LIMITED,ROI,Gorman BESS,50.0
+GU_503980,Kells BES Ltd,NI,Battery GU_503980,50.0
+GU_404390,Shannonbridge Power Limited,ROI,Shannonbridge BESS A2,50.0
+GU_405070,Statkraft Markets GmbH,ROI,Porterstown BESS,30.0
+GU_403630,ESB,ROI,Kylemore,30.0
+GU_403600,ESB,ROI,South Wall BESS,30.0
+GU_404520,Statkraft Markets GmbH,ROI,Kelwin 4 Battery,27.0
+GU_407320,Cloncreen Wind Farm Supply DAC,ROI,Cloncreen BESS,25.0
+GU_407550,Statkraft Markets GmbH,ROI,Ballykilleen BESS,20.0
+GU_403560,ESB,ROI,Aghada BESS,19.0
+GU_404530,Avonbeg Storage Limited,ROI,Avonbeg BESS,16.0
+GU_504250,Heron Storage Limited,NI,Battery GU_504250,12.0
+GU_404010,Statkraft Markets GmbH,ROI,Beenanaspuck and Tobertoreen Battery,11.0
+GU_404550,Killala Community Windfarm DAC,ROI,Killala Battery,10.0
+GU_404540,Gorey Storage Limited,ROI,Gorey BESS,9.0
+GU_404510,Statkraft Markets GmbH,ROI,Gardnershill Battery,9.0

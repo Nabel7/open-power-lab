@@ -47,6 +47,8 @@ Observable Framework sends anonymous usage telemetry unless `OBSERVABLE_TELEMETR
 | Today (home) | `src/index.md` | Latest day-ahead average and range, wind share, dispatch-down; 7-day and 90-day charts |
 | Day-ahead | `src/markets/day-ahead.md` | 30 days to 1 year: daily average and range, a heatmap of every half-hour, volume by zone, price by time of day, monthly table |
 | Wind & demand | `src/generation/wind.md` | Wind against demand, and EirGrid's wind forecast against what happened (error, bias, monthly table) |
+| Batteries | `src/generation/batteries.md` | The grid batteries: when they charge and discharge against the price, each battery's energy and day-ahead value, their day-ahead trading over the year |
+| Battery simulator | `src/tools/battery-simulator.md` | Choose a battery; it finds the best daily schedule on real day-ahead prices (`src/components/battery.js`, checked by `node --test scripts/battery.test.mjs`) |
 | Datasets | `src/data.md` | Sources, update frequency, licences, every download |
 | Dispatch-down overview | `src/generation/dispatch-down/index.md` | A chosen month: % dispatched down, energy lost, market value, constraint share, Ireland vs NI; day-by-day chart; month-by-month chart; most affected farms |
 | Map | `src/generation/dispatch-down/map.md` | Every placed wind farm as a dot: size = energy lost that month, colour = % dispatched down. Hover (or tap, on a phone) for details; click for the farm's page. Uses Leaflet and OpenStreetMap tiles |

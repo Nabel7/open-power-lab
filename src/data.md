@@ -19,7 +19,11 @@ const files = [
   ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farms.csv"), "By farm, whole period"],
   ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_monthly.csv"), "By farm and month"],
   ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_daily.csv"), "By farm and day"],
-  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_locations.csv"), "Farm positions, from OpenStreetMap (Open Database Licence)"]
+  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_locations.csv"), "Farm positions, from OpenStreetMap (Open Database Licence)"],
+  ["Batteries", FileAttachment("data/batteries/units.csv"), "Each grid battery: name, company, region, size in MW"],
+  ["Batteries", FileAttachment("data/batteries/fleet_hh.csv"), "Half-hourly: all batteries' charging and discharging, with the day-ahead price"],
+  ["Batteries", FileAttachment("data/batteries/unit_totals.csv"), "Each battery: energy in and out, and day-ahead value, over the metered period"],
+  ["Batteries", FileAttachment("data/batteries/dam_monthly.csv"), "The batteries' day-ahead purchases, sales and value, by month"]
 ];
 ```
 
@@ -42,6 +46,8 @@ const files = [
 | Day-ahead prices and volumes | SEMOpx auction results, published by SEMO | 30 min | 1 year | Daily |
 | Wind output, EirGrid wind forecast, demand | EirGrid [Smart Grid Dashboard](https://www.smartgriddashboard.com) | 15 min | 1 year | Daily |
 | Wind farm dispatch instructions, availability, metered output, unit list | SEMO balancing market reports BM-037, BM-101, BM-086, BM-091 | Per instruction, 30 min | About 2 months | Daily |
+| Battery availability and metered output | The same SEMO reports, for units listed as battery storage | 30 min | About 2 months | Daily |
+| Battery day-ahead orders | Each unit's cleared orders in SEMOpx's day-ahead results | 30 min | 1 year | Daily |
 | Farm names | SEMO's published lists of registered units | Per unit | Current | Now and then |
 | Farm positions | [OpenStreetMap](https://www.openstreetmap.org) | Per farm | Current | Now and then |
 

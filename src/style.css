@@ -29,6 +29,8 @@
   --ni: #d6336c;
   --price: #7c5cff;
   --wind: #0e8fb0;
+  --charge: #2563eb; /* a battery taking power from the grid */
+  --discharge: #c26a00; /* a battery giving power to the grid */
   --accent: var(--constraint);
 
   --sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -1243,4 +1245,44 @@ form input[type="search"] + output {
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* ---- Simulator controls ---------------------------------------------------------------------- */
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem 2rem;
+  margin: 0 0 1.5rem;
+  padding: 1.1rem 0;
+  border-block: 1px solid var(--line);
+}
+
+#observablehq-main .controls form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+
+.controls form > label {
+  width: auto;
+  color: var(--ink-muted);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.controls input[type="range"] {
+  accent-color: var(--brand);
+}
+
+.controls input[type="number"] {
+  width: 4.5rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: 13.5px var(--sans-serif);
 }
