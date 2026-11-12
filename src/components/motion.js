@@ -1,6 +1,9 @@
-// Small animations: charts draw themselves when they come into view, headline numbers count
-// up, and blocks further down the page rise in as you scroll. Imported by shell.js, so every
-// page gets it. Does nothing for people whose device asks for less motion.
+// Small animations: charts draw themselves when they come into view, and blocks further down
+// the page rise in as you scroll. Imported by shell.js, so every page gets it. Does nothing
+// for people whose device asks for less motion.
+//
+// Figures are never animated: a number counting up shows wrong values on the way, which a
+// reader (or a screenshot) can catch.
 
 const quiet = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const main = document.querySelector("#observablehq-main");
@@ -52,36 +55,6 @@ function animateChart(svg) {
   }
 }
 
-// ---- Numbers ------------------------------------------------------------------------------
-
-const counted = new WeakMap(); // value element -> the text it last counted up to
-
-function countUp(element) {
-  const node = [...element.childNodes].find((n) => n.nodeType === Node.TEXT_NODE && /\d/.test(n.textContent));
-  if (!node) return;
-  const text = node.textContent;
-  if (counted.get(element) === text) return;
-  counted.set(element, text);
-  const match = text.match(/^(.*?)(\d[\d,]*(?:\.\d+)?)(.*)$/s);
-  if (!match) return;
-  const [, before, number, after] = match;
-  const target = parseFloat(number.replace(/,/g, ""));
-  const decimals = (number.split(".")[1] ?? "").length;
-  const commas = number.includes(",");
-  const format = (x) =>
-    x.toLocaleString("en-IE", {minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping: commas});
-  const start = performance.now();
-  const duration = 800;
-  const step = (now) => {
-    if (counted.get(element) !== text) return; // the value changed while counting
-    const t = Math.min(1, (now - start) / duration);
-    const eased = 1 - Math.pow(1 - t, 3);
-    node.textContent = t < 1 ? `${before}${format(target * eased)}${after}` : text;
-    if (t < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-
 // ---- Blocks further down -------------------------------------------------------------------
 
 function reveal(element) {
@@ -99,9 +72,6 @@ function scan(root) {
   if (!(root instanceof Element)) return;
   const svgs = root.matches?.("svg[class^='plot']") ? [root] : root.querySelectorAll("svg[class^='plot']");
   for (const svg of svgs) animateChart(svg);
-  const value = root.closest?.(".stat .value");
-  if (value) requestAnimationFrame(() => countUp(value));
-  for (const v of root.querySelectorAll?.(".stat .value") ?? []) requestAnimationFrame(() => countUp(v));
 }
 
 if (!quiet && main) {
