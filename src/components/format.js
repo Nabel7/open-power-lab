@@ -11,6 +11,8 @@ export const COLOURS = {
   NI: "var(--ni)",
   price: "var(--price)",
   wind: "var(--wind)",
+  charge: "var(--charge)",
+  discharge: "var(--discharge)",
   demand: "var(--ink-muted)",
   forecast: "var(--ink-faint)"
 };

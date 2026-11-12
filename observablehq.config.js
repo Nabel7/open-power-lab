@@ -32,6 +32,7 @@ const MENUS = [
       {title: "Dispatch-down", path: "/generation/dispatch-down/", note: "Wind turned down, why and where"},
       {title: "Wind farms", path: "/generation/dispatch-down/farms/", note: "Every farm, with its own page"},
       {title: "Farm map", path: "/generation/dispatch-down/map", note: "Where wind is turned down"},
+      {title: "Batteries", path: "/generation/batteries", note: "When the island's batteries charge and discharge"},
       {title: "Interconnectors", soon: true, note: "Flows to and from Great Britain"}
     ]
   },
@@ -42,6 +43,14 @@ const MENUS = [
       {title: "Wind forecast", path: "/generation/wind#forecast", note: "EirGrid's forecast against what happened"},
       {title: "Day-ahead price", soon: true, note: "Published before the auction, with ranges"},
       {title: "Scoreboard", soon: true, note: "Every forecast, scored the same way"}
+    ]
+  },
+  {
+    name: "Tools",
+    section: "/tools",
+    items: [
+      {title: "Battery simulator", path: "/tools/battery-simulator", note: "What a battery could earn on real prices"},
+      {title: "Price and wind explorer", soon: true, note: "How wind moves the price, half-hour by half-hour"}
     ]
   },
   {

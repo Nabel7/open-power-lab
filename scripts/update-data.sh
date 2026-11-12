@@ -12,3 +12,4 @@ isem_data=${ISEM_DATA:-$HOME/Developer/isem-data}
 
 "$isem_data/.venv/bin/python" -m isem_data.tracker --out src/generation/dispatch-down/data
 "$isem_data/.venv/bin/python" scripts/export_markets.py
+"$isem_data/.venv/bin/python" scripts/export_batteries.py
