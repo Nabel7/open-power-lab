@@ -3,24 +3,39 @@
 import * as d3 from "npm:d3";
 import {html} from "npm:htl";
 
-// One colour per thing, always the same thing. These follow light and dark mode (style.css).
+// One colour per thing, always the same thing (defined in style.css).
 export const COLOURS = {
   constraint: "var(--constraint)",
   curtailment: "var(--curtailment)",
   ROI: "var(--roi)",
-  NI: "var(--ni)"
+  NI: "var(--ni)",
+  price: "var(--price)",
+  wind: "var(--wind)",
+  demand: "var(--ink-muted)",
+  forecast: "var(--ink-faint)"
 };
 
 // The same axes and type on every chart.
 export const plotStyle = {
-  fontFamily: "var(--monospace)",
-  fontSize: "11px",
-  color: "var(--ink-muted)",
+  fontFamily: "var(--sans-serif)",
+  fontSize: "11.5px",
+  color: "var(--ink-faint)",
   background: "transparent"
 };
 
 // A small square of colour for keys and legends.
 export const key = (colour) => html`<span class="key" style="background: ${colour}"></span>`;
+
+// Prices and times, the same way everywhere.
+export const eurMwh = (x) => (x == null || isNaN(x) ? "–" : `€${d3.format(",.2f")(x)}`);
+export const mw = (x) => `${d3.format(",.0f")(x)} MW`;
+export const longDay = d3.utcFormat("%-d %B %Y");
+export const shortDay = d3.utcFormat("%-d %b");
+export const irishTime = (date) =>
+  date.toLocaleString("en-IE", {timeZone: "Europe/Dublin", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"});
+
+// Read a "YYYY-MM-DD" day as a date (midnight UTC), for charts by day.
+export const asDay = (text) => new Date(`${text}T00:00Z`);
 
 // The constraint / curtailment key, used next to most charts.
 export const reasonKey = () =>

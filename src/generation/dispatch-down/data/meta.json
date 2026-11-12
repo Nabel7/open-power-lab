@@ -1,0 +1,13 @@
+{
+  "built_at_utc": "2026-11-12T09:36:24Z",
+  "first_day": "2026-09-07",
+  "last_day": "2026-11-09",
+  "missing_days": [
+    "2026-10-27"
+  ],
+  "farms": 217,
+  "solar_units": 19,
+  "credit": "Supported by EirGrid Group Data",
+  "map_credit": "Farm positions \u00a9 OpenStreetMap contributors (ODbL)",
+  "note": "Estimates from public SEMO data, calibrated against EirGrid's official monthly figures. lost_value_eur is the day-ahead market value of the lost energy, not the owners' loss. Independent; not affiliated with EirGrid, SONI or SEMO."
+}
