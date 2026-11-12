@@ -46,7 +46,7 @@ Wind and solar farms are sometimes told by the grid operator, EirGrid, to produc
 Everything comes from public reports published by SEMO, the Single Electricity Market Operator:
 
 <div class="steps">
-  <div class="step"><div class="label"><span>01</span><span>BM-037</span></div><h3>Dispatch instructions</h3><p>Every instruction: when a constraint or curtailment was switched on and off.</p></div>
+  <div class="step"><div class="label"><span>01</span><span>BM-037</span></div><h3>Dispatch instructions</h3><p>Every instruction: when a constraint or curtailment was switched on and off. SEMO issues these twice; the later, fuller version is used where it exists.</p></div>
   <div class="step"><div class="label"><span>02</span><span>BM-101</span></div><h3>Availability</h3><p>Half-hourly MW each farm could have produced.</p></div>
   <div class="step"><div class="label"><span>03</span><span>BM-086</span></div><h3>Meter data</h3><p>Half-hourly energy each farm actually produced.</p></div>
   <div class="step"><div class="label"><span>04</span><span>BM-091</span></div><h3>Unit data</h3><p>Which units are wind farms, and the company behind each.</p></div>
@@ -58,6 +58,7 @@ For each wind farm and half-hour:
 
 - **Energy lost** = (availability − actual output) × half an hour, counted only while a constraint or curtailment instruction is in force, and never below zero.
 - Constraint and curtailment are tracked separately, since a farm can be under both at once. When both are on, the loss counts as a **constraint**.
+- A farm stays held down until an instruction releases it. If SEMO publishes no instructions at all for a day, every farm is treated as released from the start of that day, and counts as held down again only when a new instruction says so.
 - **Dispatched down %** = energy lost ÷ (energy produced + energy lost): the share of the energy the wind allowed that wasn't produced. For the island and its regions, energy produced is **all wind generation**, from EirGrid's Smart Grid Dashboard, because the units in SEMO's reports don't cover every wind farm. On a farm's page it's that farm's own metered output.
 - **Market value** = energy lost × the day-ahead price in that half-hour, for the farm's zone (Ireland or Northern Ireland). It is what the energy would have sold for, **not what the owners lost**: some dispatch-down is compensated, and how much is disputed. It can be negative when prices are.
 
@@ -78,9 +79,9 @@ EirGrid publishes official monthly dispatch-down figures in its [dispatch-down s
 | All-island | 22.8% | 22% |
 | Ireland | 20.9% | 20.3% |
 | Northern Ireland | 29.6% | 29.3% |
-| Share that was constraint, Ireland | 60% | 73% |
+| Share that was constraint, Ireland | 79% | 73% |
 
-So the level is within about 1 percentage point, slightly high. **The split between constraint and curtailment is less reliable than the total:** this site counts more of the loss as curtailment than EirGrid does, and the reason isn't yet known. EirGrid uses one-minute readings where this site uses half-hours, and its measure of available energy differs a little from SEMO's. A farm's outage can also be counted as dispatch-down here, if a farm reports itself available while a constraint or curtailment is on.
+So the level is within about 1 percentage point, slightly high. **The split between constraint and curtailment is less reliable than the total:** this site counts somewhat more of the loss as constraint than EirGrid does. A likely reason is that when a farm is under both at once, all of its loss counts as constraint here, where EirGrid divides it between the two. EirGrid also uses one-minute readings where this site uses half-hours, and its measure of available energy differs a little from SEMO's. A farm's outage can also be counted as dispatch-down here, if a farm reports itself available while a constraint or curtailment is on.
 
 </div>
 

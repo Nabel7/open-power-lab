@@ -1,15 +1,15 @@
 {
-  "built_at_utc": "2026-11-10T17:27:20Z",
-  "price_day": "2026-11-09",
-  "price_avg": 285.89,
-  "price_avg_change": -102.26,
-  "price_low": 204.05,
-  "price_high": 400.0,
-  "price_vwap": 294.75,
-  "price_last_utc": "2026-11-09T22:30Z",
-  "system_day": "2026-11-09",
-  "wind_share": 43.9,
-  "system_last_utc": "2026-11-09T23:30Z",
-  "wind_mw": 2804,
-  "demand_mw": 4868
+  "built_at_utc": "2026-11-12T09:36:38Z",
+  "price_day": "2026-11-10",
+  "price_avg": 305.11,
+  "price_avg_change": 19.23,
+  "price_low": 211.15,
+  "price_high": 402.0,
+  "price_vwap": 310.85,
+  "price_last_utc": "2026-11-10T22:30Z",
+  "system_day": "2026-11-10",
+  "wind_share": 40.8,
+  "system_last_utc": "2026-11-10T23:30Z",
+  "wind_mw": 2108,
+  "demand_mw": 4942
 }
