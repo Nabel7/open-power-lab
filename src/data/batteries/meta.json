@@ -1,9 +1,9 @@
 {
-  "built_at_utc": "2026-11-12T13:48:51Z",
+  "built_at_utc": "2026-11-13T21:40:22Z",
   "metered_first_utc": "2026-09-06T23:00Z",
-  "metered_last_utc": "2026-11-09T23:30Z",
+  "metered_last_utc": "2026-11-11T23:30Z",
   "orders_first_utc": "2025-11-06T23:00Z",
-  "orders_last_utc": "2026-11-10T22:30Z",
+  "orders_last_utc": "2026-11-12T22:30Z",
   "batteries": 27,
   "size_mw": 1046.0
 }
