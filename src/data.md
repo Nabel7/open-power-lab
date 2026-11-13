@@ -50,6 +50,7 @@ const files = [
 | Battery day-ahead orders | Each unit's cleared orders in SEMOpx's day-ahead results | 30 min | 1 year | Daily |
 | Farm names | SEMO's published lists of registered units | Per unit | Current | Now and then |
 | Farm positions | [OpenStreetMap](https://www.openstreetmap.org) | Per farm | Current | Now and then |
+| Wind forecast (Wind map) | [Open-Meteo](https://open-meteo.com), fetched by your browser; "Weather data by Open-Meteo.com" (CC BY 4.0) | Hourly, about 30 km grid | Next 3 days | Each visit |
 
   </div>
   <p class="muted" style="margin-top: 0.6rem;">Updates are daily, not live. For live system data, use EirGrid's Smart Grid Dashboard.</p>

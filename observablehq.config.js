@@ -40,6 +40,7 @@ const MENUS = [
     name: "Forecasts",
     section: "/forecasts",
     items: [
+      {title: "Wind map", path: "/forecasts/wind-map", note: "Forecast wind speed over the island, hour by hour"},
       {title: "Wind forecast", path: "/generation/wind#forecast", note: "EirGrid's forecast against what happened"},
       {title: "Day-ahead price", soon: true, note: "Published before the auction, with ranges"},
       {title: "Scoreboard", soon: true, note: "Every forecast, scored the same way"}
