@@ -1,218 +1,218 @@
 unit,farm_id,farm_name,semo_name,technology,company,region,first_day,last_day,produced_mwh,constraint_mwh,curtailment_mwh,lost_mwh,dispatch_down_pct,lost_value_eur,half_hours,held_down_half_hours
-GU_403760,oweninny-wind-farm,Oweninny Wind Farm,Oweninney Windfarm 1,wind,ESB,ROI,2026-09-07,2026-11-09,48137.58,16304.213,732.22,17036.433,26.14,2249027.04,3024,1364
-GU_406620,derrinlough-wind-farm,Derrinlough Wind Farm,Derrinlough Windfarm,wind,Derrinlough Wind Farm Supply DAC,ROI,2026-09-07,2026-11-09,45036.69,11247.574,5766.724,17014.298,27.42,1992778.69,3024,1119
-GU_405130,oweninny-wind-farm,Oweninny Wind Farm,Oweninney Windfarm 2,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,48479.79,14643.792,614.764,15258.556,23.939,2115604.96,3024,1388
-GU_401990,galway-wind-park,Galway Wind Park,Seecon Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,53991.08,14180.992,844.508,15025.5,21.771,2014486.14,3024,1352
-GU_405140,cloncreen-wind-farm,Cloncreen Wind Farm,Cloncreen Windfarm,wind,Cloncreen Wind Farm Supply DAC,ROI,2026-09-07,2026-11-09,30509.532,13050.824,1431.808,14482.632,32.189,1877874.16,3024,1133
-GU_401930,mulreavy-windfarm,Mulreavy Windfarm,Mulreavy Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,26924.271,12259.498,930.554,13190.053,32.881,1646197.92,3024,1171
-GU_405210,ardderroo-rockgrid-windfarm,Ardderroo (Rockgrid) Windfarm,Ardderroo (Rockgrid) Windfarm,wind,Lettermuckoo Energy Supply Limited,ROI,2026-09-07,2026-11-09,56821.74,11052.079,1287.086,12339.164,17.841,1621846.77,3024,1288
-GU_501670,brockaghboy-wind-farm,Brockaghboy Wind Farm,Brockaghboy Windfarm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,19609.042,11614.195,518.75,12132.945,38.224,1702373.26,3024,1242
-GU_401690,mountlucas-wind-farm,Mountlucas Wind Farm,Mount Lucas Windfarm Limited,wind,Mount Lucas Supply Company Limited,ROI,2026-09-07,2026-11-09,26809.49,10882.624,1172.138,12054.762,31.018,1536492.1,3024,1172
-GU_501160,slieve-kirk-wind-farm,Slieve Kirk Wind Farm,Slieve Kirk Windfarm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,25213.106,10736.338,636.952,11373.289,31.086,1395354.44,3024,1096
-GU_504460,gu-504460,GU_504460,,wind,Electroroute Energy Supply Limited (NI),NI,2026-09-07,2026-11-09,21539.135,10751.482,595.66,11347.141,34.504,1585140.81,3024,1337
-GU_401280,carrowleagh-wind-farm,Carrowleagh Wind Farm,Carrowleagh Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,4793.635,10536.146,647.196,11183.342,69.997,1620720.69,3024,1392
-GU_504040,gu-504040,GU_504040,,wind,Electroroute Energy Supply Limited (NI),NI,2026-09-07,2026-11-09,21121.712,9759.832,491.12,10250.953,32.675,1529824.33,3024,1337
-GU_400070,meentycat-wind-farm,Meentycat Wind Farm,Meentycat Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,23931.002,8816.412,753.324,9569.736,28.566,1174029.45,3024,1121
-GU_403790,grousemount-wind-farm,Grousemount Wind Farm,Grousemount Windfarm,wind,ESB,ROI,2026-09-07,2026-11-09,57921.463,7456.744,1976.271,9433.015,14.005,1038201.53,3024,950
-GU_407510,yellow-river-wind-farm,Yellow River Wind Farm,Yellow River Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,42518.069,6760.708,2454.888,9215.595,17.814,1275557.72,3024,1130
-GU_401960,galway-wind-park,Galway Wind Park,Uggool Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,27924.03,8243.095,480.474,8723.569,23.804,1175232.95,3024,1359
-GU_402150,cappawhite-wind-farm,Cappawhite Wind Farm,Cappawhite Windfarm,wind,ESB,ROI,2026-09-07,2026-11-09,20546.199,6796.604,1796.035,8592.64,29.489,1048584.6,3024,1045
-GU_503900,gu-503900,GU_503900,,wind,Mantlin Limited,NI,2026-09-07,2026-11-09,27130.127,7746.767,426.91,8173.676,23.152,1032283.89,3024,1190
-GU_408060,gu-408060,GU_408060,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,23215.417,7152.152,932.601,8084.754,25.83,1094394.42,3024,1144
-GU_407330,moanvane-windfarm,Moanvane Windfarm,Moanvane Winfarm,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,18621.46,6976.052,820.674,7796.726,29.513,1027843.23,3024,1231
-GU_401900,sliabh-bawn-wind-farm,Sliabh Bawn Wind Farm,Sliabh Bawn Windfarm,wind,Sliabh Bawn Supply DAC,ROI,2026-09-07,2026-11-09,31637.386,5877.462,1561.234,7438.696,19.036,956567.86,3024,1168
-GU_400550,sorne-hill-wind-farm,Sorne Hill Wind Farm,Sorne Hill Generator Unit,wind,Sorne Wind Limited,ROI,2026-09-07,2026-11-09,9889.096,6099.986,547.459,6647.446,40.199,806752.72,3024,1227
-GU_503920,gu-503920,GU_503920,,wind,Power NI,NI,2026-09-07,2026-11-09,12904.149,6316.268,274.904,6591.173,33.809,872805.83,3024,1147
-GU_402250,scartaglen-wind-farm,Scartaglen Wind Farm,Scartaglen 1 Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,12330.32,5060.278,1470.082,6530.361,34.624,756608.52,3024,943
-GU_401770,knockacummer-wind-farm,Knockacummer Wind Farm,Knockacummer Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,44242.71,3389.328,2963.174,6352.502,12.556,686590.64,3024,871
-GU_403800,sorrell-island-glenmore-wind-farm,Sorrell Island (Glenmore) Wind Farm,Sorrell Island 1 Windfarm,wind,Rio Energy Supply Limited,ROI,2026-09-07,2026-11-09,3777.166,2938.65,3313.052,6251.702,62.337,724797.99,3024,938
-GU_406600,gu-406600,GU_406600,,wind,Endeco - Wirelite Sensors Limited,ROI,2026-09-07,2026-11-09,4406.04,3332.412,2820.318,6152.73,58.271,751218.55,3024,917
-GU_401500,leitir-guingaid-leitir-peic-wind-farm,Leitir Guingaid Leitir Peic Wind Farm,Leitir Guingaid Windfarm phase 1,wind,LGLP Energy Supply Limited,ROI,2026-09-07,2026-11-09,19756.348,5578.849,422.109,6000.958,23.298,801298.25,3024,1359
-GU_403380,knockalough-wind-farm,Knockalough Wind Farm,Knockalough WFPS,wind,Warmhill Limited,ROI,2026-09-07,2026-11-09,17146.39,4892.617,418.883,5311.5,23.651,717404.94,3024,1359
-GU_501750,cornavarrow-wind-farm,Cornavarrow Wind Farm,Cornavarrow,wind,Power NI,NI,2026-09-07,2026-11-09,15517.335,4916.82,375.008,5291.828,25.43,655335.87,3024,1210
-GU_401150,carriganima-wind-farm-bawnmore-2,Carriganima Wind Farm (Bawnmore 2),Bawnmore Windfarm,wind,Tippgo Limited,ROI,2026-09-07,2026-11-09,3221.566,2622.808,2511.382,5134.19,61.445,655079.18,3022,914
-GU_403400,magheramore-wind-farm,Magheramore Wind Farm,Magheramore Windfarm,wind,Tramlock Limited,ROI,2026-09-07,2026-11-09,24595.071,3656.968,1312.026,4968.994,16.808,613849.19,3024,1143
-GU_406590,timahoe-north-solar,Timahoe North Solar,Timahoe North Solar,solar,Timahoe North Supply DAC,ROI,2026-09-07,2026-11-09,11256.16,2989.389,1946.178,4935.566,30.482,638510.93,3024,1217
-GU_405930,lenalea-wind-farm,Lenalea Wind Farm,Lenalea Windfarm,wind,AXPO UK LIMITED,ROI,2026-09-07,2026-11-09,10947.47,4450.048,326.479,4776.527,30.377,606073.86,3024,1257
-GU_403880,bunnyconnellan-wind-farm,Bunnyconnellan Wind Farm,Bunnyconnellan Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,10615.618,4331.6,182.149,4513.749,29.834,614212.63,3024,1393
-GU_400591,coomacheo-wind-farm,Coomacheo Wind Farm,Coomacheo Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,26948.37,3404.38,1046.2,4450.58,14.174,538861.16,3024,949
-GU_504030,gu-504030,GU_504030,,wind,Electroroute Energy Supply Limited (NI),NI,2026-09-07,2026-11-09,7434.794,4196.337,196.304,4392.641,37.139,632327.36,3024,1219
-GU_503830,gu-503830,GU_503830,,wind,Power NI,NI,2026-09-07,2026-11-09,9223.807,4106.204,249.267,4355.472,32.074,517511.13,3024,1204
-GU_405830,gu-405830,GU_405830,,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,13927.275,3736.358,606.28,4342.638,23.769,561284.01,3024,1144
-GU_401740,garracummer-wind-farm,Garracummer Wind Farm,Garracummer Windfarm Ltd,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,17919.547,3449.333,764.369,4213.702,19.038,532282.11,3024,1035
-GU_402270,boolinrudda-windfarm,Boolinrudda Windfarm,Boolinrudda Windfarm,wind,Plum Energy Supply Limited,ROI,2026-09-07,2026-11-09,27012.11,2764.874,1328.414,4093.287,13.159,477474.19,3024,940
-GU_501250,dunmore-wind-farm,Dunmore Wind Farm,Dunmore Wind Farm,wind,Dunmore Wind Farm Limited,NI,2026-09-07,2026-11-09,6202.564,3897.794,162.706,4060.5,39.564,561130.97,3024,1265
-GU_408120,gu-408120,GU_408120,,solar,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,18379.261,1335.848,2608.426,3944.273,17.669,462566.62,3024,870
-GU_405160,cloghan-wind-farm,Cloghan Wind Farm,Cloghan Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-09,15102.01,2509.584,1397.696,3907.279,20.555,515975.9,3024,958
-GU_401840,boggeragh-wind-farm,Boggeragh Wind Farm,Boggeragh 2 Windfarm,wind,DWL Energy Supply Limited,ROI,2026-09-07,2026-11-09,30950.885,2174.542,1726.097,3900.639,11.192,466939.54,3024,892
-GU_500020,callagheen-windfarm,Callagheen Windfarm,Callagheen Generator Unit,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,3690.277,2759.231,1006.8,3766.031,50.508,483236.58,3024,1030
-GU_403750,killala-wind-farm,Killala Wind Farm,Killala Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,7852.21,3384.074,377.082,3761.156,32.386,553412.46,3024,1258
-GU_400950,garvagh-glebe-wind-farm,Garvagh Glebe Wind Farm,Garvagh Glebe Generator Unit,wind,ESB,ROI,2026-09-07,2026-11-09,12717.967,3282.274,462.422,3744.696,22.747,499170.31,3024,1143
-GU_501190,carrickatane-wind-farm,Carrickatane Wind Farm,Carrickatane Wind Farm,wind,ESB,NI,2026-09-07,2026-11-09,8992.194,3513.111,200.725,3713.836,29.229,488343.54,3024,1220
-GU_402130,cordal-wind-farm,Cordal Wind Farm,Cordal 2 Windfarm,wind,Oak Energy Supply Limited,ROI,2026-09-07,2026-11-09,24591.847,2613.947,1098.24,3712.188,13.115,443960.31,3024,987
-GU_404200,knockawarriga-wind-farm,Knockawarriga Wind Farm,Knockawarriga 1 Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-09,3759.833,726.546,2855.854,3582.4,48.792,404130.73,3024,671
-GU_401540,monaincha-wind-farm,Monaincha Wind Farm,Monaincha Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,13587.291,1980.858,1570.116,3550.974,20.72,443455.78,3024,858
-GU_403770,boolynagleragh-wind-farm,Boolynagleragh Wind Farm,Boolynagleragh Windfarm,wind,Snowgold Limited,ROI,2026-09-07,2026-11-09,14372.549,2273.828,1272.24,3546.069,19.79,415085.43,3024,938
-GU_401700,bruckana-wind-farm,Bruckana Wind Farm,Bruckana Windfarm Limited,wind,Bruckana Supply Company Limited,ROI,2026-09-07,2026-11-09,13695.56,2756.768,781.185,3537.953,20.529,407762.14,3024,932
-GU_504240,gu-504240,GU_504240,,wind,Power NI,NI,2026-09-07,2026-11-09,6191.259,3403.184,102.59,3505.774,36.153,456007.71,3024,1246
-GU_403810,cleanrath-wind-farm,Cleanrath Wind Farm,Cleanrath Windfarm,wind,Fallback Limited,ROI,2026-09-07,2026-11-09,20979.486,2673.022,819.713,3492.734,14.272,409449.6,3024,948
-GU_500740,slieve-divena-wind-farm,Slieve Divena Wind Farm,Slieve Divena Generator Unit,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,6897.103,3263.37,200.738,3464.108,33.433,409380.96,3024,1153
-GU_406560,sheskin-windfarm,Sheskin Windfarm,Sheskin Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,8559.036,3240.856,220.216,3461.071,28.794,452207.48,3024,1388
-GU_400910,boggeragh-wind-farm,Boggeragh Wind Farm,Boggeragh Windfarm Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,23862.591,1965.493,1490.586,3456.08,12.651,440039.45,3024,917
-GU_501730,castlecraig-wind-farm,Castlecraig Wind Farm,Castlecraig Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,7991.544,3236.546,169.296,3405.842,29.883,413509.19,3024,1202
-GU_405840,gu-405840,GU_405840,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,25804.045,247.032,3147.489,3394.521,11.626,322003.47,3024,716
-GU_401790,ballybane-wind-farm,Ballybane Wind Farm,Ballybane Windfarm Phase 2,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,1997.628,1836.485,1504.687,3341.172,62.583,420440.81,3024,916
-GU_500010,tappaghan-mountain-wind-farm,Tappaghan Mountain wind farm,Tappaghan Generator Unit,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,8179.71,3119.268,184.006,3303.274,28.767,372324.4,3024,1153
-GU_404330,carrigdangan-wind-farm,Carrigdangan Wind Farm,Carrigdangan Windfarm,wind,Stacks Energy Supply Limited,ROI,2026-09-07,2026-11-09,18138.12,2016.662,1278.45,3295.112,15.374,403787.47,3024,916
-GU_504260,gu-504260,GU_504260,,wind,Flogas Enterprise Solutions Limited,NI,2026-09-07,2026-11-09,10366.802,3005.364,225.192,3230.556,23.759,408050.52,3024,1220
-GU_501550,slieve-divena-wind-farm,Slieve Divena Wind Farm,Slieve Divena Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,6880.216,2927.538,198.388,3125.926,31.24,399925.53,3024,1209
-GU_404630,clogheravaddy-wind-farm,Clogheravaddy Wind Farm,Cloghervaddy 2 Windfarm,wind,Clogheravaddy Wind Farm Limited,ROI,2026-09-07,2026-11-09,1363.848,2872.71,229.811,3102.521,69.464,416095.31,3024,1245
-GU_402110,cordal-wind-farm,Cordal Wind Farm,Cordal 1 Windfarm,wind,Oak Energy Supply Limited,ROI,2026-09-07,2026-11-09,15707.133,2397.006,656.797,3053.803,16.277,349434.74,3024,960
-GU_408140,gu-408140,GU_408140,,wind,Erova Energy Supply Limited,ROI,2026-09-07,2026-11-09,15693.361,2469.316,563.198,3032.515,16.194,364627.18,3024,1015
-GU_401780,kill-hill-windfarm-limited,Kill Hill Windfarm Limited,Kill Hill Windfarm Limited,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,12779.39,1997.588,929.342,2926.93,18.635,350111.38,3024,889
-GU_403840,cronalaght-wind-farm,Cronalaght Wind Farm,Cronalaght 2 Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,10215.195,2748.956,150.173,2899.128,22.107,375850.39,3024,1260
-GU_404570,gu-404570,GU_404570,,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,16296.66,1390.589,1414.434,2805.022,14.685,332558.98,3024,845
-GU_402300,kelwin-1-windfarm,Kelwin 1 Windfarm,Kelwin 1 Windfarm,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,14543.84,1323.452,1475.958,2799.409,16.141,310476.38,3024,813
-GU_405150,rosspile-solar,Rosspile Solar,Rosspile Solar,solar,ESB,ROI,2026-09-07,2026-11-09,14918.64,1409.958,1383.382,2793.341,15.771,272136.72,3024,720
-GU_503820,gu-503820,GU_503820,,wind,Power NI,NI,2026-09-07,2026-11-09,5153.131,2562.322,173.602,2735.924,34.68,327993.57,3024,1220
-GU_404420,lisheen-mines-wind-farm,Lisheen Mines Wind Farm,Lisheen 3 Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,14149.01,2053.122,630.674,2683.795,15.944,279847.85,3024,861
-GU_501720,elginny-broughshane-wind-farm,Elginny / Broughshane Wind Farm,ELGINNY HILL WIND FARM,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,6489.323,2437.49,244.596,2682.087,29.244,295784.81,3024,1070
-GU_401810,barranafaddock-wind-farm,Barranafaddock Wind Farm,Barranafaddock Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,12588.689,1693.934,987.198,2681.132,17.558,327797.98,3024,889
-GU_401820,acres-wind-farm,Acres Wind Farm,Acres Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,6483.958,2299.11,337.443,2636.554,28.908,343732.31,3024,1105
-GU_404210,coomagearlahy-ii-wind-farm,Coomagearlahy II Wind Farm,Coomagearlahy Generator Unit,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,17185.279,1470.234,1157.364,2627.598,13.262,316651.57,3024,917
-GU_400940,tullynahaw-wind-farm,Tullynahaw Wind Farm,Tullynahaw Generator Unit,wind,ESB,ROI,2026-09-07,2026-11-09,9151.274,2117.106,506.798,2623.904,22.283,340495.94,3024,1329
-GU_400660,pallas-wind-farm,Pallas Wind Farm,Pallas Generator Unit,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,13964.207,1446.909,1171.24,2618.149,15.789,314162.7,3024,837
-GU_401290,ballycadden-wind-farm,Ballycadden Wind Farm,Ballycadden Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,1551.875,562.538,2010.378,2572.916,62.377,278035.76,3024,723
-GU_403990,black-lough-wind-farm,Black Lough Wind Farm,Black Lough WFPS,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,6606.703,2439.488,126.124,2565.612,27.971,344978.44,3024,1394
-GU_501440,eglish-mountain-wind-farm,Eglish Mountain Wind Farm,Hunters Hill Windfarm Ltd - Eglish Site,wind,ESB,NI,2026-09-07,2026-11-09,6326.075,2411.37,130.98,2542.35,28.667,310866.16,3024,1220
-GU_501710,crockandun-windfarm,Crockandun Windfarm,Crockandun Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,7569.171,2335.741,166.829,2502.57,24.847,323769.58,3024,1209
-GU_503850,gu-503850,GU_503850,,wind,Power NI,NI,2026-09-07,2026-11-09,6075.426,2346.258,146.522,2492.78,29.093,301450.85,3024,1153
-GU_503840,gu-503840,GU_503840,,wind,Power NI,NI,2026-09-07,2026-11-09,5219.853,2300.25,145.272,2445.522,31.903,297247.89,3024,1209
-GU_503800,gu-503800,GU_503800,,wind,Power NI,NI,2026-09-07,2026-11-09,5258.83,2287.652,148.432,2436.085,31.658,300233.16,3024,1209
-GU_404470,glencarbry-wind-farm,Glencarbry Wind Farm,Glencarbry Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,8020.851,1876.032,538.644,2414.676,23.139,302597.51,3024,1035
-GU_403940,knockalassa-windfarm,Knockalassa Windfarm,Knockalassa Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,13118.95,1615.982,750.275,2366.258,15.281,272610.66,3024,937
-GU_504200,gu-504200,GU_504200,,wind,Perigus Energy Green NI Limited,NI,2026-09-07,2026-11-09,7551.893,2057.804,226.644,2284.448,23.225,282883.41,3024,1070
-GU_400840,lisheen-mines-wind-farm,Lisheen Mines Wind Farm,Lisheen Windfarm Phase 1,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,13949.677,1753.174,521.531,2274.705,14.02,282161.43,3024,694
-GU_401350,knocknagoum-windfarm,Knocknagoum Windfarm,Knocknagoum Windfarm Limited,wind,Burren Energy Supply Limited,ROI,2026-09-07,2026-11-09,20046.417,928.917,1322.612,2251.528,10.097,259516.02,3024,813
-GU_403390,castledockrell-wind-farm,Castledockrell Wind Farm,Castledockrell Windfarm (Gen Unit),wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-09,15693.009,695.939,1526.705,2222.644,12.406,230805.26,3024,721
-GU_405190,gu-405190,GU_405190,,wind,ESB,ROI,2026-09-07,2026-11-09,14008.8,163.867,2026.078,2189.945,13.519,225889.62,3024,659
-GU_501520,ora-more-wind-farm,Ora More Wind Farm,Ora More Windfarm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,5637.201,2057.68,120.423,2178.102,27.87,268353.39,3024,1190
-GU_406610,drumlins-park-wind-farm,Drumlins Park Wind Farm,Drumlins Windfarm,wind,Drumlins Park Limited,ROI,2026-09-07,2026-11-09,20459.22,415.004,1716.994,2131.998,9.437,231277.88,3024,635
-GU_503780,gu-503780,GU_503780,,wind,Power NI,NI,2026-09-07,2026-11-09,4808.735,1951.69,126.731,2078.421,30.178,259797.01,3024,1209
-GU_503860,gu-503860,GU_503860,,wind,Power NI,NI,2026-09-07,2026-11-09,5594.258,1954.158,117.94,2072.098,27.028,265019.82,3024,1208
-GU_407040,rathnaskilloge-solar-farm,Rathnaskilloge Solar Farm,Rathnaskilloge Solar Farm,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,12207.154,566.172,1488.024,2054.195,14.404,209868.54,3024,663
-GU_501700,shantavny-scotch,Shantavny Scotch,Shantavny Scotch Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,4195.524,1901.704,120.448,2022.152,32.523,225791.64,3024,1209
-GU_404480,sorrell-island-glenmore-wind-farm,Sorrell Island (Glenmore) Wind Farm,Sorrell Island 2 Windfarm,wind,Rio Energy Supply Limited,ROI,2026-09-07,2026-11-09,1168.587,923.754,1092.852,2016.606,63.312,234768.71,3024,927
-GU_503930,gu-503930,GU_503930,,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-09,3676.084,1886.46,111.394,1997.854,35.211,244299.06,3024,1209
-GU_407670,gu-407670,GU_407670,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,7282.365,1025.108,936.845,1961.953,21.223,252831.36,3024,989
-GU_401940,raheenleagh-wind-farm,Raheenleagh Wind Farm,Raheenleagh,wind,ESB,ROI,2026-09-07,2026-11-09,20824.458,669.854,1279.064,1948.919,8.558,204516.32,3024,717
-GU_401750,lisheen-mines-wind-farm,Lisheen Mines Wind Farm,Lisheen Windfarm 2 Ltd,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,9306.703,1535.926,400.74,1936.666,17.225,219939.84,3024,926
-GU_501740,teiges-wind-farm,Teiges Wind Farm,Teiges Wind Farm,wind,Power NI,NI,2026-09-07,2026-11-09,5134.138,1782.872,126.843,1909.714,27.112,245575.02,3024,1209
-GU_500720,garves-wind-farm,Garves Wind Farm,Garves Wind Generator Unit,wind,Garves Wind Limited,NI,2026-09-07,2026-11-09,4642.764,1813.208,83.652,1896.86,29.006,246968.03,3024,1237
-GU_503940,gu-503940,GU_503940,,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-09,4485.446,1775.846,111.395,1887.241,29.615,232087.85,3024,1209
-GU_400060,midas-wind-farm,Midas Wind Farm,Midas Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,13006.739,1092.686,779.442,1872.128,12.582,224336.08,3024,906
-GU_504160,gu-504160,GU_504160,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,2387.12,1767.139,101.962,1869.1,43.915,266972.78,3024,1242
-GU_406470,tullabeg-solar,Tullabeg Solar,Tullabeg Solar,solar,Tullabeg Solar Farm Limited,ROI,2026-09-07,2026-11-09,9928.12,929.871,933.152,1863.022,15.8,189815.74,3024,738
-GU_401950,killaveenoge-wind-farm,Killaveenoge Wind Farm,Kilaveenoge 1 WF,wind,Dunman Energy Supply Limited,ROI,2026-09-07,2026-11-09,11712.674,1113.042,725.014,1838.057,13.564,224900.93,3024,917
-GU_400080,richfield-wind-farm,Richfield Wind Farm,Richfield Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,9188.943,526.694,1309.685,1836.379,16.656,167211.05,3024,616
-GU_501210,carn-hill-wind-farm,Carn Hill Wind Farm,Carn Hill Windfarm,wind,ESB,NI,2026-09-07,2026-11-09,4437.829,1668.436,154.471,1822.907,29.116,201187.65,3024,1070
-GU_402080,moneypoint-wind-farm,Moneypoint Wind Farm,Moneypoint Windfarm,wind,ESB,ROI,2026-09-07,2026-11-09,8374.25,1230.594,585.373,1815.968,17.821,213922.35,3024,938
-GU_400731,sws-kilgarvan-ext-inchincoosh,SWS Kilgarvan Ext Inchincoosh,SWS Kilgarvan Ext Inchincoosh,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,14246.93,1124.295,691.126,1815.421,11.302,223299.01,3024,916
-GU_407910,ballylongford-windfarm,Ballylongford Windfarm,Ballylongford Windfarm,wind,Gaofar Limited,ROI,2026-09-07,2026-11-09,6863.23,0.0,1748.735,1748.735,20.306,135427.01,3024,613
-GU_404340,esk-wind-farm,Esk Wind Farm,Esk Windfarm,wind,Amazon Energy Eoraip Limited,ROI,2026-09-07,2026-11-09,10126.073,1018.994,705.894,1724.888,14.555,223563.96,3024,926
-GU_501430,crockandun-windfarm,Crockandun Windfarm,Hunters Hill Windfarm Ltd - Crockdun Site,wind,ESB,NI,2026-09-07,2026-11-09,3768.321,1622.518,93.62,1716.139,31.291,201466.91,3024,1220
-GU_401380,athea-wind-farm,Athea Wind Farm,Athea Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,13349.25,882.686,813.198,1695.884,11.272,188534.24,3024,846
-GU_401360,ballycadden-wind-farm,Ballycadden Wind Farm,Ballycadden Windfarm Phase 2,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,1354.672,403.806,1286.452,1690.258,55.511,173837.2,3024,717
-GU_404000,beenanaspuck-and-tobertoreen-windfarm,Beenanaspuck and Tobertoreen Windfarm,Beenanaspuck and Tobertoreen Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-09,8571.27,919.182,770.815,1689.996,16.47,199513.34,3024,845
-GU_402200,tullynamoyle-wind-farm,Tullynamoyle Wind Farm,Tullynamoyle Windfarm 3,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,4234.712,1400.23,264.382,1664.612,28.217,207180.69,3024,1142
-GU_501630,rasharkin,Rasharkin,Rasharkin,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,2780.599,1450.942,191.734,1642.676,37.137,197638.96,3024,1359
-GU_501360,monnaboy-windfarm,Monnaboy Windfarm,Monnaboy Windfarm,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-09,4174.731,1572.74,64.709,1637.448,28.173,196218.73,3024,1180
-GU_406520,gu-406520,GU_406520,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,10055.44,40.77,1576.142,1616.912,13.852,162004.64,3024,620
-GU_401240,dromdeeveen-windfarm,Dromdeeveen Windfarm,Dromdeeveen Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,12417.56,873.422,732.314,1605.736,11.45,169240.9,3024,789
-GU_402210,leanamore-wind-farm,Leanamore Wind Farm,Leanamore Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,9487.841,781.217,814.1,1595.317,14.394,181435.78,3024,809
-GU_406580,lysaghtstown-solar,Lysaghtstown Solar,Lysaghtstown Solar,solar,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,15862.098,0.0,1587.294,1587.294,9.097,150338.32,3024,608
-GU_400050,bindoo-wind-farm,Bindoo Wind Farm,Bindoo Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,16967.13,292.432,1237.433,1529.866,8.271,127650.61,3024,636
-GU_404490,glanaruddery-wind-farm,Glanaruddery Wind Farm,Glanaruddery 1 Windfarm,wind,Glanaruddery Energy Supply Limited,ROI,2026-09-07,2026-11-09,10828.068,735.991,772.229,1508.22,12.226,183174.37,3024,844
-GU_407030,gaskinstown-solar,Gaskinstown Solar,Gaskinstown Solar,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,10272.201,0.0,1506.106,1506.106,12.787,145942.79,3024,616
-GU_405110,taghart-wind-farm,Taghart Wind Farm,Taghart Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-09,13257.762,0.0,1491.95,1491.95,10.115,99214.38,3024,616
-GU_501390,cloonty-windfarm,Cloonty Windfarm,Cloonty Windfarm,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-09,2035.444,1416.744,56.098,1472.842,41.982,191044.19,3024,1357
-GU_401070,carrigcannon-wind-farm,Carrigcannon Wind Farm,Carraigcannon Windfarm (Gen Unit),wind,AXPO UK LIMITED,ROI,2026-09-07,2026-11-09,6952.381,853.852,568.74,1422.592,16.986,175995.6,3024,917
-GU_400920,dromada-wind-farm,Dromada Wind Farm,Dromada Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,11327.43,726.101,676.124,1402.225,11.015,153123.96,3024,845
-GU_402160,tullynamoyle-wind-farm,Tullynamoyle Wind Farm,Tullynamoyle 2 Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,3141.247,1126.646,208.178,1334.825,29.821,167159.66,3024,1142
-GU_402340,cappawhite-b-wind-farm,Cappawhite B wind farm,Cappawhite B Windfarm,wind,Bally Wind Supply Limited,ROI,2026-09-07,2026-11-09,5507.764,1094.334,235.261,1329.595,19.446,165891.24,3024,1035
-GU_400021,dunneill-wind-farm,Dunneill Wind Farm,Dunneil Windfarm (Kingsmountain Phase 2),wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,3137.402,1247.298,65.094,1312.393,29.493,179998.49,3024,1393
-GU_401760,ballymartin-wind-farm,Ballymartin Wind Farm,Ballymartin Windfarm Phase 2,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,935.844,351.04,931.202,1282.242,57.808,148275.79,3024,600
-GU_407630,gu-407630,GU_407630,,solar,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,16377.071,0.0,1276.326,1276.326,7.23,123014.43,3024,449
-GU_404460,ballycumber-wind-farm,Ballycumber Wind Farm,Ballycumber Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,12232.223,508.47,707.841,1216.31,9.044,136789.08,3024,718
-GU_503400,gu-503400,GU_503400,,wind,ESB,NI,2026-09-07,2026-11-09,2858.655,1020.079,187.156,1207.235,29.692,149633.81,3024,940
-GU_402050,tullabrack-wind-farm,Tullabrack Wind Farm,Tullabrack Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-09,6157.655,766.514,417.715,1184.23,16.13,141355.75,3024,938
-GU_403930,knocknatallig-windfarm,Knocknatallig Windfarm,Knocknatallig Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,8073.192,392.356,773.825,1166.181,12.622,130929.04,3024,815
-GU_405870,airoshin-wind-farm,Airoshin Wind Farm,Airoshin Windfarm,wind,Captured Carbon Limited,ROI,2026-09-07,2026-11-09,7660.719,830.126,304.02,1134.146,12.896,144838.73,3024,881
-GU_404580,gu-404580,GU_404580,,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,6369.503,663.054,375.874,1038.928,14.024,134524.18,3024,887
-GU_401730,booltiagh-wind-farm,Booltiagh Wind Farm,Booltiagh 2 Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,4736.29,626.518,403.588,1030.107,17.864,115675.66,3024,937
-GU_401090,grouselodge-wind-farm,Grouselodge Wind Farm,Grouselodge Windfarm (Gen Unit),wind,ESB,ROI,2026-09-07,2026-11-09,5494.2,731.021,285.07,1016.091,15.607,120433.11,3024,937
-GU_504090,gu-504090,GU_504090,,solar,ESB,NI,2026-09-07,2026-11-09,3179.213,872.054,127.39,999.444,23.918,96564.02,3024,1081
-GU_400960,muingnaminnane-wind-farm,Muingnaminnane Wind Farm,Muingnaminnane Generator Unit,wind,AXPO UK LIMITED,ROI,2026-09-07,2026-11-09,3998.707,412.7,547.156,959.856,19.358,119574.84,3024,813
-GU_407340,gu-407340,GU_407340,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,5480.012,75.728,862.466,938.193,14.618,100334.65,3024,725
-GU_403950,lissycasey-windfarm,Lissycasey Windfarm,Lissycasey Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,7789.136,650.09,278.396,928.486,10.651,112434.19,3024,790
-GU_404500,glanaruddery-wind-farm,Glanaruddery Wind Farm,Glanaruddery 2 Windfarm,wind,Glanaruddery Energy Supply Limited,ROI,2026-09-07,2026-11-09,5830.017,471.088,455.413,926.502,13.713,112164.67,3024,843
-GU_401670,an-cnoc-wind-farm,An Cnoc Wind Farm,Cnoc Windfarms,wind,Cnoc Energy Supply Limited,ROI,2026-09-07,2026-11-09,4705.749,576.784,326.848,903.632,16.109,113548.02,3024,889
-GU_401080,rathcahill-wind-farm,Rathcahill Wind Farm,Rathcahill West Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,6155.983,682.215,210.106,892.321,12.66,112450.37,3024,888
-GU_401710,ballymartin-wind-farm,Ballymartin Wind Farm,Ballymartin Windfarm Phase 1,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,654.056,249.243,640.028,889.271,57.62,103099.13,3024,600
-GU_402220,carrickallen-wind-farm,Carrickallen Wind Farm,Carrickallen Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,10530.588,164.14,714.091,878.231,7.698,79567.61,3024,628
-GU_401680,woodhouse-wind-farm,Woodhouse Wind Farm,Woodhouse Windfarm,wind,ESB,ROI,2026-09-07,2026-11-09,8483.36,145.386,722.61,867.997,9.282,85978.45,3024,667
-GU_404290,knockawarriga-wind-farm,Knockawarriga Wind Farm,Knockawarriga 2 Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,1028.034,180.071,650.904,830.975,44.7,160737.53,3024,901
-GU_403980,mauricetown-wind-farm,Mauricetown Wind Farm,Mauricetown Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,7101.981,453.448,372.629,826.076,10.42,92793.57,3024,859
-GU_401980,clahane-2-windfarm,Clahane 2 Windfarm,Clahane 2 Windfarm,wind,Pallas Energy Supply Limited,ROI,2026-09-07,2026-11-09,4583.653,444.979,374.971,819.95,15.174,99278.68,3024,842
-GU_402280,cloghaneleskirt-wind-farm,Cloghaneleskirt Wind Farm,Cloghanaleskirt Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-09,4805.305,314.66,500.968,815.628,14.511,92659.53,3024,728
-GU_407710,ballincollig-hill-wind-farm,Ballincollig Hill Wind Farm,Ballincollig Hill Generator Unit,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,5654.77,336.086,432.95,769.035,11.972,86504.79,3024,812
-GU_404560,beam-hill-wind-farm,Beam Hill Wind Farm,Beam Hill Windfarm,wind,Yuno Limited,ROI,2026-09-07,2026-11-09,4462.389,646.961,82.928,729.888,14.057,89532.14,3024,1014
-GU_402190,castlepook-wind-farm,Castlepook Wind Farm,Castlepook Windfarm,wind,ESB,ROI,2026-09-07,2026-11-09,12380.534,379.284,341.512,720.796,5.502,81287.18,3024,407
-GU_406710,gu-406710,GU_406710,,solar,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,3663.266,0.0,718.716,718.716,16.402,67600.91,3024,619
-GU_501660,wel-solar-park-15-ltd,WEL Solar Park 15 Ltd,WEL Solar Park 15 Ltd,solar,Power NI,NI,2026-09-07,2026-11-09,1973.043,577.714,118.436,696.15,26.081,73328.68,3024,1070
-GU_405080,knockglass-solar,Knockglass Solar,Knockglass Solar,solar,Tippgo Limited,ROI,2026-09-07,2026-11-09,212.7,399.742,290.158,689.9,76.435,88679.12,3024,919
-GU_401920,meenadreen-wind-farm,Meenadreen Wind Farm,Meenadreen South 2 Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,1264.689,634.106,54.305,688.411,35.247,83157.54,3024,1158
-GU_404990,taurbeg-wind-farm,Taurbeg Wind Farm,Taurbeg Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-09,6401.744,344.261,320.266,664.527,9.404,82825.65,3024,761
-GU_401060,gortahile-wind-farm,Gortahile Wind Farm,Gortahile Windfarm Ltd Generator Unit,wind,New Measured Power Limited TA Pinergy,ROI,2026-09-07,2026-11-09,9779.701,95.814,559.006,654.82,6.276,62542.47,3024,600
-GU_408130,gu-408130,GU_408130,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-09,4076.342,65.574,580.344,645.917,13.678,70380.72,3024,658
-GU_402260,scartaglen-wind-farm,Scartaglen Wind Farm,Scartaglen 2 Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,1751.01,476.147,169.336,645.484,26.934,82176.9,3024,944
-GU_401890,grove-hill-windfarm,Grove Hill Windfarm,Grove Hill Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,9321.67,0.0,635.772,635.772,6.385,63278.3,3024,612
-GU_407660,crossmore-wind-farm,Crossmore Wind Farm,Crossmore Wind Farm,wind,XMR Energy Limited,ROI,2026-09-07,2026-11-09,7405.809,0.0,612.416,612.416,7.638,67982.47,3024,445
-GU_405100,hortland-solar,Hortland Solar,Hortland Solar,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,2016.644,305.868,271.832,577.7,22.268,81252.91,3024,811
-GU_403920,coollegrean-wind-farm,Coollegrean Wind Farm,Coollegrean Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,8432.201,481.911,43.65,525.561,5.867,49015.78,3024,220
-GU_400730,sws-green-energy-gen-unit-sillahertane,SWS Green Energy Gen Unit (Sillahertane),SWS Green Energy Gen Unit (Sillahertane),wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,3381.621,292.144,224.62,516.765,13.256,59832.21,3024,886
-GU_501500,tievenamenta-wind-farm,Tievenamenta Wind Farm,Tievenameenta Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,20132.121,507.152,0.0,507.152,2.457,74804.6,3024,74
-GU_403970,raragh-wind-farm,Raragh Wind Farm,Raragh 2 Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-09,4694.003,0.0,438.556,438.556,8.545,40331.06,3024,617
-GU_401340,gibbet-hill-wind-farm,Gibbet Hill Wind Farm,Gibbet Hill Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,6664.119,192.994,243.083,436.076,6.142,47327.3,3024,366
-GU_401720,booltiagh-wind-farm,Booltiagh Wind Farm,Booltiagh Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-09,4543.956,164.734,241.447,406.181,8.205,44660.04,3024,418
-GU_407690,gu-407690,GU_407690,,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,1788.017,0.0,322.454,322.454,15.279,36105.21,3024,504
-GU_503810,gu-503810,GU_503810,,wind,Power NI,NI,2026-09-07,2026-11-09,10607.567,259.539,0.0,259.539,2.388,38632.32,3024,80
-GU_501150,curryfree,Curryfree,Curryfree Windfarm,wind,ESB,NI,2026-09-07,2026-11-09,7689.031,229.945,0.0,229.945,2.904,31773.15,3024,77
-GU_501050,crockagarran-wind-farm,Crockagarran Wind Farm,Crockagarran Generator Unit,wind,ESB,NI,2026-09-07,2026-11-09,6879.351,199.254,0.0,199.254,2.815,29071.2,3024,73
-GU_501680,rathsherry-wind-farm,Rathsherry Wind Farm,Rathsherry Windfarm,wind,Power NI,NI,2026-09-07,2026-11-09,8515.295,173.032,25.724,198.757,2.281,29409.41,3024,107
-GU_501620,altaveedan-wind-farm,Altaveedan Wind Farm,Altaveedan Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,10445.575,189.934,0.0,189.934,1.786,25874.91,3024,80
-GU_405890,ballywater-wind-farm,Ballywater Wind Farm,Ballywater Generator Unit,wind,Ballywater Windfarms Limited,ROI,2026-09-07,2026-11-09,13610.997,0.0,135.512,135.512,0.986,19725.98,3024,48
-GU_501040,hunter-s-hill-lendrum-s-bridge-wind-farm,Hunter's Hill/Lendrum's Bridge Wind Farm,Hunters Hill,wind,ESB,NI,2026-09-07,2026-11-09,7054.385,131.236,0.0,131.236,1.826,17099.52,3024,73
-GU_503790,gu-503790,GU_503790,,wind,Power NI,NI,2026-09-07,2026-11-09,6082.789,127.752,0.0,127.752,2.057,17421.83,3024,73
-GU_400620,mountain-lodge-wind-farm,Mountain Lodge Wind Farm,Mountain Lodge Windfarm,wind,ESB,ROI,2026-09-07,2026-11-09,13639.18,16.708,57.272,73.98,0.539,9054.04,3024,604
-GU_400030,culliagh-wind-farm,Culliagh Wind Farm,Cuillagh Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,4617.317,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_400600,tournafulla-wind-farm,Tournafulla Wind Farm,Tournafulla Generatot Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-09,7517.354,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_401440,derrybrien-windfarm,Derrybrien Windfarm,Derrybrien Windfarm,wind,ESB,ROI,2026-09-07,2026-11-09,228.05,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_402010,ballybane-wind-farm,Ballybane Wind Farm,Ballybane Windfarm Phase 3,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-09,749.948,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_404930,meenbog-wind-farm,Meenbog Wind Farm,Meenbog,wind,Amazon Energy Eoraip Limited,ROI,2026-09-07,2026-11-09,0.28,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_407650,gu-407650,GU_407650,,solar,ESB,ROI,2026-09-07,2026-11-09,4185.586,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_407700,gu-407700,GU_407700,,wind,ESB,ROI,2026-09-07,2026-11-09,770.678,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_408040,gu-408040,GU_408040,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,19944.906,0.0,0.0,0.0,0.0,0.0,3024,3
-GU_408050,gu-408050,GU_408050,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,2491.812,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_408070,gu-408070,GU_408070,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,4205.223,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_408080,gu-408080,GU_408080,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-09,9482.65,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_408100,gu-408100,GU_408100,,wind,ESB,ROI,2026-09-07,2026-11-09,4576.072,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_408150,gu-408150,GU_408150,,wind,Erova Energy Supply Limited,ROI,2026-10-15,2026-11-09,0.0,0.0,0.0,0.0,,0.0,1202,0
-GU_408160,gu-408160,GU_408160,,wind,Erova Energy Supply Limited,ROI,2026-10-15,2026-11-09,0.0,0.0,0.0,0.0,,0.0,1202,0
-GU_408180,gu-408180,GU_408180,,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-09,2240.452,0.0,0.0,0.0,0.0,0.0,3024,1058
-GU_408190,gu-408190,GU_408190,,wind,ElectroRoute Energy Supply Limited,ROI,2026-10-08,2026-11-09,0.0,0.0,0.0,0.0,,0.0,1538,0
-GU_501410,corby-knowe-wind-farm,Corby Knowe Wind Farm,Corby Knowe Windfarm,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-09,1963.673,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_504050,gu-504050,GU_504050,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,2842.915,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_504060,gu-504060,GU_504060,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,8325.141,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_504070,gu-504070,GU_504070,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-09,1982.121,0.0,0.0,0.0,0.0,0.0,3024,0
-GU_504230,gu-504230,GU_504230,,wind,Captured Carbon Limited,NI,2026-09-07,2026-11-09,3461.23,0.0,0.0,0.0,0.0,0.0,3024,0
+GU_403760,oweninny-wind-farm,Oweninny Wind Farm,Oweninney Windfarm 1,wind,ESB,ROI,2026-09-07,2026-11-11,49895.53,16540.6,732.22,17272.82,25.716,2335680.97,3120,1428
+GU_405130,oweninny-wind-farm,Oweninny Wind Farm,Oweninney Windfarm 2,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,49891.05,15175.172,614.764,15789.936,24.04,2252827.07,3120,1452
+GU_406620,derrinlough-wind-farm,Derrinlough Wind Farm,Derrinlough Windfarm,wind,Derrinlough Wind Farm Supply DAC,ROI,2026-09-07,2026-11-11,46607.13,11204.931,4123.651,15328.582,24.749,1924663.62,3120,1133
+GU_401990,galway-wind-park,Galway Wind Park,Seecon Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,57273.83,14211.237,844.508,15055.746,20.815,2022822.82,3120,1385
+GU_401930,mulreavy-windfarm,Mulreavy Windfarm,Mulreavy Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,27872.008,12259.498,930.554,13190.053,32.122,1646197.92,3120,1171
+GU_405140,cloncreen-wind-farm,Cloncreen Wind Farm,Cloncreen Windfarm,wind,Cloncreen Wind Farm Supply DAC,ROI,2026-09-07,2026-11-11,31602.915,11382.337,1369.499,12751.836,28.75,1634732.99,3120,1171
+GU_405210,ardderroo-rockgrid-windfarm,Ardderroo (Rockgrid) Windfarm,Ardderroo (Rockgrid) Windfarm,wind,Lettermuckoo Energy Supply Limited,ROI,2026-09-07,2026-11-11,60034.69,11104.445,1287.086,12391.53,17.109,1637466.21,3120,1321
+GU_501670,brockaghboy-wind-farm,Brockaghboy Wind Farm,Brockaghboy Windfarm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,19839.621,11615.941,518.75,12134.691,37.951,1703488.7,3120,1246
+GU_401690,mountlucas-wind-farm,Mountlucas Wind Farm,Mount Lucas Windfarm Limited,wind,Mount Lucas Supply Company Limited,ROI,2026-09-07,2026-11-11,27499.92,10959.364,1172.138,12131.502,30.611,1558211.08,3120,1210
+GU_504460,gu-504460,GU_504460,,wind,Electroroute Energy Supply Limited (NI),NI,2026-09-07,2026-11-11,21867.24,10727.412,592.732,11320.144,34.11,1596105.92,3120,1352
+GU_501160,slieve-kirk-wind-farm,Slieve Kirk Wind Farm,Slieve Kirk Windfarm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,25510.292,10138.294,589.003,10727.297,29.603,1294415.14,3120,1096
+GU_400070,meentycat-wind-farm,Meentycat Wind Farm,Meentycat Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,24343.586,8816.412,753.324,9569.736,28.218,1174029.45,3120,1121
+GU_403790,grousemount-wind-farm,Grousemount Wind Farm,Grousemount Windfarm,wind,ESB,ROI,2026-09-07,2026-11-11,61459.703,7456.744,1976.271,9433.015,13.306,1038201.53,3120,950
+GU_504040,gu-504040,GU_504040,,wind,Electroroute Energy Supply Limited (NI),NI,2026-09-07,2026-11-11,21363.041,8956.395,471.313,9427.708,30.619,1383324.21,3120,1341
+GU_407510,yellow-river-wind-farm,Yellow River Wind Farm,Yellow River Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,43930.273,6383.973,2454.888,8838.86,16.75,1236837.19,3120,1168
+GU_401960,galway-wind-park,Galway Wind Park,Uggool Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,29690.61,8255.942,480.474,8736.416,22.735,1178701.38,3120,1392
+GU_503900,gu-503900,GU_503900,,wind,Mantlin Limited,NI,2026-09-07,2026-11-11,28031.87,7746.767,426.91,8173.676,22.576,1032283.89,3120,1190
+GU_408060,gu-408060,GU_408060,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,24051.353,7199.443,932.601,8132.044,25.268,1105046.73,3120,1158
+GU_407330,moanvane-windfarm,Moanvane Windfarm,Moanvane Winfarm,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,19229.53,7032.298,820.674,7852.973,28.996,1042912.45,3120,1269
+GU_401900,sliabh-bawn-wind-farm,Sliabh Bawn Wind Farm,Sliabh Bawn Windfarm,wind,Sliabh Bawn Supply DAC,ROI,2026-09-07,2026-11-11,33091.967,5877.462,1561.234,7438.696,18.353,956567.86,3120,1168
+GU_503920,gu-503920,GU_503920,,wind,Power NI,NI,2026-09-07,2026-11-11,13061.244,6259.447,274.904,6534.351,33.346,862621.2,3120,1151
+GU_401770,knockacummer-wind-farm,Knockacummer Wind Farm,Knockacummer Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,46608.28,3389.328,2963.174,6352.502,11.995,686590.64,3120,871
+GU_401500,leitir-guingaid-leitir-peic-wind-farm,Leitir Guingaid Leitir Peic Wind Farm,Leitir Guingaid Windfarm phase 1,wind,LGLP Energy Supply Limited,ROI,2026-09-07,2026-11-11,20642.332,5586.094,422.109,6008.202,22.544,803240.12,3120,1392
+GU_402250,scartaglen-wind-farm,Scartaglen Wind Farm,Scartaglen 1 Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,13478.478,4601.31,1174.842,5776.153,29.999,671157.32,3120,943
+GU_400550,sorne-hill-wind-farm,Sorne Hill Wind Farm,Sorne Hill Generator Unit,wind,Sorne Wind Limited,ROI,2026-09-07,2026-11-11,10057.472,5348.639,382.374,5731.013,36.299,717821.04,3120,1227
+GU_401280,carrowleagh-wind-farm,Carrowleagh Wind Farm,Carrowleagh Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,5219.663,5118.677,271.571,5390.247,50.804,769720.0,3120,1433
+GU_403380,knockalough-wind-farm,Knockalough Wind Farm,Knockalough WFPS,wind,Warmhill Limited,ROI,2026-09-07,2026-11-11,17851.12,4919.388,418.883,5338.27,23.02,726026.82,3120,1392
+GU_402150,cappawhite-wind-farm,Cappawhite Wind Farm,Cappawhite Windfarm,wind,ESB,ROI,2026-09-07,2026-11-11,22080.487,4292.025,1004.289,5296.313,19.346,626384.31,3120,1045
+GU_501750,cornavarrow-wind-farm,Cornavarrow Wind Farm,Cornavarrow,wind,Power NI,NI,2026-09-07,2026-11-11,15874.426,4883.096,375.008,5258.105,24.882,648387.91,3120,1210
+GU_406590,timahoe-north-solar,Timahoe North Solar,Timahoe North Solar,solar,Timahoe North Supply DAC,ROI,2026-09-07,2026-11-11,11389.06,3025.832,1946.178,4972.01,30.389,649698.71,3120,1255
+GU_403400,magheramore-wind-farm,Magheramore Wind Farm,Magheramore Windfarm,wind,Tramlock Limited,ROI,2026-09-07,2026-11-11,25704.674,3656.968,1312.026,4968.994,16.2,613849.19,3120,1143
+GU_405930,lenalea-wind-farm,Lenalea Wind Farm,Lenalea Windfarm,wind,AXPO UK LIMITED,ROI,2026-09-07,2026-11-11,11111.54,4450.048,326.479,4776.527,30.064,606073.86,3120,1257
+GU_403880,bunnyconnellan-wind-farm,Bunnyconnellan Wind Farm,Bunnyconnellan Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,11022.899,4445.783,182.149,4627.932,29.57,642517.96,3120,1457
+GU_400591,coomacheo-wind-farm,Coomacheo Wind Farm,Coomacheo Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,27902.64,3404.38,1046.2,4450.58,13.756,538861.16,3120,949
+GU_504030,gu-504030,GU_504030,,wind,Electroroute Energy Supply Limited (NI),NI,2026-09-07,2026-11-11,7599.959,4201.952,196.304,4398.256,36.658,633606.07,3120,1223
+GU_503830,gu-503830,GU_503830,,wind,Power NI,NI,2026-09-07,2026-11-11,9323.196,4106.204,249.267,4355.472,31.841,517511.13,3120,1204
+GU_405830,gu-405830,GU_405830,,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,14641.634,3736.358,606.28,4342.638,22.875,561284.01,3120,1144
+GU_402270,boolinrudda-windfarm,Boolinrudda Windfarm,Boolinrudda Windfarm,wind,Plum Energy Supply Limited,ROI,2026-09-07,2026-11-11,28651.23,2764.874,1328.414,4093.287,12.501,477474.19,3120,940
+GU_501250,dunmore-wind-farm,Dunmore Wind Farm,Dunmore Wind Farm,wind,Dunmore Wind Farm Limited,NI,2026-09-07,2026-11-11,6294.638,3909.026,162.706,4071.732,39.278,563773.75,3120,1269
+GU_401740,garracummer-wind-farm,Garracummer Wind Farm,Garracummer Windfarm Ltd,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,18702.844,3253.256,764.369,4017.625,17.683,498686.98,3120,1035
+GU_408120,gu-408120,GU_408120,,solar,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,18670.25,1404.018,2608.426,4012.443,17.689,483876.89,3120,908
+GU_405160,cloghan-wind-farm,Cloghan Wind Farm,Cloghan Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-11,15552.76,2551.434,1397.696,3949.129,20.25,525172.07,3120,972
+GU_401840,boggeragh-wind-farm,Boggeragh Wind Farm,Boggeragh 2 Windfarm,wind,DWL Energy Supply Limited,ROI,2026-09-07,2026-11-11,32162.295,2174.542,1726.097,3900.639,10.816,466939.54,3120,892
+GU_400950,garvagh-glebe-wind-farm,Garvagh Glebe Wind Farm,Garvagh Glebe Generator Unit,wind,ESB,ROI,2026-09-07,2026-11-11,13121.826,3282.274,462.422,3744.696,22.202,499170.31,3120,1143
+GU_501190,carrickatane-wind-farm,Carrickatane Wind Farm,Carrickatane Wind Farm,wind,ESB,NI,2026-09-07,2026-11-11,9129.943,3513.111,200.725,3713.836,28.915,488343.54,3120,1220
+GU_402130,cordal-wind-farm,Cordal Wind Farm,Cordal 2 Windfarm,wind,Oak Energy Supply Limited,ROI,2026-09-07,2026-11-11,25971.075,2613.947,1098.24,3712.188,12.506,443960.31,3120,987
+GU_500020,callagheen-windfarm,Callagheen Windfarm,Callagheen Generator Unit,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,3788.867,2636.738,1006.8,3643.538,49.022,462372.84,3120,1030
+GU_401540,monaincha-wind-farm,Monaincha Wind Farm,Monaincha Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,14145.12,1980.858,1570.116,3550.974,20.066,443455.78,3120,858
+GU_403770,boolynagleragh-wind-farm,Boolynagleragh Wind Farm,Boolynagleragh Windfarm,wind,Snowgold Limited,ROI,2026-09-07,2026-11-11,14853.434,2272.691,1272.24,3544.931,19.268,414888.15,3120,938
+GU_504240,gu-504240,GU_504240,,wind,Power NI,NI,2026-09-07,2026-11-11,6327.02,3404.118,102.59,3506.709,35.66,456207.01,3120,1251
+GU_403810,cleanrath-wind-farm,Cleanrath Wind Farm,Cleanrath Windfarm,wind,Fallback Limited,ROI,2026-09-07,2026-11-11,22209.391,2673.022,819.713,3492.734,13.589,409449.6,3120,948
+GU_500740,slieve-divena-wind-farm,Slieve Divena Wind Farm,Slieve Divena Generator Unit,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,7079.42,3263.37,200.738,3464.108,32.855,409380.96,3120,1153
+GU_400910,boggeragh-wind-farm,Boggeragh Wind Farm,Boggeragh Windfarm Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,24863.631,1965.493,1490.586,3456.08,12.204,440039.45,3120,917
+GU_501730,castlecraig-wind-farm,Castlecraig Wind Farm,Castlecraig Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,8224.569,3236.546,169.296,3405.842,29.284,413509.19,3120,1202
+GU_405840,gu-405840,GU_405840,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,26032.06,247.032,3147.489,3394.521,11.536,322003.47,3120,716
+GU_401700,bruckana-wind-farm,Bruckana Wind Farm,Bruckana Windfarm Limited,wind,Bruckana Supply Company Limited,ROI,2026-09-07,2026-11-11,14018.145,2666.8,687.831,3354.631,19.31,387783.18,3120,932
+GU_500010,tappaghan-mountain-wind-farm,Tappaghan Mountain wind farm,Tappaghan Generator Unit,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,8513.436,3121.291,184.006,3305.297,27.967,372762.38,3120,1164
+GU_504260,gu-504260,GU_504260,,wind,Flogas Enterprise Solutions Limited,NI,2026-09-07,2026-11-11,10579.398,2996.667,225.192,3221.858,23.345,405909.32,3120,1209
+GU_501550,slieve-divena-wind-farm,Slieve Divena Wind Farm,Slieve Divena Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,7075.332,2927.538,198.388,3125.926,30.643,399925.53,3120,1209
+GU_402110,cordal-wind-farm,Cordal Wind Farm,Cordal 1 Windfarm,wind,Oak Energy Supply Limited,ROI,2026-09-07,2026-11-11,16576.958,2397.006,656.797,3053.803,15.556,349434.74,3120,960
+GU_408140,gu-408140,GU_408140,,wind,Erova Energy Supply Limited,ROI,2026-09-07,2026-11-11,16458.437,2469.316,563.198,3032.515,15.559,364627.18,3120,1015
+GU_401780,kill-hill-windfarm-limited,Kill Hill Windfarm Limited,Kill Hill Windfarm Limited,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,13162.58,1997.588,929.342,2926.93,18.192,350111.38,3120,889
+GU_406600,gu-406600,GU_406600,,wind,Endeco - Wirelite Sensors Limited,ROI,2026-09-07,2026-11-11,5155.998,1730.24,1190.742,2920.982,36.164,354705.32,3120,917
+GU_403840,cronalaght-wind-farm,Cronalaght Wind Farm,Cronalaght 2 Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,10555.767,2748.956,150.173,2899.128,21.547,375850.39,3120,1260
+GU_403800,sorrell-island-glenmore-wind-farm,Sorrell Island (Glenmore) Wind Farm,Sorrell Island 1 Windfarm,wind,Rio Energy Supply Limited,ROI,2026-09-07,2026-11-11,4374.102,1754.585,1087.722,2842.307,39.387,319439.47,3120,938
+GU_404570,gu-404570,GU_404570,,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,17117.42,1390.589,1414.434,2805.022,14.08,332558.98,3120,845
+GU_402300,kelwin-1-windfarm,Kelwin 1 Windfarm,Kelwin 1 Windfarm,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,14916.58,1323.452,1475.958,2799.409,15.802,310476.38,3120,813
+GU_405150,rosspile-solar,Rosspile Solar,Rosspile Solar,solar,ESB,ROI,2026-09-07,2026-11-11,15076.14,1409.958,1383.382,2793.341,15.632,272136.72,3120,720
+GU_406560,sheskin-windfarm,Sheskin Windfarm,Sheskin Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,8855.391,2581.94,169.543,2751.483,23.706,382775.9,3120,1452
+GU_503820,gu-503820,GU_503820,,wind,Power NI,NI,2026-09-07,2026-11-11,5318.411,2556.974,173.602,2730.577,33.924,326784.43,3120,1209
+GU_404420,lisheen-mines-wind-farm,Lisheen Mines Wind Farm,Lisheen 3 Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,14639.17,2053.122,630.674,2683.795,15.493,279847.85,3120,861
+GU_401810,barranafaddock-wind-farm,Barranafaddock Wind Farm,Barranafaddock Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,13111.23,1693.934,987.198,2681.132,16.977,327797.98,3120,889
+GU_401820,acres-wind-farm,Acres Wind Farm,Acres Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,6660.761,2299.11,337.443,2636.554,28.358,343732.31,3120,1105
+GU_404210,coomagearlahy-ii-wind-farm,Coomagearlahy II Wind Farm,Coomagearlahy Generator Unit,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,18607.579,1470.234,1157.364,2627.598,12.374,316651.57,3120,917
+GU_400940,tullynahaw-wind-farm,Tullynahaw Wind Farm,Tullynahaw Generator Unit,wind,ESB,ROI,2026-09-07,2026-11-11,9477.086,2117.106,506.798,2623.904,21.683,340495.94,3120,1329
+GU_403990,black-lough-wind-farm,Black Lough Wind Farm,Black Lough WFPS,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,6749.757,2482.659,126.124,2608.784,27.876,356404.66,3120,1458
+GU_501440,eglish-mountain-wind-farm,Eglish Mountain Wind Farm,Hunters Hill Windfarm Ltd - Eglish Site,wind,ESB,NI,2026-09-07,2026-11-11,6391.287,2408.222,130.98,2539.201,28.433,310067.43,3120,1209
+GU_501710,crockandun-windfarm,Crockandun Windfarm,Crockandun Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,7756.311,2335.741,166.829,2502.57,24.394,323769.58,3120,1209
+GU_503850,gu-503850,GU_503850,,wind,Power NI,NI,2026-09-07,2026-11-11,6221.235,2346.258,146.522,2492.78,28.607,301450.85,3120,1153
+GU_503840,gu-503840,GU_503840,,wind,Power NI,NI,2026-09-07,2026-11-11,5261.277,2300.25,145.272,2445.522,31.732,297247.89,3120,1209
+GU_503800,gu-503800,GU_503800,,wind,Power NI,NI,2026-09-07,2026-11-11,5389.496,2291.036,148.432,2439.468,31.16,301048.47,3120,1220
+GU_403940,knockalassa-windfarm,Knockalassa Windfarm,Knockalassa Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,13897.5,1615.982,750.275,2366.258,14.549,272610.66,3120,937
+GU_404330,carrigdangan-wind-farm,Carrigdangan Wind Farm,Carrigdangan Windfarm,wind,Stacks Energy Supply Limited,ROI,2026-09-07,2026-11-11,19167.32,1354.061,932.128,2286.189,10.656,279411.84,3120,916
+GU_504200,gu-504200,GU_504200,,wind,Perigus Energy Green NI Limited,NI,2026-09-07,2026-11-11,7647.705,2057.804,226.644,2284.448,23.001,282883.41,3120,1070
+GU_400840,lisheen-mines-wind-farm,Lisheen Mines Wind Farm,Lisheen Windfarm Phase 1,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,14312.556,1750.444,521.531,2271.975,13.699,281729.95,3120,694
+GU_401350,knocknagoum-windfarm,Knocknagoum Windfarm,Knocknagoum Windfarm Limited,wind,Burren Energy Supply Limited,ROI,2026-09-07,2026-11-11,20994.146,928.917,1322.612,2251.528,9.686,259516.02,3120,813
+GU_501720,elginny-broughshane-wind-farm,Elginny / Broughshane Wind Farm,ELGINNY HILL WIND FARM,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,6585.81,2040.984,200.672,2241.656,25.394,246679.09,3120,1070
+GU_404470,glencarbry-wind-farm,Glencarbry Wind Farm,Glencarbry Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,8020.851,1704.563,529.687,2234.25,21.787,270810.15,3120,1035
+GU_400660,pallas-wind-farm,Pallas Wind Farm,Pallas Generator Unit,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,14723.814,1172.147,1054.165,2226.312,13.134,260305.49,3120,837
+GU_403390,castledockrell-wind-farm,Castledockrell Wind Farm,Castledockrell Windfarm (Gen Unit),wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-11,15991.817,695.939,1526.705,2222.644,12.203,230805.26,3120,721
+GU_405190,gu-405190,GU_405190,,wind,ESB,ROI,2026-09-07,2026-11-11,14208.1,163.867,2026.078,2189.945,13.355,225889.62,3120,659
+GU_501520,ora-more-wind-farm,Ora More Wind Farm,Ora More Windfarm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,5908.195,2048.462,120.423,2168.885,26.852,266465.03,3120,1190
+GU_406610,drumlins-park-wind-farm,Drumlins Park Wind Farm,Drumlins Windfarm,wind,Drumlins Park Limited,ROI,2026-09-07,2026-11-11,21188.05,415.004,1716.994,2131.998,9.142,231277.88,3120,635
+GU_503780,gu-503780,GU_503780,,wind,Power NI,NI,2026-09-07,2026-11-11,4868.842,1956.021,126.731,2082.752,29.961,260862.05,3120,1220
+GU_401150,carriganima-wind-farm-bawnmore-2,Carriganima Wind Farm (Bawnmore 2),Bawnmore Windfarm,wind,Tippgo Limited,ROI,2026-09-07,2026-11-11,3865.578,1087.149,993.79,2080.939,34.994,251326.02,3118,914
+GU_503860,gu-503860,GU_503860,,wind,Power NI,NI,2026-09-07,2026-11-11,5730.135,1954.158,117.94,2072.098,26.558,265019.82,3120,1208
+GU_407040,rathnaskilloge-solar-farm,Rathnaskilloge Solar Farm,Rathnaskilloge Solar Farm,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,12324.532,566.172,1488.024,2054.195,14.286,209868.54,3120,663
+GU_501700,shantavny-scotch,Shantavny Scotch,Shantavny Scotch Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,4348.693,1905.937,120.448,2026.386,31.786,226723.04,3120,1220
+GU_503930,gu-503930,GU_503930,,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-11,3759.502,1886.46,111.394,1997.854,34.701,244299.06,3120,1209
+GU_407670,gu-407670,GU_407670,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,7393.015,1049.618,936.845,1986.462,21.179,260292.17,3120,1027
+GU_401940,raheenleagh-wind-farm,Raheenleagh Wind Farm,Raheenleagh,wind,ESB,ROI,2026-09-07,2026-11-11,21369.177,669.854,1279.064,1948.919,8.358,204516.32,3120,717
+GU_401750,lisheen-mines-wind-farm,Lisheen Mines Wind Farm,Lisheen Windfarm 2 Ltd,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,9558.124,1535.926,400.74,1936.666,16.848,219939.84,3120,926
+GU_501740,teiges-wind-farm,Teiges Wind Farm,Teiges Wind Farm,wind,Power NI,NI,2026-09-07,2026-11-11,5267.524,1782.872,126.843,1909.714,26.608,245575.02,3120,1209
+GU_500720,garves-wind-farm,Garves Wind Farm,Garves Wind Generator Unit,wind,Garves Wind Limited,NI,2026-09-07,2026-11-11,4722.698,1817.89,83.652,1901.542,28.706,248113.38,3120,1248
+GU_503940,gu-503940,GU_503940,,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-11,4628.678,1775.846,111.395,1887.241,28.964,232087.85,3120,1209
+GU_400060,midas-wind-farm,Midas Wind Farm,Midas Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,14067.279,1092.686,779.442,1872.128,11.745,224336.08,3120,906
+GU_406470,tullabeg-solar,Tullabeg Solar,Tullabeg Solar,solar,Tullabeg Solar Farm Limited,ROI,2026-09-07,2026-11-11,10005.46,929.871,933.152,1863.022,15.697,189815.74,3120,738
+GU_504160,gu-504160,GU_504160,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,2405.112,1723.637,101.962,1825.599,43.151,260084.35,3120,1246
+GU_501210,carn-hill-wind-farm,Carn Hill Wind Farm,Carn Hill Windfarm,wind,ESB,NI,2026-09-07,2026-11-11,4523.054,1668.436,154.471,1822.907,28.725,201187.65,3120,1070
+GU_400731,sws-kilgarvan-ext-inchincoosh,SWS Kilgarvan Ext Inchincoosh,SWS Kilgarvan Ext Inchincoosh,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,15186.29,1124.295,691.126,1815.421,10.678,223299.01,3120,916
+GU_402080,moneypoint-wind-farm,Moneypoint Wind Farm,Moneypoint Windfarm,wind,ESB,ROI,2026-09-07,2026-11-11,8923.78,1171.37,585.373,1756.743,16.448,202199.57,3120,938
+GU_401950,killaveenoge-wind-farm,Killaveenoge Wind Farm,Kilaveenoge 1 WF,wind,Dunman Energy Supply Limited,ROI,2026-09-07,2026-11-11,12581.467,992.098,725.014,1717.112,12.009,205219.15,3120,917
+GU_501430,crockandun-windfarm,Crockandun Windfarm,Hunters Hill Windfarm Ltd - Crockdun Site,wind,ESB,NI,2026-09-07,2026-11-11,3876.732,1622.518,93.62,1716.139,30.684,201466.91,3120,1220
+GU_404340,esk-wind-farm,Esk Wind Farm,Esk Windfarm,wind,Amazon Energy Eoraip Limited,ROI,2026-09-07,2026-11-11,10542.179,1018.994,690.833,1709.827,13.955,220471.88,3120,926
+GU_401380,athea-wind-farm,Athea Wind Farm,Athea Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,13861.52,882.686,813.198,1695.884,10.901,188534.24,3120,846
+GU_404000,beenanaspuck-and-tobertoreen-windfarm,Beenanaspuck and Tobertoreen Windfarm,Beenanaspuck and Tobertoreen Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-11,8998.238,919.182,770.815,1689.996,15.812,199513.34,3120,845
+GU_501360,monnaboy-windfarm,Monnaboy Windfarm,Monnaboy Windfarm,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-11,4254.302,1573.288,64.709,1637.996,27.799,196301.81,3120,1181
+GU_401240,dromdeeveen-windfarm,Dromdeeveen Windfarm,Dromdeeveen Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,12690.194,873.422,732.314,1605.736,11.232,169240.9,3120,789
+GU_401790,ballybane-wind-farm,Ballybane Wind Farm,Ballybane Windfarm Phase 2,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,2360.295,928.711,671.359,1600.069,40.402,194594.72,3120,916
+GU_406520,gu-406520,GU_406520,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,10171.43,40.77,1558.249,1599.019,13.585,159043.99,3120,620
+GU_402210,leanamore-wind-farm,Leanamore Wind Farm,Leanamore Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,9970.172,781.217,814.1,1595.317,13.794,181435.78,3120,809
+GU_404630,clogheravaddy-wind-farm,Clogheravaddy Wind Farm,Cloghervaddy 2 Windfarm,wind,Clogheravaddy Wind Farm Limited,ROI,2026-09-07,2026-11-11,1448.794,1515.397,72.859,1588.255,52.296,208694.29,3120,1245
+GU_406580,lysaghtstown-solar,Lysaghtstown Solar,Lysaghtstown Solar,solar,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,15986.679,0.0,1587.294,1587.294,9.032,150338.32,3120,608
+GU_400050,bindoo-wind-farm,Bindoo Wind Farm,Bindoo Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,17305.43,292.432,1237.433,1529.866,8.122,127650.61,3120,636
+GU_404490,glanaruddery-wind-farm,Glanaruddery Wind Farm,Glanaruddery 1 Windfarm,wind,Glanaruddery Energy Supply Limited,ROI,2026-09-07,2026-11-11,11430.653,735.991,772.229,1508.22,11.657,183174.37,3120,844
+GU_402200,tullynamoyle-wind-farm,Tullynamoyle Wind Farm,Tullynamoyle Windfarm 3,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,4518.589,1341.659,164.788,1506.447,25.003,191478.02,3120,1142
+GU_407030,gaskinstown-solar,Gaskinstown Solar,Gaskinstown Solar,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,10415.233,0.0,1506.106,1506.106,12.634,145942.79,3120,616
+GU_501390,cloonty-windfarm,Cloonty Windfarm,Cloonty Windfarm,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-11,2067.624,1421.901,56.098,1477.999,41.685,192256.95,3120,1362
+GU_400080,richfield-wind-farm,Richfield Wind Farm,Richfield Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,9437.604,506.596,945.4,1451.996,13.334,133135.53,3120,616
+GU_501630,rasharkin,Rasharkin,Rasharkin,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,2871.215,1254.393,182.711,1437.104,33.356,167940.35,3120,1364
+GU_400920,dromada-wind-farm,Dromada Wind Farm,Dromada Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,11968.24,726.101,676.124,1402.225,10.487,153123.96,3120,845
+GU_404200,knockawarriga-wind-farm,Knockawarriga Wind Farm,Knockawarriga 1 Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-11,4271.872,220.422,1138.494,1358.916,24.134,146475.75,3120,671
+GU_400021,dunneill-wind-farm,Dunneill Wind Farm,Dunneil Windfarm (Kingsmountain Phase 2),wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,3180.482,1266.328,65.094,1331.422,29.509,185325.59,3120,1457
+GU_407630,gu-407630,GU_407630,,solar,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,16549.413,0.0,1276.326,1276.326,7.16,123014.43,3120,449
+GU_401070,carrigcannon-wind-farm,Carrigcannon Wind Farm,Carraigcannon Windfarm (Gen Unit),wind,AXPO UK LIMITED,ROI,2026-09-07,2026-11-11,7251.047,820.178,449.161,1269.339,14.898,164829.61,3120,917
+GU_402340,cappawhite-b-wind-farm,Cappawhite B wind farm,Cappawhite B Windfarm,wind,Bally Wind Supply Limited,ROI,2026-09-07,2026-11-11,5745.596,1026.545,235.261,1261.806,18.007,153945.13,3120,1035
+GU_407910,ballylongford-windfarm,Ballylongford Windfarm,Ballylongford Windfarm,wind,Gaofar Limited,ROI,2026-09-07,2026-11-11,7090.491,0.0,1254.023,1254.023,15.028,111177.54,3120,613
+GU_402160,tullynamoyle-wind-farm,Tullynamoyle Wind Farm,Tullynamoyle 2 Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,3344.285,1090.546,138.44,1228.986,26.873,156760.34,3120,1142
+GU_404460,ballycumber-wind-farm,Ballycumber Wind Farm,Ballycumber Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,12852.335,508.47,707.841,1216.31,8.646,136789.08,3120,718
+GU_402050,tullabrack-wind-farm,Tullabrack Wind Farm,Tullabrack Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-11,6346.445,766.514,417.715,1184.23,15.725,141355.75,3120,938
+GU_405870,airoshin-wind-farm,Airoshin Wind Farm,Airoshin Windfarm,wind,Captured Carbon Limited,ROI,2026-09-07,2026-11-11,7852.229,830.126,304.02,1134.146,12.621,144838.73,3120,881
+GU_405110,taghart-wind-farm,Taghart Wind Farm,Taghart Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-11,13734.326,0.0,1132.647,1132.647,7.619,82484.54,3120,616
+GU_401090,grouselodge-wind-farm,Grouselodge Wind Farm,Grouselodge Windfarm (Gen Unit),wind,ESB,ROI,2026-09-07,2026-11-11,5730.833,731.021,285.07,1016.091,15.06,120433.11,3120,937
+GU_504090,gu-504090,GU_504090,,solar,ESB,NI,2026-09-07,2026-11-11,3230.636,870.864,127.39,998.254,23.606,96322.3,3120,1070
+GU_401730,booltiagh-wind-farm,Booltiagh Wind Farm,Booltiagh 2 Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,4983.276,573.848,397.069,970.917,16.306,105756.61,3120,937
+GU_403750,killala-wind-farm,Killala Wind Farm,Killala Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,8032.452,823.389,143.581,966.97,10.745,142427.63,3120,1318
+GU_403930,knocknatallig-windfarm,Knocknatallig Windfarm,Knocknatallig Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,8369.981,324.831,637.438,962.269,10.311,109299.36,3120,815
+GU_407340,gu-407340,GU_407340,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,5559.073,75.728,862.466,938.193,14.44,100334.65,3120,725
+GU_404500,glanaruddery-wind-farm,Glanaruddery Wind Farm,Glanaruddery 2 Windfarm,wind,Glanaruddery Energy Supply Limited,ROI,2026-09-07,2026-11-11,6125.704,471.088,455.413,926.502,13.138,112164.67,3120,843
+GU_401670,an-cnoc-wind-farm,An Cnoc Wind Farm,Cnoc Windfarms,wind,Cnoc Energy Supply Limited,ROI,2026-09-07,2026-11-11,4876.46,576.784,326.848,903.632,15.634,113548.02,3120,889
+GU_404580,gu-404580,GU_404580,,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,6588.189,628.043,273.37,901.413,12.036,123024.63,3120,887
+GU_401080,rathcahill-wind-farm,Rathcahill Wind Farm,Rathcahill West Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,6527.92,682.215,210.106,892.321,12.025,112450.37,3120,888
+GU_402220,carrickallen-wind-farm,Carrickallen Wind Farm,Carrickallen Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,10742.666,164.14,714.091,878.231,7.557,79567.61,3120,628
+GU_400960,muingnaminnane-wind-farm,Muingnaminnane Wind Farm,Muingnaminnane Generator Unit,wind,AXPO UK LIMITED,ROI,2026-09-07,2026-11-11,4199.182,379.006,495.827,874.833,17.241,109198.91,3120,813
+GU_401680,woodhouse-wind-farm,Woodhouse Wind Farm,Woodhouse Windfarm,wind,ESB,ROI,2026-09-07,2026-11-11,9117.85,145.386,722.61,867.997,8.692,85978.45,3120,667
+GU_403980,mauricetown-wind-farm,Mauricetown Wind Farm,Mauricetown Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,7211.488,453.448,372.629,826.076,10.278,92793.57,3120,859
+GU_401980,clahane-2-windfarm,Clahane 2 Windfarm,Clahane 2 Windfarm,wind,Pallas Energy Supply Limited,ROI,2026-09-07,2026-11-11,4824.226,444.979,374.971,819.95,14.527,99278.68,3120,842
+GU_404480,sorrell-island-glenmore-wind-farm,Sorrell Island (Glenmore) Wind Farm,Sorrell Island 2 Windfarm,wind,Rio Energy Supply Limited,ROI,2026-09-07,2026-11-11,1365.743,467.218,348.692,815.91,37.399,91032.52,3120,927
+GU_402280,cloghaneleskirt-wind-farm,Cloghaneleskirt Wind Farm,Cloghanaleskirt Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-11,5020.167,313.072,490.234,803.306,13.794,90382.98,3120,728
+GU_403950,lissycasey-windfarm,Lissycasey Windfarm,Lissycasey Windfarm,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,8062.436,500.815,277.036,777.851,8.799,94590.31,3120,790
+GU_407710,ballincollig-hill-wind-farm,Ballincollig Hill Wind Farm,Ballincollig Hill Generator Unit,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,5988.335,336.086,432.95,769.035,11.381,86504.79,3120,812
+GU_401290,ballycadden-wind-farm,Ballycadden Wind Farm,Ballycadden Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,1728.508,151.145,615.029,766.173,30.712,79605.84,3120,723
+GU_503400,gu-503400,GU_503400,,wind,ESB,NI,2026-09-07,2026-11-11,2909.634,645.219,106.042,751.261,20.521,95037.82,3120,940
+GU_404560,beam-hill-wind-farm,Beam Hill Wind Farm,Beam Hill Windfarm,wind,Yuno Limited,ROI,2026-09-07,2026-11-11,4554.982,646.961,82.928,729.888,13.811,89532.14,3120,1014
+GU_402190,castlepook-wind-farm,Castlepook Wind Farm,Castlepook Windfarm,wind,ESB,ROI,2026-09-07,2026-11-11,12881.267,379.284,341.512,720.796,5.299,81287.18,3120,407
+GU_401360,ballycadden-wind-farm,Ballycadden Wind Farm,Ballycadden Windfarm Phase 2,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,1459.439,195.275,516.218,711.493,32.774,72583.39,3120,717
+GU_501660,wel-solar-park-15-ltd,WEL Solar Park 15 Ltd,WEL Solar Park 15 Ltd,solar,Power NI,NI,2026-09-07,2026-11-11,2011.871,577.714,118.436,696.15,25.707,73328.68,3120,1070
+GU_401920,meenadreen-wind-farm,Meenadreen Wind Farm,Meenadreen South 2 Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,1329.522,634.106,54.305,688.411,34.115,83157.54,3120,1158
+GU_406710,gu-406710,GU_406710,,solar,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,3706.362,0.0,667.273,667.273,15.257,63396.12,3120,619
+GU_401060,gortahile-wind-farm,Gortahile Wind Farm,Gortahile Windfarm Ltd Generator Unit,wind,New Measured Power Limited TA Pinergy,ROI,2026-09-07,2026-11-11,10073.699,95.814,559.006,654.82,6.104,62542.47,3120,600
+GU_401890,grove-hill-windfarm,Grove Hill Windfarm,Grove Hill Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,9483.726,0.0,635.772,635.772,6.283,63278.3,3120,612
+GU_408130,gu-408130,GU_408130,,wind,Microsoft Ireland Energy Limited,ROI,2026-09-07,2026-11-11,4135.327,58.415,575.183,633.598,13.286,68377.03,3120,658
+GU_404990,taurbeg-wind-farm,Taurbeg Wind Farm,Taurbeg Windfarm,wind,Statkraft Markets GmbH,ROI,2026-09-07,2026-11-11,6965.357,310.724,313.795,624.518,8.228,75240.43,3120,761
+GU_407660,crossmore-wind-farm,Crossmore Wind Farm,Crossmore Wind Farm,wind,XMR Energy Limited,ROI,2026-09-07,2026-11-11,7826.002,0.0,612.416,612.416,7.257,67982.47,3120,445
+GU_402260,scartaglen-wind-farm,Scartaglen Wind Farm,Scartaglen 2 Windfarm,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,1906.958,390.942,143.342,534.283,21.886,69155.52,3120,944
+GU_403920,coollegrean-wind-farm,Coollegrean Wind Farm,Coollegrean Windfarm,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,8728.989,481.911,43.65,525.561,5.679,49015.78,3120,220
+GU_400730,sws-green-energy-gen-unit-sillahertane,SWS Green Energy Gen Unit (Sillahertane),SWS Green Energy Gen Unit (Sillahertane),wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,3617.311,292.144,224.62,516.765,12.5,59832.21,3120,886
+GU_405100,hortland-solar,Hortland Solar,Hortland Solar,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,2045.729,277.127,235.67,512.797,20.043,74128.27,3120,849
+GU_501500,tievenamenta-wind-farm,Tievenamenta Wind Farm,Tievenameenta Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,20375.764,507.152,0.0,507.152,2.429,74804.6,3120,74
+GU_403970,raragh-wind-farm,Raragh Wind Farm,Raragh 2 Windfarm,wind,Flogas Enterprise Solutions Limited,ROI,2026-09-07,2026-11-11,4820.664,0.0,438.556,438.556,8.339,40331.06,3120,617
+GU_401340,gibbet-hill-wind-farm,Gibbet Hill Wind Farm,Gibbet Hill Windfarm,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,6873.298,192.994,243.083,436.076,5.966,47327.3,3120,366
+GU_401720,booltiagh-wind-farm,Booltiagh Wind Farm,Booltiagh Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,4708.422,164.734,241.447,406.181,7.942,44660.04,3120,418
+GU_401760,ballymartin-wind-farm,Ballymartin Wind Farm,Ballymartin Windfarm Phase 2,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,935.844,148.186,240.205,388.391,29.329,47792.05,3120,600
+GU_404290,knockawarriga-wind-farm,Knockawarriga Wind Farm,Knockawarriga 2 Windfarm,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,1188.735,39.805,303.011,342.815,22.384,69987.05,3120,997
+GU_407690,gu-407690,GU_407690,,wind,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,1810.39,0.0,303.454,303.454,14.356,31951.27,3120,504
+GU_401710,ballymartin-wind-farm,Ballymartin Wind Farm,Ballymartin Windfarm Phase 1,wind,Perigus Energy Ireland Green Energy Limited,ROI,2026-09-07,2026-11-11,709.434,95.988,164.864,260.852,26.884,31904.22,3120,600
+GU_503810,gu-503810,GU_503810,,wind,Power NI,NI,2026-09-07,2026-11-11,10710.836,259.539,0.0,259.539,2.366,38632.32,3120,80
+GU_405080,knockglass-solar,Knockglass Solar,Knockglass Solar,solar,Tippgo Limited,ROI,2026-09-07,2026-11-11,219.341,136.616,107.143,243.759,52.636,31483.76,3120,919
+GU_501150,curryfree,Curryfree,Curryfree Windfarm,wind,ESB,NI,2026-09-07,2026-11-11,7803.393,229.945,0.0,229.945,2.862,31773.15,3120,77
+GU_501050,crockagarran-wind-farm,Crockagarran Wind Farm,Crockagarran Generator Unit,wind,ESB,NI,2026-09-07,2026-11-11,7018.194,199.254,0.0,199.254,2.761,29071.2,3120,73
+GU_501680,rathsherry-wind-farm,Rathsherry Wind Farm,Rathsherry Windfarm,wind,Power NI,NI,2026-09-07,2026-11-11,8628.202,173.032,25.724,198.757,2.252,29409.41,3120,107
+GU_501620,altaveedan-wind-farm,Altaveedan Wind Farm,Altaveedan Wind Farm,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,10606.499,189.934,0.0,189.934,1.759,25874.91,3120,80
+GU_405890,ballywater-wind-farm,Ballywater Wind Farm,Ballywater Generator Unit,wind,Ballywater Windfarms Limited,ROI,2026-09-07,2026-11-11,14034.98,0.0,135.512,135.512,0.956,19725.98,3120,48
+GU_501040,hunter-s-hill-lendrum-s-bridge-wind-farm,Hunter's Hill/Lendrum's Bridge Wind Farm,Hunters Hill,wind,ESB,NI,2026-09-07,2026-11-11,7228.2,131.236,0.0,131.236,1.783,17099.52,3120,73
+GU_503790,gu-503790,GU_503790,,wind,Power NI,NI,2026-09-07,2026-11-11,6182.273,127.752,0.0,127.752,2.025,17421.83,3120,73
+GU_400620,mountain-lodge-wind-farm,Mountain Lodge Wind Farm,Mountain Lodge Windfarm,wind,ESB,ROI,2026-09-07,2026-11-11,13890.84,16.708,57.272,73.98,0.53,9054.04,3120,604
+GU_400030,culliagh-wind-farm,Culliagh Wind Farm,Cuillagh Generator Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,4648.549,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_400600,tournafulla-wind-farm,Tournafulla Wind Farm,Tournafulla Generatot Unit,wind,SSE Airtricity Limited,ROI,2026-09-07,2026-11-11,7864.349,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_401440,derrybrien-windfarm,Derrybrien Windfarm,Derrybrien Windfarm,wind,ESB,ROI,2026-09-07,2026-11-11,239.0,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_402010,ballybane-wind-farm,Ballybane Wind Farm,Ballybane Windfarm Phase 3,wind,Energia Customer Solutions Limited,ROI,2026-09-07,2026-11-11,880.947,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_404930,meenbog-wind-farm,Meenbog Wind Farm,Meenbog,wind,Amazon Energy Eoraip Limited,ROI,2026-09-07,2026-11-11,0.28,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_407650,gu-407650,GU_407650,,solar,ESB,ROI,2026-09-07,2026-11-11,4309.076,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_407700,gu-407700,GU_407700,,wind,ESB,ROI,2026-09-07,2026-11-11,915.887,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_408040,gu-408040,GU_408040,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,20278.557,0.0,0.0,0.0,0.0,0.0,3120,3
+GU_408050,gu-408050,GU_408050,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,2518.985,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_408070,gu-408070,GU_408070,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,4381.949,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_408080,gu-408080,GU_408080,,solar,Bord Gais Energy Limited,ROI,2026-09-07,2026-11-11,9648.567,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_408100,gu-408100,GU_408100,,wind,ESB,ROI,2026-09-07,2026-11-11,4588.207,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_408150,gu-408150,GU_408150,,wind,Erova Energy Supply Limited,ROI,2026-10-15,2026-11-11,0.0,0.0,0.0,0.0,,0.0,1298,0
+GU_408160,gu-408160,GU_408160,,wind,Erova Energy Supply Limited,ROI,2026-10-15,2026-11-11,0.0,0.0,0.0,0.0,,0.0,1298,0
+GU_408180,gu-408180,GU_408180,,wind,ElectroRoute Energy Supply Limited,ROI,2026-09-07,2026-11-11,2370.316,0.0,0.0,0.0,0.0,0.0,3120,1154
+GU_408190,gu-408190,GU_408190,,wind,ElectroRoute Energy Supply Limited,ROI,2026-10-08,2026-11-11,0.0,0.0,0.0,0.0,,0.0,1634,0
+GU_501410,corby-knowe-wind-farm,Corby Knowe Wind Farm,Corby Knowe Windfarm,wind,Gaelectric Green Energy Limited,NI,2026-09-07,2026-11-11,1984.944,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_504050,gu-504050,GU_504050,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,2900.353,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_504060,gu-504060,GU_504060,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,8375.62,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_504070,gu-504070,GU_504070,,wind,SSE Airtricity Energy Supply (NI) Limited,NI,2026-09-07,2026-11-11,2014.133,0.0,0.0,0.0,0.0,0.0,3120,0
+GU_504230,gu-504230,GU_504230,,wind,Captured Carbon Limited,NI,2026-09-07,2026-11-11,3590.778,0.0,0.0,0.0,0.0,0.0,3120,0
