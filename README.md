@@ -48,6 +48,7 @@ Observable Framework sends anonymous usage telemetry unless `OBSERVABLE_TELEMETR
 | Day-ahead | `src/markets/day-ahead.md` | 30 days to 1 year: daily average and range, a heatmap of every half-hour, volume by zone, price by time of day, monthly table |
 | Wind & demand | `src/generation/wind.md` | Wind against demand, and EirGrid's wind forecast against what happened (error, bias, monthly table) |
 | Batteries | `src/generation/batteries.md` | The grid batteries: when they charge and discharge against the price, each battery's energy and day-ahead value, their day-ahead trading over the year |
+| Wind map | `src/forecasts/wind-map.md` | Forecast wind speed at 100 m over the island, hourly for three days, with the wind farms on top and a play button. Fetched in the browser from Open-Meteo (`src/components/weather.js`, checked by `node --test scripts/weather.test.mjs`) |
 | Battery simulator | `src/tools/battery-simulator.md` | Choose a battery; it finds the best daily schedule on real day-ahead prices (`src/components/battery.js`, checked by `node --test scripts/battery.test.mjs`) |
 | Datasets | `src/data.md` | Sources, update frequency, licences, every download |
 | Dispatch-down overview | `src/generation/dispatch-down/index.md` | A chosen month: % dispatched down, energy lost, market value, constraint share, Ireland vs NI; day-by-day chart; month-by-month chart; most affected farms |
