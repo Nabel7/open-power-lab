@@ -30,6 +30,7 @@ const MENUS = [
     items: [
       {title: "Wind & demand", path: "/generation/wind", note: "Output, share of demand, EirGrid's forecast"},
       {title: "Dispatch-down", path: "/generation/dispatch-down/", note: "Wind turned down, why and where"},
+      {title: "Dispatch-down since 2016", path: "/generation/dispatch-down/history", note: "Ten years, adjusted for the weather"},
       {title: "Wind farms", path: "/generation/dispatch-down/farms/", note: "Every farm, with its own page"},
       {title: "Farm map", path: "/generation/dispatch-down/map", note: "Where wind is turned down"},
       {title: "Batteries", path: "/generation/batteries", note: "When the island's batteries charge and discharge"},

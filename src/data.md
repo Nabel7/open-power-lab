@@ -20,6 +20,9 @@ const files = [
   ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_monthly.csv"), "By farm and month"],
   ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_daily.csv"), "By farm and day"],
   ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_locations.csv"), "Farm positions, from OpenStreetMap (Open Database Licence)"],
+  ["Dispatch-down since 2016", FileAttachment("generation/dispatch-down/data/history_monthly.csv"), "By month and region since 2016, from EirGrid: reported and weather-adjusted shares, wind against normal"],
+  ["Dispatch-down since 2016", FileAttachment("generation/dispatch-down/data/history_yearly.csv"), "The same by year"],
+  ["Dispatch-down since 2016", FileAttachment("generation/dispatch-down/data/history_season.csv"), "Normal wind by calendar month, and the share turned down at the same wind"],
   ["Batteries", FileAttachment("data/batteries/units.csv"), "Each grid battery: name, company, region, size in MW"],
   ["Batteries", FileAttachment("data/batteries/fleet_hh.csv"), "Half-hourly: all batteries' charging and discharging, with the day-ahead price"],
   ["Batteries", FileAttachment("data/batteries/unit_totals.csv"), "Each battery: energy in and out, and day-ahead value, over the metered period"],
@@ -50,6 +53,8 @@ const files = [
 | Battery day-ahead orders | Each unit's cleared orders in SEMOpx's day-ahead results | 30 min | 1 year | Daily |
 | Farm names | SEMO's published lists of registered units | Per unit | Current | Now and then |
 | Farm positions | [OpenStreetMap](https://www.openstreetmap.org) | Per farm | Current | Now and then |
+| Dispatch-down since 2016 | EirGrid's [dispatch-down summary report](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx) (V24) | Monthly | Since January 2016 | When EirGrid publishes, about six weeks after each month |
+| Wind index for the weather adjustment | ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com) (CC BY 4.0) | Hourly, 12 points | Since 2000 | With each new EirGrid report |
 | Wind forecast (Wind map) | [Open-Meteo](https://open-meteo.com), fetched by your browser; "Weather data by Open-Meteo.com" (CC BY 4.0) | Hourly, about 30 km grid | Next 3 days | Each visit |
 
   </div>

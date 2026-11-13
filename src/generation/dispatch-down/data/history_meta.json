@@ -1,0 +1,11 @@
+{
+  "built_at_utc": "2026-11-13T21:11:47Z",
+  "workbook": "EirGrid DD Summary Report V24",
+  "workbook_url": "https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx",
+  "first_month": "2016-01",
+  "last_month": "2026-10",
+  "season_level_year": 2025,
+  "season_wind_cf_pct": 25,
+  "wind_explains_pct": 49,
+  "typical_monthly_miss_pts": 2.2
+}
