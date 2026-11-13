@@ -56,7 +56,8 @@ EirGrid's [Smart Grid Dashboard](https://www.smartgriddashboard.com) adds total 
 
 For each wind farm and half-hour:
 
-- **Energy lost** = (availability − actual output) × half an hour, counted only while a constraint or curtailment instruction is in force, and never below zero.
+- **Energy lost** = (available power − actual output) × half an hour, counted only while a constraint or curtailment instruction is in force, and never below zero.
+- **Available power** is the farm's declared availability, checked against what the farm really makes. Some farms keep declaring their full availability while making far less, even when no instruction is holding them down: most likely turbines out of service. Without a check, those missing turbines would count as wind turned down. So each farm's output is compared with its declared availability over the past seven days, in the half-hours when it was free. If it made under 80% of what it declared, its availability is scaled down by that ratio until it recovers. A farm needs at least a day's worth of free half-hours in the week to be judged. In October 2026 this check took the island's figure from 18.1% to 16.3%.
 - Constraint and curtailment are tracked separately, since a farm can be under both at once. When both are on, the loss counts as a **constraint**.
 - A farm stays held down until an instruction releases it. If SEMO publishes no instructions at all for a day, every farm is treated as released from the start of that day, and counts as held down again only when a new instruction says so.
 - **Dispatched down %** = energy lost ÷ (energy produced + energy lost): the share of the energy the wind allowed that wasn't produced. For the island and its regions, energy produced is **all wind generation**, from EirGrid's Smart Grid Dashboard, because the units in SEMO's reports don't cover every wind farm. On a farm's page it's that farm's own metered output.
@@ -72,16 +73,19 @@ Days and months are Irish clock time.
 
 ## How close is it to the official figures?
 
-EirGrid publishes official monthly dispatch-down figures in its [dispatch-down summary workbook](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V23.xlsx), usually about a month after the month ends. Our figures for September 2026 start on the 7th, so the comparison below uses EirGrid's month minus 1-6 September, which is read by eye from the daily charts in its workbook. Those EirGrid figures are therefore approximate, to about ±0.3 points.
+EirGrid publishes official monthly dispatch-down figures in its [dispatch-down summary workbook](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx), usually about six weeks after the month ends. This site's figures leave out 1-6 September (before our archive starts) and 27 October (SEMO published no files for it), so the comparison below uses EirGrid's figures for the same days. EirGrid publishes its daily figures only as charts, so those were read from the chart images and scaled to its monthly totals; they're approximate, to a few tenths of a point.
 
-| 7-30 September 2026 | This site | EirGrid (approx.) |
+| Same days | This site | EirGrid (approx.) |
 |---|---|---|
-| All-island | 22.8% | 22% |
-| Ireland | 20.9% | 20.3% |
-| Northern Ireland | 29.6% | 29.3% |
-| Share that was constraint, Ireland | 79% | 73% |
+| September 2026 (7-30), all-island | 22.2% | 21.8% |
+| September, Ireland | 20.2% | 19.8% |
+| September, Northern Ireland | 29.3% | 29.1% |
+| October 2026 (without the 27th), all-island | 16.3% | 15.8% |
+| October, Ireland | 15.1% | 14.5% |
+| October, Northern Ireland | 21.7% | 21.0% |
+| Share that was constraint, Ireland, September / October | 79% / 71% | 73% / 60% (whole months) |
 
-So the level is within about 1 percentage point, slightly high. **The split between constraint and curtailment is less reliable than the total:** this site counts somewhat more of the loss as constraint than EirGrid does. A likely reason is that when a farm is under both at once, all of its loss counts as constraint here, where EirGrid divides it between the two. EirGrid also uses one-minute readings where this site uses half-hours, and its measure of available energy differs a little from SEMO's. A farm's outage can also be counted as dispatch-down here, if a farm reports itself available while a constraint or curtailment is on.
+So the level is within about half a percentage point, slightly high. For comparison, EirGrid's official whole-month figures are 22.7% for September and 16.2% for October; the [ten-year page](./history) uses those. **The split between constraint and curtailment is less reliable than the total:** this site counts somewhat more of the loss as constraint than EirGrid does. A likely reason is that when a farm is under both at once, all of its loss counts as constraint here, where EirGrid divides it between the two. EirGrid also uses one-minute readings where this site uses half-hours, and its measure of available energy differs a little from SEMO's. The availability check catches farms that make far less than they declare, but a shorter or partial outage can still be counted as dispatch-down here.
 
 </div>
 
