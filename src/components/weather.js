@@ -2,15 +2,16 @@
 // fetched by the visitor's browser. Used by the Wind map page.
 //
 // Open-Meteo counts every point as one request against a limit per visitor (about 600 a
-// minute, 10,000 a day on the free service), so the grid is kept small (about 220
+// minute, 10,000 a day on the free service), so the grid is kept small (320
 // points) and each answer is kept in the browser for 30 minutes. Its data is free to use
 // with credit ("Weather data by Open-Meteo.com", CC BY 4.0) for non-commercial use.
 
-// The area shown: Ireland and Northern Ireland with the seas around them, wide enough that
-// the colours can fade out over the sea rather than over land.
-export const BOUNDS = {south: 50.9, north: 55.9, west: -11.9, east: -4.6};
+// The area shown: Ireland and Northern Ireland with the seas around them, reaching about
+// 500 km out into the Atlantic, where most of Ireland's weather comes from. It's wide
+// enough that the colours fade out over the sea rather than over land.
+export const BOUNDS = {south: 50.9, north: 55.9, west: -15, east: -4.6};
 export const ROWS = 16;
-export const COLUMNS = 14;
+export const COLUMNS = 20;
 
 // Web maps stretch latitude (the Mercator projection), so rows are spaced evenly on the
 // map, not in degrees. Then a picture made from the grid lines up with the map exactly.
@@ -32,7 +33,7 @@ export function grid() {
   return points;
 }
 
-const CACHE_KEY = "wind-grid-v2";
+const CACHE_KEY = "wind-grid-v3";
 const CACHE_MINUTES = 30;
 
 /**
@@ -99,7 +100,7 @@ export function speedAt(lat, lon, speeds) {
 
 // The picture's size in pixels. Its height keeps the map's proportions (in Mercator), so
 // the browser doesn't have to stretch it unevenly.
-export const PICTURE_WIDTH = 330;
+export const PICTURE_WIDTH = 460;
 export const PICTURE_HEIGHT = Math.round(
   (PICTURE_WIDTH * (toY(BOUNDS.north) - toY(BOUNDS.south))) / (((BOUNDS.east - BOUNDS.west) * Math.PI) / 180)
 );

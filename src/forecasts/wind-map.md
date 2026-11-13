@@ -38,6 +38,7 @@ import {BOUNDS, COLUMNS, PICTURE_WIDTH, PICTURE_HEIGHT, grid, windForecast, spee
 
 const places = FileAttachment("../generation/dispatch-down/data/farm_locations.csv").csv({typed: true});
 const farmList = FileAttachment("../generation/dispatch-down/data/farms.csv").csv({typed: true});
+const island = FileAttachment("ireland.json").json(); // outline of the island, from Natural Earth
 ```
 
 ```js
@@ -190,12 +191,31 @@ const ireland = [
   [51.4, -10.6],
   [55.4, -5.4]
 ];
-const map = L.map(container, {scrollWheelZoom: false, zoomSnap: 0.25}).fitBounds(ireland);
+// On a wide screen, start a little west of centre, to show more of the Atlantic and
+// less of Britain.
+const startView = () =>
+  container.clientWidth > 640
+    ? [
+        [51.4, -11.8],
+        [55.4, -5.7]
+      ]
+    : ireland;
+// The map can't be dragged far from Ireland, or zoomed out much past the starting view.
+const map = L.map(container, {
+  scrollWheelZoom: false,
+  zoomSnap: 0.25,
+  maxBounds: [
+    [49.8, -16.5],
+    [57, -3]
+  ],
+  maxBoundsViscosity: 0.9
+}).fitBounds(ireland);
 
-// Layers, bottom to top: the map in grey (so it doesn't fight the colours), the wind
-// colours, the arrows, the farms, and the measured readings. The colours are multiplied
+// Layers, bottom to top: the map in grey (so it doesn't fight the colours), a pale wash
+// over everywhere but Ireland, the wind colours, the arrows, the coastline, the farms,
+// and the measured readings. The colours are multiplied
 // onto the map, so roads, coasts and place names still show through.
-for (const [name, z] of [["arrows", 420], ["farms", 500]]) {
+for (const [name, z] of [["wash", 300], ["arrows", 420], ["coast", 430], ["farms", 500]]) {
   map.createPane(name).style.zIndex = z;
   map.getPane(name).style.pointerEvents = name === "farms" ? "auto" : "none";
 }
@@ -205,7 +225,23 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     'Map &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a> · Observations &copy; <a href="https://www.met.ie/">Met Éireann</a>'
 }).addTo(map);
-requestAnimationFrame(() => map.invalidateSize().fitBounds(ireland));
+requestAnimationFrame(() => {
+  map.invalidateSize().fitBounds(startView());
+  map.setMinZoom(map.getZoom() - 0.5);
+});
+
+// Everywhere except the island is washed pale, so Ireland stands out. The wind colours
+// go on top of the wash, so the seas around keep their colours.
+const world = [
+  [-90, -180],
+  [-90, 180],
+  [90, 180],
+  [90, -180]
+];
+const holes = island.geometry.coordinates.map(([ring]) => ring.map(([lon, lat]) => [lat, lon]));
+L.polygon([world, ...holes], {pane: "wash", stroke: false, fillColor: "#ffffff", fillOpacity: 0.72, interactive: false}).addTo(map);
+// The coastline goes above the colours, so the island's shape is always clear.
+L.geoJSON(island, {pane: "coast", style: {color: "#2b3138", opacity: 0.55, weight: 0.9, fill: false}, interactive: false}).addTo(map);
 
 // The wind picture: made once here, and given a new image every hour.
 const blank = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
@@ -364,7 +400,7 @@ Plot.legend({
 
 <div class="note" style="margin-top: 2rem;">
 
-**About this map.** The forecast comes from [Open-Meteo](https://open-meteo.com/), which combines national weather models, for a grid of about 220 points over the island and the seas around it, each about 30 km apart. Your browser fetches it when you open the page and keeps it for 30 minutes. The colours between points are blended smoothly, so small features such as a single hill or valley don't show. Wind speeds for turbines are typical values: each model of turbine differs. Farm positions come from OpenStreetMap, matched to SEMO's unit names.
+**About this map.** The forecast comes from [Open-Meteo](https://open-meteo.com/), which combines national weather models, for a grid of 320 points over the island and the seas around it, each about 30 km apart, reaching about 500 km out into the Atlantic so you can see weather on its way in. Your browser fetches it when you open the page and keeps it for 30 minutes. The colours between points are blended smoothly, so small features such as a single hill or valley don't show. Wind speeds for turbines are typical values: each model of turbine differs. Farm positions come from OpenStreetMap, matched to SEMO's unit names. The island's outline is from [Natural Earth](https://www.naturalearthdata.com/).
 
 **Measured wind.** The white labels are real readings from [Met Éireann](https://www.met.ie/)'s weather stations, the latest hour, in m/s. They're measured at 10 metres, where the wind is slower than at a turbine's hub, often by a quarter or more, so expect them to be lower than the colours around them. They show the latest reading whatever hour the slider is on. Northern Ireland's stations aren't included.
 
