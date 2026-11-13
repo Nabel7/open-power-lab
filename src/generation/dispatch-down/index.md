@@ -54,7 +54,7 @@ const split = html`<div class="split">
 
 <div class="hero">
   <div>
-    <p class="crumbs">Generation / Dispatch-down</p>
+    <p class="eyebrow">Monthly</p>
     <h1>In ${shortMonth}, <span class="headline-number">${percent(all.dispatch_down_pct)}</span> of Irish wind power was turned down</h1>
     <p class="lede">Wind farms were told to produce <strong>${gwh(all.lost_mwh)}</strong> less than the wind allowed, worth about <strong>${euros(all.lost_value_eur)}</strong> at market prices. About ${d3.format(".0f")(100 * constraintShare)}% of it was because the local grid was full.</p>
     ${monthInput}

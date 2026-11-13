@@ -1,10 +1,10 @@
 ---
-title: Today
+title: Irish Power Lab
 ---
 
 ```js
 import "./components/shell.js";
-import {COLOURS, eurMwh, mw, percent, gwh, longDay, shortDay, monthName, irishTime, asDay, plotStyle, key} from "./components/format.js";
+import {COLOURS, eurMwh, mw, percent, gwh, shortDay, monthName, irishTime, plotStyle, key} from "./components/format.js";
 
 const pricesDaily = FileAttachment("data/markets/prices_daily.csv").csv({typed: true});
 const pricesRecent = FileAttachment("data/markets/prices_recent.csv").csv({typed: true});
@@ -12,6 +12,9 @@ const systemDaily = FileAttachment("data/markets/system_daily.csv").csv({typed: 
 const systemRecent = FileAttachment("data/markets/system_hh.csv").csv({typed: true});
 const latest = FileAttachment("data/markets/latest.json").json();
 const ddMonthly = FileAttachment("generation/dispatch-down/data/monthly.csv").csv({typed: true});
+const historyRaw = FileAttachment("generation/dispatch-down/data/history_monthly.csv").csv({typed: true});
+const fleet = FileAttachment("data/batteries/fleet_hh.csv").csv({typed: true});
+const batteryMeta = FileAttachment("data/batteries/meta.json").json();
 ```
 
 ```js
@@ -21,17 +24,29 @@ const pricePrev = pricesDaily.at(-2);
 const change = priceDay.avg - pricePrev.avg;
 const systemDay = systemDaily.at(-1);
 
-// When the latest day's lowest and highest prices were, in Irish time.
-// Trading days run 23:00 to 23:00 Irish time, so shift by an hour to find a half-hour's day.
-const sameDay = (t, day) => new Date(+t + 3600e3).toLocaleDateString("en-CA", {timeZone: "Europe/Dublin"}) === day.toISOString().slice(0, 10);
-const dayHalfHours = pricesRecent.filter((d) => sameDay(d.timestamp_utc, priceDay.day));
-const clock = (t) => t.toLocaleTimeString("en-IE", {timeZone: "Europe/Dublin", hour: "2-digit", minute: "2-digit"});
-const lowAt = clock(dayHalfHours.find((d) => d.price === priceDay.low).timestamp_utc);
-const highAt = clock(dayHalfHours.find((d) => d.price === priceDay.high).timestamp_utc);
-
-// Dispatch-down: the latest month with most of its days covered.
+// Dispatch-down: the latest month with most of its days covered (this site's tracker).
 const ddAll = ddMonthly.filter((d) => d.region === "ALL");
 const dd = ddAll.filter((d) => d.days_with_data >= 0.8 * d.days_in_month).at(-1) ?? ddAll.at(-1);
+
+// Ten years from EirGrid: 12-month averages, reported and weather-adjusted, all-island.
+const asMonth = (m) => (m instanceof Date ? m : new Date(`${m}-01T00:00:00Z`));
+const history = historyRaw.filter((d) => d.region === "ALL").map((d) => ({...d, month: asMonth(d.month)}));
+const rolling = history.slice(11).map((d, i) => {
+  const year = history.slice(i, i + 12);
+  return {
+    month: d.month,
+    reported: (100 * d3.sum(year, (v) => v.lost_gwh)) / d3.sum(year, (v) => v.available_gwh),
+    adjusted: d3.sum(year, (v) => v.adjusted_pct * v.available_normal_gwh) / d3.sum(year, (v) => v.available_normal_gwh)
+  };
+});
+const last12 = rolling.at(-1);
+
+// Batteries: the fleet's average charging (-) and discharging (+) by Irish hour.
+const irishHour = (t) => +t.toLocaleString("en-IE", {timeZone: "Europe/Dublin", hour: "2-digit", hourCycle: "h23"});
+const byHour = d3
+  .rollups(fleet, (v) => d3.mean(v, (d) => d.discharging_mw - d.charging_mw), (d) => irishHour(d.timestamp_utc))
+  .map(([hour, net]) => ({hour, net}))
+  .sort((a, b) => a.hour - b.hour);
 
 // The last 7 days, for the charts.
 const lastWeek = (rows) => {
@@ -44,50 +59,50 @@ const daily30 = pricesDaily.slice(-30);
 const share30 = systemDaily.slice(-30);
 
 // A small line in a stat tile.
-const spark = (rows, y, colour) =>
+const spark = (rows, x, y, colour) =>
   Plot.plot({
     width: 220,
     height: 34,
     margin: 2,
     axis: null,
     style: plotStyle,
-    marks: [Plot.lineY(rows, {x: "day", y, stroke: colour, strokeWidth: 1.5}), Plot.dot(rows.slice(-1), {x: "day", y, fill: colour, r: 2.5})]
+    marks: [Plot.lineY(rows, {x, y, stroke: colour, strokeWidth: 1.5}), Plot.dot(rows.slice(-1), {x, y, fill: colour, r: 2.5})]
   });
 ```
 
 <div class="page-head">
-  <p class="crumbs">Markets / Today</p>
-  <h1>Irish electricity market</h1>
-  <p class="lede">The latest day-ahead prices, wind and demand on the island of Ireland, from public SEMOpx and EirGrid data.</p>
+  <h1>The Irish electricity market, in public data</h1>
+  <p class="lede">Prices, wind, batteries, and the wind power the grid turns away, for Ireland and Northern Ireland. Built from SEMO, SEMOpx and EirGrid data, independent, and updated daily.</p>
   <div class="meta">
-    <span>Day-ahead results: trading day ${longDay(priceDay.day)}</span>
+    <span>Day-ahead results to ${shortDay(priceDay.day)}</span>
     <span>System data to ${irishTime(new Date(latest.system_last_utc))}</span>
-    <span>Updated daily · not live</span>
+    <span>Not live</span>
   </div>
 </div>
 
 <div class="stats">
-  <div class="stat">
+  <a class="stat" href="./markets/day-ahead" style="color: inherit; text-decoration: none;">
     <span class="label">Day-ahead average · ${shortDay(priceDay.day)}</span>
     <span class="value">${eurMwh(priceDay.avg)}<small>/MWh</small></span>
-    <span class="sub"><span class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "▲" : "▼"} ${eurMwh(Math.abs(change))}</span> on ${shortDay(pricePrev.day)} · volume-weighted ${eurMwh(priceDay.vwap)}</span>
-    <div class="spark">${spark(daily30, "avg", COLOURS.price)}</div>
-  </div>
-  <div class="stat">
-    <span class="label">Day-ahead range · ${shortDay(priceDay.day)}</span>
-    <span class="value">${eurMwh(priceDay.low)} – ${eurMwh(priceDay.high)}</span>
-    <span class="sub">Lowest at ${lowAt}, highest at ${highAt}${priceDay.negative_hh ? ` · ${priceDay.negative_hh} negative half-hours` : ""}</span>
-  </div>
-  <div class="stat">
+    <span class="sub"><span class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "▲" : "▼"} ${eurMwh(Math.abs(change))}</span> on ${shortDay(pricePrev.day)} · range ${eurMwh(priceDay.low)} – ${eurMwh(priceDay.high)}</span>
+    <div class="spark">${spark(daily30, "day", "avg", COLOURS.price)}</div>
+  </a>
+  <a class="stat" href="./generation/wind" style="color: inherit; text-decoration: none;">
     <span class="label">Wind share of demand · ${shortDay(systemDay.day)}</span>
     <span class="value">${systemDay.wind_share.toFixed(0)}%</span>
     <span class="sub">${gwh(systemDay.wind_mwh)} of wind, ${gwh(systemDay.demand_mwh)} of demand</span>
-    <div class="spark">${spark(share30, "wind_share", COLOURS.wind)}</div>
-  </div>
+    <div class="spark">${spark(share30, "day", "wind_share", COLOURS.wind)}</div>
+  </a>
   <a class="stat" href="./generation/dispatch-down/" style="color: inherit; text-decoration: none;">
     <span class="label">Wind turned down · ${monthName(dd.month)}</span>
     <span class="value">${percent(dd.dispatch_down_pct)}</span>
-    <span class="sub">${gwh(dd.lost_mwh)} lost${dd.days_with_data < dd.days_in_month ? ` · ${dd.days_with_data} of ${dd.days_in_month} days` : ""} · see dispatch-down →</span>
+    <span class="sub">${gwh(dd.lost_mwh)} lost${dd.days_with_data < dd.days_in_month ? `, ${dd.days_with_data} of ${dd.days_in_month} days` : ""} · this site's estimate</span>
+  </a>
+  <a class="stat" href="./generation/dispatch-down/history" style="color: inherit; text-decoration: none;">
+    <span class="label">Wind turned down, last 12 months</span>
+    <span class="value">${percent(last12.reported)}</span>
+    <span class="sub">${percent(last12.adjusted)} with normal wind · EirGrid, to ${d3.utcFormat("%b %Y")(last12.month)}</span>
+    <div class="spark">${spark(rolling.slice(-60), "month", "reported", "var(--ink-muted)")}</div>
   </a>
 </div>
 
@@ -97,7 +112,7 @@ const spark = (rows, y, colour) =>
     ${resize((width) =>
       Plot.plot({
         width,
-        height: 260,
+        height: 240,
         marginLeft: 42,
         style: plotStyle,
         x: {type: "utc", label: null, ticks: 7},
@@ -115,7 +130,7 @@ const spark = (rows, y, colour) =>
     ${resize((width) =>
       Plot.plot({
         width,
-        height: 260,
+        height: 240,
         marginLeft: 42,
         style: plotStyle,
         x: {type: "utc", label: null, ticks: 7},
@@ -133,31 +148,91 @@ const spark = (rows, y, colour) =>
   </div>
 </div>
 
-<div class="card">
-  <div class="card-head"><span class="label">Daily average day-ahead price, last 90 days</span><span class="label">€/MWh · bars show the day's range</span></div>
-  ${resize((width) =>
-    Plot.plot({
-      width,
-      height: 220,
-      marginLeft: 42,
-      style: plotStyle,
-      x: {type: "utc", label: null},
-      y: {label: null, grid: true},
-      marks: [
-        Plot.ruleX(pricesDaily.slice(-90), {x: "day", y1: "low", y2: "high", stroke: COLOURS.price, strokeOpacity: 0.3, strokeWidth: Math.max(1, width / 180)}),
-        Plot.lineY(pricesDaily.slice(-90), {x: "day", y: "avg", stroke: COLOURS.price, strokeWidth: 1.75}),
-        Plot.tip(pricesDaily.slice(-90), Plot.pointerX({x: "day", y: "avg", title: (d) => `${longDay(d.day)}\nAverage ${eurMwh(d.avg)}\nRange ${eurMwh(d.low)} – ${eurMwh(d.high)}`}))
-      ]
-    })
-  )}
+<div class="section">
+  <div class="section-head"><h2>Featured</h2></div>
+  <div class="grid grid-cols-2 featured">
+    <a class="card feature" href="./generation/dispatch-down/history">
+      <span class="label">Dispatch-down since 2016</span>
+      <strong>Most of the recent rise is the weather</strong>
+      <p>Over the last 12 months the grid turned down ${percent(last12.reported)} of the wind energy available. With normal wind it would have been about ${percent(last12.adjusted)}. Ten years of EirGrid's figures, adjusted for how windy each month was.</p>
+      ${resize((width) =>
+        Plot.plot({
+          width,
+          height: 110,
+          marginLeft: 30,
+          marginBottom: 20,
+          style: plotStyle,
+          x: {type: "utc", label: null, ticks: 5},
+          y: {label: null, grid: true, ticks: 3, tickFormat: (v) => `${v}%`},
+          marks: [
+            Plot.lineY(rolling, {x: "month", y: "reported", stroke: "var(--ink-muted)", strokeWidth: 1.5}),
+            Plot.lineY(rolling, {x: "month", y: "adjusted", stroke: "var(--price)", strokeWidth: 1.75}),
+            Plot.ruleY([0], {stroke: "var(--line-strong)"})
+          ]
+        })
+      )}
+      <span class="label"><span>${key("var(--ink-muted)")}Reported</span> <span>${key("var(--price)")}With normal wind</span> <span>12-month averages</span></span>
+    </a>
+    <a class="card feature" href="./generation/batteries">
+      <span class="label">Batteries</span>
+      <strong>${batteryMeta.batteries} batteries, ${d3.format(",.0f")(batteryMeta.size_mw)} MW</strong>
+      <p>The island's grid batteries charge overnight and in the middle of the day, when power is cheap, and discharge into the evening peak. Average by hour of the day, Irish time, since ${d3.utcFormat("%-d %B")(new Date(batteryMeta.metered_first_utc))}.</p>
+      ${resize((width) =>
+        Plot.plot({
+          width,
+          height: 110,
+          marginLeft: 30,
+          marginBottom: 20,
+          style: plotStyle,
+          x: {label: null, ticks: [0, 6, 12, 18], tickFormat: (h) => `${String(h).padStart(2, "0")}:00`},
+          y: {label: null, grid: true, ticks: 3},
+          marks: [
+            Plot.rectY(byHour, {x1: "hour", x2: (d) => d.hour + 1, y: "net", fill: (d) => (d.net >= 0 ? COLOURS.discharge : COLOURS.charge), inset: 0.5}),
+            Plot.ruleY([0], {stroke: "var(--line-strong)"})
+          ]
+        })
+      )}
+      <span class="label"><span>${key(COLOURS.discharge)}Discharging</span> <span>${key(COLOURS.charge)}Charging</span> <span>MW</span></span>
+    </a>
+    <a class="card feature" href="./forecasts/wind-map">
+      <span class="label">Wind map</span>
+      <strong>Watch the wind cross the island</strong>
+      <p>Forecast wind at turbine height for the next three days, hour by hour, with every wind farm on the map, and live readings from Met Éireann's weather stations.</p>
+    </a>
+    <a class="card feature" href="./tools/battery-simulator">
+      <span class="label">Battery simulator</span>
+      <strong>What could a battery have earned?</strong>
+      <p>Choose a battery's size, hours of storage and efficiency, and see the most it could have made trading on a year of real day-ahead prices, against what the island's real batteries did.</p>
+    </a>
+  </div>
 </div>
 
 <div class="section">
-  <div class="section-head"><h2>Explore</h2></div>
-  <div class="links">
-    <a href="./markets/day-ahead"><b>Day-ahead prices</b><span>A year of half-hourly prices, volumes by zone, monthly statistics</span></a>
-    <a href="./generation/wind"><b>Wind &amp; demand</b><span>Wind output, its share of demand, and EirGrid's forecast against what happened</span></a>
-    <a href="./generation/dispatch-down/"><b>Dispatch-down</b><span>How much wind is turned down, why, and at which of 200 farms</span></a>
-    <a href="./data"><b>Datasets</b><span>Sources, licences and every file behind this site</span></a>
+  <div class="section-head"><h2>Everything on the site</h2></div>
+  <div class="sitemap">
+    <div>
+      <p class="label">Markets</p>
+      <a href="./markets/day-ahead">Day-ahead prices</a>
+      <a href="./generation/wind">Wind &amp; demand</a>
+      <a href="./generation/batteries">Batteries</a>
+    </div>
+    <div>
+      <p class="label">Dispatch-down</p>
+      <a href="./generation/dispatch-down/">Monthly</a>
+      <a href="./generation/dispatch-down/history">Since 2016</a>
+      <a href="./generation/dispatch-down/farms/">Wind farms</a>
+      <a href="./generation/dispatch-down/map">Farm map</a>
+      <a href="./generation/dispatch-down/methods">Methods</a>
+    </div>
+    <div>
+      <p class="label">Forecasts and tools</p>
+      <a href="./forecasts/wind-map">Wind map</a>
+      <a href="./generation/wind#forecast">EirGrid's wind forecast</a>
+      <a href="./tools/battery-simulator">Battery simulator</a>
+    </div>
+    <div>
+      <p class="label">Data</p>
+      <a href="./data">Datasets, sources and licences</a>
+    </div>
   </div>
 </div>

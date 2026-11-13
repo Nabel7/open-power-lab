@@ -88,7 +88,7 @@ const windStory =
 ```
 
 <div class="page-head">
-  <p class="crumbs">Generation / Dispatch-down / Since 2016</p>
+  <p class="eyebrow">Since 2016</p>
   <h1>Ten years of wind turned down</h1>
   <p class="lede">EirGrid's own monthly figures since 2016, with a weather adjustment: what each month would have been with normal wind for the time of year. Windy months lose a bigger share, so a windy year makes things look worse than they are, and a calm one hides a real rise.</p>
   <div class="meta">
