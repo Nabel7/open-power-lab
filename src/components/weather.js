@@ -2,14 +2,15 @@
 // fetched by the visitor's browser. Used by the Wind map page.
 //
 // Open-Meteo counts every point as one request against a limit per visitor (about 600 a
-// minute, 10,000 a day on the free service), so the grid is kept small (about 170
+// minute, 10,000 a day on the free service), so the grid is kept small (about 220
 // points) and each answer is kept in the browser for 30 minutes. Its data is free to use
 // with credit ("Weather data by Open-Meteo.com", CC BY 4.0) for non-commercial use.
 
-// The area shown: Ireland and Northern Ireland with a little sea around them.
-export const BOUNDS = {south: 51.3, north: 55.5, west: -10.8, east: -5.3};
-export const ROWS = 14;
-export const COLUMNS = 12;
+// The area shown: Ireland and Northern Ireland with the seas around them, wide enough that
+// the colours can fade out over the sea rather than over land.
+export const BOUNDS = {south: 50.9, north: 55.9, west: -11.9, east: -4.6};
+export const ROWS = 16;
+export const COLUMNS = 14;
 
 // Web maps stretch latitude (the Mercator projection), so rows are spaced evenly on the
 // map, not in degrees. Then a picture made from the grid lines up with the map exactly.
@@ -31,7 +32,7 @@ export function grid() {
   return points;
 }
 
-const CACHE_KEY = "wind-grid-v1";
+const CACHE_KEY = "wind-grid-v2";
 const CACHE_MINUTES = 30;
 
 /**
@@ -94,18 +95,135 @@ export function speedAt(lat, lon, speeds) {
   return topEdge * (1 - fr) + bottomEdge * fr;
 }
 
+// ---- The picture --------------------------------------------------------------------------
+
+// The picture's size in pixels. Its height keeps the map's proportions (in Mercator), so
+// the browser doesn't have to stretch it unevenly.
+export const PICTURE_WIDTH = 330;
+export const PICTURE_HEIGHT = Math.round(
+  (PICTURE_WIDTH * (toY(BOUNDS.north) - toY(BOUNDS.south))) / (((BOUNDS.east - BOUNDS.west) * Math.PI) / 180)
+);
+
+// A smooth curve through four neighbouring values (Catmull-Rom). Unlike straight-line
+// blending, it has no visible creases at the grid points.
+const cubic = (a, b, c, d, t) =>
+  b + 0.5 * t * (c - a + t * (2 * a - 5 * b + 4 * c - d + t * (3 * (b - c) + d - a)));
+
 /**
- * A small picture of one hour's wind: one pixel per grid point, coloured by `colour`.
- * The browser smooths it when it's stretched over the map, which gives soft edges.
+ * One hour's wind as a smooth field the size of the picture: a value for every pixel,
+ * row by row from the top. Used for the colours and for the contour lines.
  */
-export function windPicture(speeds, colour) {
+export function windField(speeds, width = PICTURE_WIDTH, height = PICTURE_HEIGHT) {
+  const at = (row, col) =>
+    speeds[Math.max(0, Math.min(ROWS - 1, row)) * COLUMNS + Math.max(0, Math.min(COLUMNS - 1, col))];
+  const values = new Float32Array(width * height);
+  for (let y = 0; y < height; y++) {
+    // Pixel rows are evenly spaced in Mercator, like the grid's rows.
+    const r = ((y + 0.5) / height) * ROWS - 0.5;
+    const r0 = Math.floor(r);
+    const fr = r - r0;
+    for (let x = 0; x < width; x++) {
+      const c = ((x + 0.5) / width) * COLUMNS - 0.5;
+      const c0 = Math.floor(c);
+      const fc = c - c0;
+      const rows = [-1, 0, 1, 2].map((k) =>
+        cubic(at(r0 + k, c0 - 1), at(r0 + k, c0), at(r0 + k, c0 + 1), at(r0 + k, c0 + 2), fc)
+      );
+      values[y * width + x] = Math.max(0, cubic(rows[0], rows[1], rows[2], rows[3], fr));
+    }
+  }
+  return values;
+}
+
+/**
+ * The coloured picture of a wind field, on a canvas. `rgb(speed)` gives [r, g, b]. The
+ * colours fade out towards the picture's edges, so it melts into the map instead of
+ * ending in a hard square.
+ */
+export function windPicture(values, rgb, {width = PICTURE_WIDTH, height = PICTURE_HEIGHT, opacity = 0.85, fade = 0.3} = {}) {
+  // Colours looked up once, for every tenth of a m/s up to 40.
+  const steps = 400;
+  const table = Array.from({length: steps + 1}, (_, i) => rgb(i / 10));
   const canvas = document.createElement("canvas");
-  canvas.width = COLUMNS;
-  canvas.height = ROWS;
+  canvas.width = width;
+  canvas.height = height;
   const context = canvas.getContext("2d");
-  speeds.forEach((s, i) => {
-    context.fillStyle = colour(s);
-    context.fillRect(i % COLUMNS, Math.floor(i / COLUMNS), 1, 1);
-  });
-  return canvas.toDataURL();
+  const image = context.createImageData(width, height);
+  // How far each pixel is from the middle, as a rounded rectangle (a "superellipse"):
+  // 0 in the middle, 1 at the edge. The last `fade` of the way, the colours fade out.
+  const smooth = (t) => (t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t)); // eases in and out
+  for (let y = 0; y < height; y++) {
+    const v = Math.abs((2 * (y + 0.5)) / height - 1) ** 4;
+    for (let x = 0; x < width; x++) {
+      const i = y * width + x;
+      const u = Math.abs((2 * (x + 0.5)) / width - 1) ** 4;
+      const distance = (u + v) ** 0.25;
+      const [r, g, b] = table[Math.min(steps, Math.round(values[i] * 10))];
+      image.data.set([r, g, b, 255 * opacity * smooth((1 - distance) / fade)], i * 4);
+    }
+  }
+  context.putImageData(image, 0, 0);
+  return canvas;
+}
+
+// ---- Measured wind, now -------------------------------------------------------------------
+
+// Met Éireann's weather stations with hourly readings, and where they are (from Met
+// Éireann's station list). Wind is measured at 10 m, so it's lower than at turbine height.
+export const STATIONS = [
+  {slug: "athenry", name: "Athenry", lat: 53.28917, lon: -8.78556},
+  {slug: "ballyhaise", name: "Ballyhaise", lat: 54.05139, lon: -7.30972},
+  {slug: "belmullet", name: "Belmullet", lat: 54.2275, lon: -10.00694},
+  {slug: "casement", name: "Casement", lat: 53.30556, lon: -6.43889},
+  {slug: "claremorris", name: "Claremorris", lat: 53.71083, lon: -8.9925},
+  {slug: "cork", name: "Cork", lat: 51.84722, lon: -8.48611},
+  {slug: "dublin", name: "Dublin Airport", lat: 53.42778, lon: -6.24083},
+  {slug: "dunsany", name: "Dunsany", lat: 53.51583, lon: -6.66},
+  {slug: "finner", name: "Finner", lat: 54.49389, lon: -8.24306},
+  {slug: "gurteen", name: "Gurteen", lat: 53.035, lon: -8.00861},
+  {slug: "johnstown-castle", name: "Johnstown Castle", lat: 52.29167, lon: -6.5},
+  {slug: "knock", name: "Knock", lat: 53.90611, lon: -8.81722},
+  {slug: "mace-head", name: "Mace Head", lat: 53.32583, lon: -9.90083},
+  {slug: "malin-head", name: "Malin Head", lat: 55.37194, lon: -7.33917},
+  {slug: "moore-park", name: "Moore Park", lat: 52.16389, lon: -8.26389},
+  {slug: "mullingar", name: "Mullingar", lat: 53.53722, lon: -7.36222},
+  {slug: "oak-park", name: "Oak Park", lat: 52.86111, lon: -6.91528},
+  {slug: "phoenix-park", name: "Phoenix Park", lat: 53.36361, lon: -6.34972},
+  {slug: "roches-point", name: "Roche's Point", lat: 51.79306, lon: -8.24444},
+  {slug: "shannon", name: "Shannon", lat: 52.69028, lon: -8.91806},
+  {slug: "sherkin-island", name: "Sherkin Island", lat: 51.47639, lon: -9.42833},
+  {slug: "valentia", name: "Valentia", lat: 51.93833, lon: -10.24083}
+];
+
+const number = (text) => {
+  const value = parseFloat(text);
+  return Number.isFinite(value) ? value : null;
+};
+
+/**
+ * The latest reading at each station, fetched by the visitor's browser from Met Éireann.
+ * Returns one row per station that answered: {...station, speed and gust in m/s (or null),
+ * direction the wind comes FROM in degrees, time as "HH:MM" Irish time, date "DD-MM-YYYY"}.
+ */
+export async function measuredWind(stations = STATIONS) {
+  const answers = await Promise.allSettled(
+    stations.map(async (station) => {
+      const response = await fetch(`https://prodapi.metweb.ie/observations/${station.slug}/today`);
+      if (!response.ok) throw new Error(`Met Éireann answered ${response.status}`);
+      const readings = await response.json();
+      // An unknown station name quietly gets Dublin Airport's readings, so check the name.
+      const latest = readings.find((d) => d.name === station.name && number(d.windSpeed) != null);
+      if (!latest) throw new Error(`No reading for ${station.name}`);
+      return {
+        ...station,
+        speed: number(latest.windSpeed) / 3.6, // Met Éireann gives km/h
+        gust: number(latest.windGust) == null ? null : number(latest.windGust) / 3.6,
+        direction: latest.windDirection,
+        compass: latest.cardinalWindDirection,
+        time: latest.reportTime,
+        date: latest.date
+      };
+    })
+  );
+  return answers.filter((d) => d.status === "fulfilled").map((d) => d.value);
 }
