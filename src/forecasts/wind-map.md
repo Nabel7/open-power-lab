@@ -4,9 +4,21 @@ title: Wind map
 
 <style>
 .wind-map { height: min(72vh, 640px); }
-.wind-map .leaflet-image-layer { image-rendering: auto; }
-.wind-arrow { color: rgb(16 20 24 / 0.55); font: 600 13px/1 var(--sans-serif); text-align: center; }
+.wind-map .grey-map { filter: grayscale(1) brightness(1.17); }
+.wind-map .leaflet-image-layer { image-rendering: auto; mix-blend-mode: multiply; }
+.wind-arrow { color: rgb(16 20 24 / 0.5); font: 600 13px/1 var(--sans-serif); text-align: center; }
 .wind-arrow span { display: inline-block; }
+.station {
+  display: flex; align-items: center; justify-content: center; gap: 2px; box-sizing: border-box;
+  border: 1.5px solid #101418; border-radius: 999px; background: #fff; color: #101418;
+  font: 700 11px/1 var(--sans-serif); font-variant-numeric: tabular-nums; box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+}
+.station i { display: inline-block; font-style: normal; font-weight: 600; }
+.layer-toggle { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; margin: 0.75rem 0 0; font-size: 13.5px; }
+.layer-toggle form { width: auto; }
+.layer-toggle form > label { width: auto; }
+.layer-toggle label { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+.station-key { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 16px; border: 1.5px solid #101418; border-radius: 999px; font: 700 10px/1 var(--sans-serif); }
 .time-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin: 0 0 1rem; }
 .time-bar .now { min-width: 11rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .time-bar form { width: min(36rem, 100%) !important; }
@@ -22,16 +34,34 @@ title: Wind map
 ```js
 import "../components/shell.js";
 import {COLOURS, plotStyle, irishTime, escapeHtml} from "../components/format.js";
-import {BOUNDS, COLUMNS, grid, windForecast, speedAt, windPicture} from "../components/weather.js";
+import {BOUNDS, COLUMNS, PICTURE_WIDTH, PICTURE_HEIGHT, grid, windForecast, speedAt, windField, windPicture, measuredWind} from "../components/weather.js";
 
 const places = FileAttachment("../generation/dispatch-down/data/farm_locations.csv").csv({typed: true});
 const farmList = FileAttachment("../generation/dispatch-down/data/farms.csv").csv({typed: true});
+const island = FileAttachment("ireland.json").json(); // outline of the island, from Natural Earth
 ```
 
 ```js
 // The forecast, fetched by your browser from Open-Meteo. If it can't be reached, say so.
 const points = grid();
 const forecast = await windForecast(points).catch((error) => ({error}));
+```
+
+```js
+// Measured wind at Met Éireann's stations, fetched by your browser now and again every
+// 10 minutes (the stations report once an hour).
+const measured = (async function* () {
+  while (true) {
+    const stations = await measuredWind().catch(() => []);
+    yield {stations, checked: new Date()};
+    await new Promise((resolve) => setTimeout(resolve, 10 * 60e3));
+  }
+})();
+```
+
+```js
+const showMeasuredInput = Inputs.toggle({label: "Measured wind now", value: true});
+const showMeasured = Generators.input(showMeasuredInput);
 ```
 
 ```js
@@ -51,8 +81,18 @@ const placedFarms = d3
   }));
 const totalCapacity = d3.sum(placedFarms, (d) => d.capacity);
 
-// Colours for wind speed: one hue, pale for calm to deep for strong (m/s at 100 m).
-const colour = d3.scaleSequential([0, 25], d3.interpolateRgb("#eef7fb", "#0b3954")).clamp(true);
+// Colours for wind speed (m/s at 100 m): pale yellow when calm, through green and blue,
+// to deep purple in a storm. Each step is darker than the last, so stronger always reads
+// as darker, and the change of hue makes the bands easy to tell apart.
+const speedStops = [0, 4, 8, 12, 16, 20, 25];
+const speedColours = ["#f4f9c4", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#2b5aa6", "#3d1a78"];
+const colour = d3.scaleLinear(speedStops, speedColours).interpolate(d3.interpolateLab).clamp(true);
+const rgb = (speed) => {
+  const c = d3.rgb(colour(speed));
+  return [c.r, c.g, c.b];
+};
+// Contour lines on the map, every 5 m/s.
+const contourSteps = [5, 10, 15, 20, 25];
 ```
 
 ```js
@@ -148,22 +188,78 @@ ${forecast.error
 const container = display(document.createElement("div"));
 container.className = "wind-map";
 const ireland = [
-  [BOUNDS.south + 0.1, BOUNDS.west + 0.2],
-  [BOUNDS.north - 0.1, BOUNDS.east - 0.1]
+  [51.4, -10.6],
+  [55.4, -5.4]
 ];
-const map = L.map(container, {scrollWheelZoom: false, zoomSnap: 0.25}).fitBounds(ireland);
+// On a wide screen, start a little west of centre, to show more of the Atlantic and
+// less of Britain.
+const startView = () =>
+  container.clientWidth > 640
+    ? [
+        [51.4, -11.8],
+        [55.4, -5.7]
+      ]
+    : ireland;
+// The map can't be dragged far from Ireland, or zoomed out much past the starting view.
+const map = L.map(container, {
+  scrollWheelZoom: false,
+  zoomSnap: 0.25,
+  maxBounds: [
+    [49.8, -16.5],
+    [57, -3]
+  ],
+  maxBoundsViscosity: 0.9
+}).fitBounds(ireland);
+
+// Layers, bottom to top: the map in grey (so it doesn't fight the colours), a pale wash
+// over everywhere but Ireland, the wind colours, the arrows, the coastline, the farms,
+// and the measured readings. The colours are multiplied
+// onto the map, so roads, coasts and place names still show through.
+for (const [name, z] of [["wash", 300], ["arrows", 420], ["coast", 430], ["farms", 500]]) {
+  map.createPane(name).style.zIndex = z;
+  map.getPane(name).style.pointerEvents = name === "farms" ? "auto" : "none";
+}
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  className: "grey-map",
+  maxZoom: 11,
   attribution:
-    'Map &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a>',
-  maxZoom: 11
+    'Map &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a> · Observations &copy; <a href="https://www.met.ie/">Met Éireann</a>'
 }).addTo(map);
-requestAnimationFrame(() => map.invalidateSize().fitBounds(ireland));
+requestAnimationFrame(() => {
+  map.invalidateSize().fitBounds(startView());
+  map.setMinZoom(map.getZoom() - 0.5);
+});
+
+// Everywhere except the island is washed pale, so Ireland stands out. The wind colours
+// go on top of the wash, so the seas around keep their colours.
+const world = [
+  [-90, -180],
+  [-90, 180],
+  [90, 180],
+  [90, -180]
+];
+const holes = island.geometry.coordinates.map(([ring]) => ring.map(([lon, lat]) => [lat, lon]));
+L.polygon([world, ...holes], {pane: "wash", stroke: false, fillColor: "#ffffff", fillOpacity: 0.72, interactive: false}).addTo(map);
+// The coastline goes above the colours, so the island's shape is always clear.
+L.geoJSON(island, {pane: "coast", style: {color: "#2b3138", opacity: 0.55, weight: 0.9, fill: false}, interactive: false}).addTo(map);
+
+// The wind picture: made once here, and given a new image every hour.
+const blank = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+const picture = L.imageOverlay(
+  blank,
+  [
+    [BOUNDS.south, BOUNDS.west],
+    [BOUNDS.north, BOUNDS.east]
+  ],
+  {interactive: false}
+).addTo(map);
 
 // Farm dots, sized by capacity. Each keeps its own label, refreshed every hour.
 const radius = d3.scaleSqrt([0, d3.max(placedFarms, (d) => d.capacity) || 1], [2.5, 11]);
 const farmLayer = L.layerGroup().addTo(map);
 const farmDots = placedFarms.map((farm) => {
   const dot = L.circleMarker([farm.lat, farm.lon], {
+    pane: "farms",
     radius: radius(farm.capacity),
     color: "#ffffff",
     weight: 1,
@@ -183,15 +279,22 @@ invalidation.then(() => map.remove());
 // This hour: the coloured picture, the direction arrows, and the farms' labels.
 if (!forecast.error) {
   const speeds = forecast.speed.map((s) => s[hour]);
-  const picture = L.imageOverlay(
-    windPicture(speeds, (s) => colour(s)),
-    [
-      [BOUNDS.south, BOUNDS.west],
-      [BOUNDS.north, BOUNDS.east]
-    ],
-    {opacity: 0.72, interactive: false}
-  ).addTo(map);
-  picture.bringToBack(); // under the farm dots
+
+  // A smooth field from the grid, coloured, with faint lines every 5 m/s. The lines are
+  // drawn "atop" the colours, so they fade out at the edges with them.
+  const field = windField(speeds);
+  const canvas = windPicture(field, rgb);
+  const context = canvas.getContext("2d");
+  context.globalCompositeOperation = "source-atop";
+  context.strokeStyle = "rgb(255 255 255 / 0.7)";
+  context.lineWidth = 1.2;
+  const path = d3.geoPath(null, context);
+  for (const line of d3.contours().size([PICTURE_WIDTH, PICTURE_HEIGHT]).thresholds(contourSteps)(field)) {
+    context.beginPath();
+    path(line);
+    context.stroke();
+  }
+  picture.setUrl(canvas.toDataURL());
 
   // Arrows show where the wind is blowing TO (forecasts give where it comes FROM).
   const arrows = L.layerGroup(
@@ -201,6 +304,7 @@ if (!forecast.error) {
         const i = p.row * COLUMNS + p.col;
         const to = (forecast.direction[i][hour] + 180) % 360;
         return L.marker([p.lat, p.lon], {
+          pane: "arrows",
           interactive: false,
           icon: L.divIcon({
             className: "wind-arrow",
@@ -217,17 +321,53 @@ if (!forecast.error) {
       `<strong>${escapeHtml(farm.name)}</strong><br>${speed.toFixed(1)} m/s at 100 m${farm.capacity ? ` · ${d3.format(",.0f")(farm.capacity)} MW` : ""}<br><span class="muted">Click for the farm's page</span>`
     );
   }
-  invalidation.then(() => {
-    picture.remove();
-    arrows.remove();
-  });
+  invalidation.then(() => arrows.remove());
 }
 ```
 
 ```js
+// The latest measured readings, as small white labels: the number is m/s at 10 m and the
+// arrow shows where the wind is blowing.
+if (showMeasured && measured.stations.length) {
+  const stationLayer = L.layerGroup(
+    measured.stations.map((d) => {
+      const to = (d.direction + 180) % 360;
+      const calm = d.speed < 0.5;
+      const marker = L.marker([d.lat, d.lon], {
+        icon: L.divIcon({
+          className: "station",
+          html: `${calm ? "" : `<i style="transform: rotate(${to}deg)">↑</i>`}${d.speed.toFixed(0)}`,
+          iconSize: [calm ? 22 : 34, 20]
+        })
+      });
+      marker.bindTooltip(
+        `<strong>${escapeHtml(d.name)}</strong> · measured at ${escapeHtml(d.time)}<br>` +
+          `${d.speed.toFixed(1)} m/s${d.gust ? `, gusts ${d.gust.toFixed(1)} m/s` : ""}${calm ? " (calm)" : ` from the ${escapeHtml(d.compass)}`}<br>` +
+          `<span class="muted">Met Éireann station, 10 m above ground</span>`,
+        {direction: "top", offset: [0, -8]}
+      );
+      return marker;
+    })
+  ).addTo(map);
+  invalidation.then(() => stationLayer.remove());
+}
+```
+
+```js
+const latestReading = measured.stations.length ? d3.max(measured.stations, (d) => d.time) : null;
+```
+
+<div class="layer-toggle">
+  ${showMeasuredInput}
+  <span class="muted">${measured.stations.length
+    ? html`<span class="station-key">7</span> ${measured.stations.length} Met Éireann stations, latest reading ${latestReading} Irish time, in m/s at 10 m. Checked again every 10 minutes.`
+    : "Met Éireann's station readings couldn't be loaded just now."}</span>
+</div>
+
+```js
 Plot.legend({
-  color: {type: "linear", domain: [0, 25], range: ["#eef7fb", "#0b3954"], label: "Wind speed at 100 m (m/s); arrows show where it's blowing", ticks: [0, 3, 6, 9, 12, 15, 20, 25]},
-  width: 340,
+  color: {type: "linear", domain: speedStops, range: speedColours, interpolate: "lab", label: "Forecast wind at 100 m (m/s). Lines every 5 m/s; arrows show where it's blowing", ticks: [0, 5, 10, 15, 20, 25]},
+  width: 360,
   style: plotStyle
 })
 ```
@@ -260,6 +400,8 @@ Plot.legend({
 
 <div class="note" style="margin-top: 2rem;">
 
-**About this map.** The forecast comes from [Open-Meteo](https://open-meteo.com/), which combines national weather models, for a grid of about 170 points over the island, each about 30 km apart. Your browser fetches it when you open the page and keeps it for 30 minutes. The colours between points are blended, so small features such as a single hill or valley don't show. Wind speeds for turbines are typical values: each model of turbine differs. Farm positions come from OpenStreetMap, matched to SEMO's unit names.
+**About this map.** The forecast comes from [Open-Meteo](https://open-meteo.com/), which combines national weather models, for a grid of 320 points over the island and the seas around it, each about 30 km apart, reaching about 500 km out into the Atlantic so you can see weather on its way in. Your browser fetches it when you open the page and keeps it for 30 minutes. The colours between points are blended smoothly, so small features such as a single hill or valley don't show. Wind speeds for turbines are typical values: each model of turbine differs. Farm positions come from OpenStreetMap, matched to SEMO's unit names. The island's outline is from [Natural Earth](https://www.naturalearthdata.com/).
+
+**Measured wind.** The white labels are real readings from [Met Éireann](https://www.met.ie/)'s weather stations, the latest hour, in m/s. They're measured at 10 metres, where the wind is slower than at a turbine's hub, often by a quarter or more, so expect them to be lower than the colours around them. They show the latest reading whatever hour the slider is on. Northern Ireland's stations aren't included.
 
 </div>
