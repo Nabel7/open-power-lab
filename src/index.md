@@ -4,14 +4,11 @@ title: Irish Power Lab
 
 ```js
 import "./components/shell.js";
-import {COLOURS, eurMwh, mw, percent, gwh, shortDay, monthName, irishTime, plotStyle, key} from "./components/format.js";
+import {COLOURS, eurMwh, percent, gwh, shortDay, irishTime, plotStyle, key} from "./components/format.js";
 
 const pricesDaily = FileAttachment("data/markets/prices_daily.csv").csv({typed: true});
-const pricesRecent = FileAttachment("data/markets/prices_recent.csv").csv({typed: true});
 const systemDaily = FileAttachment("data/markets/system_daily.csv").csv({typed: true});
-const systemRecent = FileAttachment("data/markets/system_hh.csv").csv({typed: true});
 const latest = FileAttachment("data/markets/latest.json").json();
-const ddMonthly = FileAttachment("generation/dispatch-down/data/monthly.csv").csv({typed: true});
 const historyRaw = FileAttachment("generation/dispatch-down/data/history_monthly.csv").csv({typed: true});
 const fleet = FileAttachment("data/batteries/fleet_hh.csv").csv({typed: true});
 const batteryMeta = FileAttachment("data/batteries/meta.json").json();
@@ -23,10 +20,6 @@ const priceDay = pricesDaily.at(-1);
 const pricePrev = pricesDaily.at(-2);
 const change = priceDay.avg - pricePrev.avg;
 const systemDay = systemDaily.at(-1);
-
-// Dispatch-down: the latest month with most of its days covered (this site's tracker).
-const ddAll = ddMonthly.filter((d) => d.region === "ALL");
-const dd = ddAll.filter((d) => d.days_with_data >= 0.8 * d.days_in_month).at(-1) ?? ddAll.at(-1);
 
 // Ten years from EirGrid: 12-month averages, reported and weather-adjusted, all-island.
 const asMonth = (m) => (m instanceof Date ? m : new Date(`${m}-01T00:00:00Z`));
@@ -48,13 +41,7 @@ const byHour = d3
   .map(([hour, net]) => ({hour, net}))
   .sort((a, b) => a.hour - b.hour);
 
-// The last 7 days, for the charts.
-const lastWeek = (rows) => {
-  const end = d3.max(rows, (d) => d.timestamp_utc);
-  return rows.filter((d) => d.timestamp_utc > d3.utcDay.offset(end, -7));
-};
-const prices7 = lastWeek(pricesRecent);
-const system7 = lastWeek(systemRecent);
+// The last 30 days, for the small lines in the figures.
 const daily30 = pricesDaily.slice(-30);
 const share30 = systemDaily.slice(-30);
 
@@ -72,7 +59,7 @@ const spark = (rows, x, y, colour) =>
 
 <div class="page-head">
   <h1>The Irish electricity market, in public data</h1>
-  <p class="lede">Prices, wind, batteries, and the wind power the grid turns away, for Ireland and Northern Ireland. Built from SEMO, SEMOpx and EirGrid data, independent, and updated daily.</p>
+  <p class="lede">Independent data and analysis on the all-island market: prices, wind, batteries, and how much wind power the grid turns away. Built from SEMO, SEMOpx and EirGrid's public data, and updated daily.</p>
   <div class="meta">
     <span>Day-ahead results to ${shortDay(priceDay.day)}</span>
     <span>System data to ${irishTime(new Date(latest.system_last_utc))}</span>
@@ -80,7 +67,7 @@ const spark = (rows, x, y, colour) =>
   </div>
 </div>
 
-<div class="stats">
+<div class="stats three">
   <a class="stat" href="./markets/day-ahead" style="color: inherit; text-decoration: none;">
     <span class="label">Day-ahead average · ${shortDay(priceDay.day)}</span>
     <span class="value">${eurMwh(priceDay.avg)}<small>/MWh</small></span>
@@ -93,11 +80,6 @@ const spark = (rows, x, y, colour) =>
     <span class="sub">${gwh(systemDay.wind_mwh)} of wind, ${gwh(systemDay.demand_mwh)} of demand</span>
     <div class="spark">${spark(share30, "day", "wind_share", COLOURS.wind)}</div>
   </a>
-  <a class="stat" href="./generation/dispatch-down/" style="color: inherit; text-decoration: none;">
-    <span class="label">Wind turned down · ${monthName(dd.month)}</span>
-    <span class="value">${percent(dd.dispatch_down_pct)}</span>
-    <span class="sub">${gwh(dd.lost_mwh)} lost${dd.days_with_data < dd.days_in_month ? `, ${dd.days_with_data} of ${dd.days_in_month} days` : ""} · this site's estimate</span>
-  </a>
   <a class="stat" href="./generation/dispatch-down/history" style="color: inherit; text-decoration: none;">
     <span class="label">Wind turned down, last 12 months</span>
     <span class="value">${percent(last12.reported)}</span>
@@ -106,50 +88,7 @@ const spark = (rows, x, y, colour) =>
   </a>
 </div>
 
-<div class="grid grid-cols-2">
-  <div class="card">
-    <div class="card-head"><span class="label">Day-ahead price, last 7 days</span><a class="label" href="./markets/day-ahead">€/MWh, half-hourly · more →</a></div>
-    ${resize((width) =>
-      Plot.plot({
-        width,
-        height: 240,
-        marginLeft: 42,
-        style: plotStyle,
-        x: {type: "utc", label: null, ticks: 7},
-        y: {label: null, grid: true},
-        marks: [
-          Plot.ruleY([0], {stroke: "var(--line-strong)"}),
-          Plot.lineY(prices7, {x: "timestamp_utc", y: "price", stroke: COLOURS.price, strokeWidth: 1.5, curve: "step-after"}),
-          Plot.tip(prices7, Plot.pointerX({x: "timestamp_utc", y: "price", title: (d) => `${irishTime(d.timestamp_utc)}\n${eurMwh(d.price)}/MWh`}))
-        ]
-      })
-    )}
-  </div>
-  <div class="card">
-    <div class="card-head"><span class="label">Wind and demand, last 7 days</span><a class="label" href="./generation/wind">MW, half-hourly · more →</a></div>
-    ${resize((width) =>
-      Plot.plot({
-        width,
-        height: 240,
-        marginLeft: 42,
-        style: plotStyle,
-        x: {type: "utc", label: null, ticks: 7},
-        y: {label: null, grid: true},
-        marks: [
-          Plot.areaY(system7, {x: "timestamp_utc", y: "wind", fill: COLOURS.wind, fillOpacity: 0.25}),
-          Plot.lineY(system7, {x: "timestamp_utc", y: "wind", stroke: COLOURS.wind, strokeWidth: 1.5}),
-          Plot.lineY(system7, {x: "timestamp_utc", y: "demand", stroke: COLOURS.demand, strokeWidth: 1.5}),
-          Plot.ruleY([0], {stroke: "var(--line-strong)"}),
-          Plot.tip(system7, Plot.pointerX({x: "timestamp_utc", y: "demand", title: (d) => `${irishTime(d.timestamp_utc)}\nDemand ${mw(d.demand)}\nWind ${mw(d.wind)} (${(100 * d.wind / d.demand).toFixed(0)}%)`}))
-        ]
-      })
-    )}
-    <p class="label" style="margin-top: 0.5rem;"><span>${key(COLOURS.wind)}Wind</span><span>${key(COLOURS.demand)}Demand</span></p>
-  </div>
-</div>
-
-<div class="section">
-  <div class="section-head"><h2>Featured</h2></div>
+<div class="section first">
   <div class="grid grid-cols-2 featured">
     <a class="card feature" href="./generation/dispatch-down/history">
       <span class="label">Dispatch-down since 2016</span>
@@ -208,7 +147,7 @@ const spark = (rows, x, y, colour) =>
 </div>
 
 <div class="section">
-  <div class="section-head"><h2>Everything on the site</h2></div>
+  <div class="section-head"><h2>All pages</h2></div>
   <div class="sitemap">
     <div>
       <p class="label">Markets</p>

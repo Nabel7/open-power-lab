@@ -1376,3 +1376,37 @@ form input[type="search"] + output {
   gap: 0.4rem;
   margin: 0;
 }
+
+/* The home page's row of three figures, and the featured pieces straight after it. */
+.stats.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 0; /* the featured pieces below start with their own rule */
+  margin-bottom: 0.5rem;
+}
+.section.first {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.sitemap {
+  font-size: 14px;
+}
+.sitemap a {
+  padding: 0.2rem 0;
+}
+@media (max-width: 960px) {
+  .stats.three .stat:nth-child(3) {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--line);
+  }
+}
+@media (max-width: 640px) {
+  .stats.three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .stats.three .stat,
+  .stats.three .stat:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
