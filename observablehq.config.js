@@ -11,58 +11,48 @@ const farmPages = readdirSync("src/generation/dispatch-down/data/farms")
   .filter((file) => file.endsWith(".json"))
   .map((file) => `/generation/dispatch-down/farms/${file.replace(/\.json$/, "")}`);
 
-// The menus. Each item is a page, or `soon` for one that is planned but not built.
+// The menus. Each item is a page, or `soon` for one that is planned but not built (none
+// are listed at the moment: placeholders make the site look unfinished).
 // Links start with / so they work from any page; Framework makes them relative.
+// A menu's `section` is the start of its pages' addresses, so a page knows its menu.
 const MENUS = [
   {
     name: "Markets",
     section: "/markets",
     items: [
-      {title: "Today", path: "/", note: "Prices, wind and demand at a glance"},
-      {title: "Day-ahead", path: "/markets/day-ahead", note: "SEM day-ahead prices and volumes"},
-      {title: "Intraday", soon: true, note: "IDA1, IDA2 and IDA3 auctions"},
-      {title: "Imbalance", soon: true, note: "Balancing market settlement prices"}
+      {title: "Day-ahead prices", path: "/markets/day-ahead", note: "SEM day-ahead prices and volumes"},
+      {title: "Wind & demand", path: "/generation/wind", note: "Output, share of demand, EirGrid's forecast"},
+      {title: "Batteries", path: "/generation/batteries", note: "When the island's batteries charge and discharge"}
     ]
   },
   {
-    name: "Generation",
-    section: "/generation",
+    name: "Dispatch-down",
+    section: "/generation/dispatch-down",
     items: [
-      {title: "Wind & demand", path: "/generation/wind", note: "Output, share of demand, EirGrid's forecast"},
-      {title: "Dispatch-down", path: "/generation/dispatch-down/", note: "Wind turned down, why and where"},
-      {title: "Dispatch-down since 2016", path: "/generation/dispatch-down/history", note: "Ten years, adjusted for the weather"},
+      {title: "Monthly", path: "/generation/dispatch-down/", note: "Wind turned down, why and where, month by month"},
+      {title: "Since 2016", path: "/generation/dispatch-down/history", note: "Ten years from EirGrid, adjusted for the weather"},
       {title: "Wind farms", path: "/generation/dispatch-down/farms/", note: "Every farm, with its own page"},
       {title: "Farm map", path: "/generation/dispatch-down/map", note: "Where wind is turned down"},
-      {title: "Batteries", path: "/generation/batteries", note: "When the island's batteries charge and discharge"},
-      {title: "Interconnectors", soon: true, note: "Flows to and from Great Britain"}
+      {title: "Methods", path: "/generation/dispatch-down/methods", note: "How the figures are made, and how close they are"}
     ]
   },
   {
     name: "Forecasts",
     section: "/forecasts",
     items: [
-      {title: "Wind map", path: "/forecasts/wind-map", note: "Forecast wind speed over the island, hour by hour"},
-      {title: "Wind forecast", path: "/generation/wind#forecast", note: "EirGrid's forecast against what happened"},
-      {title: "Day-ahead price", soon: true, note: "Published before the auction, with ranges"},
-      {title: "Scoreboard", soon: true, note: "Every forecast, scored the same way"}
+      {title: "Wind map", path: "/forecasts/wind-map", note: "Forecast wind over the island, hour by hour, and measured wind now"},
+      {title: "EirGrid's wind forecast", path: "/generation/wind#forecast", note: "Against what happened"}
     ]
   },
   {
     name: "Tools",
     section: "/tools",
-    items: [
-      {title: "Battery simulator", path: "/tools/battery-simulator", note: "What a battery could earn on real prices"},
-      {title: "Price and wind explorer", soon: true, note: "How wind moves the price, half-hour by half-hour"}
-    ]
+    items: [{title: "Battery simulator", path: "/tools/battery-simulator", note: "What a battery could earn on real prices"}]
   },
   {
     name: "Data",
     section: "/data",
-    items: [
-      {title: "Datasets", path: "/data", note: "What's here, where it comes from, downloads"},
-      {title: "Dispatch-down methods", path: "/generation/dispatch-down/methods", note: "How the figures are made"},
-      {title: "API", soon: true, note: "Programmatic access"}
-    ]
+    items: [{title: "Datasets", path: "/data", note: "What's here, where it comes from, downloads"}]
   }
 ];
 
@@ -119,6 +109,6 @@ export default {
   footer: `<div class="footer-grid">
   <div><strong>${SITE}</strong><p>Independent analysis of the Irish electricity market, built from public data. Not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx.</p></div>
   <div><strong>Sources</strong><p>Supported by EirGrid Group Data. Farm positions © OpenStreetMap contributors. Figures are estimates; see <a href="/data">Datasets</a>.</p></div>
-  <div><strong>Explore</strong><p><a href="/markets/day-ahead">Day-ahead prices</a> · <a href="/generation/wind">Wind &amp; demand</a> · <a href="/generation/dispatch-down/">Dispatch-down</a></p></div>
+  <div><strong>Explore</strong><p><a href="/markets/day-ahead">Day-ahead prices</a> · <a href="/generation/wind">Wind &amp; demand</a> · <a href="/generation/dispatch-down/">Dispatch-down</a> · <a href="/generation/dispatch-down/history">Since 2016</a> · <a href="/forecasts/wind-map">Wind map</a> · <a href="/generation/batteries">Batteries</a></p></div>
 </div>`
 };

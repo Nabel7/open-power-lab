@@ -50,7 +50,7 @@ const months = d3
 ```
 
 <div class="page-head">
-  <p class="crumbs">Generation / Wind &amp; demand</p>
+  <p class="crumbs">Markets / Wind &amp; demand</p>
   <h1>Wind and demand</h1>
   <p class="lede">Wind output across the island, its share of demand, and EirGrid's wind forecast against what actually happened.</p>
   <div class="meta">

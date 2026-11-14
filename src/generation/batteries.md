@@ -64,7 +64,7 @@ const operators = d3
 ```
 
 <div class="page-head">
-  <p class="crumbs">Generation / Batteries</p>
+  <p class="crumbs">Markets / Batteries</p>
   <h1>Batteries</h1>
   <p class="lede">The island's ${meta.batteries} grid batteries, ${d3.format(",.0f")(meta.size_mw)} MW in all: when they charge and discharge, and what that energy is worth at day-ahead prices.</p>
   <div class="meta">

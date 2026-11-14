@@ -15,14 +15,16 @@ const here = "/" + location.href.slice(root.href.length).replace(/[?#].*$/, "").
 
 const groups = [...header.querySelectorAll(".menu-group")];
 
-// The menu this page belongs to: the one whose section it is in, or failing that the one
-// with a link to it. Today (the home page) belongs to Markets.
+// The menu this page belongs to: the one whose section its address is in (the longest
+// match, so a dispatch-down page belongs to Dispatch-down even though its address starts
+// /generation), or failing that the one with a link to it. The home page has none.
 const page = location.pathname.replace(/\.html$/, "");
 const linksTo = (group) =>
   [...group.querySelectorAll("a.menu-link")].filter((link) => !link.hash && new URL(link.href).pathname === page);
-const inSection = (group) =>
-  here === group.dataset.section || here.startsWith(group.dataset.section + "/") || (group.dataset.section === "/markets" && here === "/");
-const current = groups.find(inSection) ?? groups.find((group) => linksTo(group).length);
+const inSection = (group) => here === group.dataset.section || here.startsWith(group.dataset.section + "/");
+const current =
+  groups.filter(inSection).sort((a, b) => b.dataset.section.length - a.dataset.section.length)[0] ??
+  groups.find((group) => linksTo(group).length);
 for (const group of groups) {
   group.classList.toggle("current", group === current);
   for (const link of linksTo(group)) link.setAttribute("aria-current", "page");
@@ -57,6 +59,28 @@ toggle.addEventListener("click", () => {
   header.classList.toggle("menu-open", open);
   toggle.setAttribute("aria-expanded", String(open));
 });
+
+// ---- Section tabs -------------------------------------------------------------------------
+
+// Dispatch-down has several pages, so they get tabs along the top, made from the same
+// links as its menu. A farm's own page counts as part of "Wind farms".
+const TABBED = "/generation/dispatch-down";
+const tabbed = groups.find((group) => group.dataset.section === TABBED);
+if (tabbed && (here === TABBED || here.startsWith(TABBED + "/"))) {
+  const tabs = document.createElement("nav");
+  tabs.className = "section-tabs";
+  tabs.setAttribute("aria-label", "Dispatch-down pages");
+  for (const link of tabbed.querySelectorAll("a.menu-link")) {
+    const path = new URL(link.href).pathname.replace(/\.html$/, "");
+    const tab = document.createElement("a");
+    tab.href = link.href;
+    tab.textContent = link.querySelector(".menu-title").textContent;
+    const isFarms = path.endsWith("/farms/") && location.pathname.includes("/farms/");
+    if (path === page || isFarms) tab.setAttribute("aria-current", "page");
+    tabs.append(tab);
+  }
+  document.querySelector("#observablehq-main")?.prepend(tabs);
+}
 
 // ---- Latest data strip ------------------------------------------------------------------
 

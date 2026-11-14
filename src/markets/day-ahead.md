@@ -70,7 +70,7 @@ const zoneVolumes = d3
 ```
 
 <div class="page-head">
-  <p class="crumbs">Markets / Day-ahead</p>
+  <p class="crumbs">Markets / Day-ahead prices</p>
   <h1>Day-ahead prices</h1>
   <p class="lede">Results of the SEM day-ahead auction, run by SEMOpx the day before delivery. Ireland and Northern Ireland are one coupled market, so they share one price; volumes are shown for each zone.</p>
   <div class="meta">
