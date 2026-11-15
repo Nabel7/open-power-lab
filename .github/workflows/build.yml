@@ -1,0 +1,94 @@
+# The daily build: fresh data in, website out, on GitHub's servers.
+#
+# Each run takes the main datasets from the archive (Nabel7/isem-data-archive, filled
+# by its own Daily download workflow about 45 minutes earlier), makes the site's data
+# files with scripts/update-data.sh, and builds the site. The data files aren't
+# committed, so the repository doesn't grow every day. For now the built site is kept
+# as a downloadable artifact for 7 days; publishing it is a separate step for later.
+#
+# Needs one secret, ARCHIVE_TOKEN: a fine-grained GitHub token that can read the
+# archive repository's contents (and nothing else).
+
+name: Daily build
+
+on:
+  schedule:
+    - cron: "15 7 * * *" # 07:15 UTC, after the archive's 06:30 download
+  workflow_dispatch:
+    inputs:
+      isem_data_ref:
+        description: "isem-data branch or commit to run"
+        default: main
+
+permissions:
+  contents: read
+
+concurrency: daily-build
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ARCHIVE: github:Nabel7/isem-data-archive
+      ARCHIVE_PREFIX: ci- # the archive's trial releases; "" once its job takes over from the laptop
+      OBSERVABLE_TELEMETRY_DISABLE: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Nabel7/isem-data
+          ref: ${{ inputs.isem_data_ref || 'main' }}
+          path: isem-data
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: isem-data/pyproject.toml
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install
+        run: |
+          sudo apt-get install -y -qq zsh >/dev/null
+          pip install -q -e isem-data
+          npm ci --no-audit --no-fund
+
+      - name: Restore the main datasets
+        env:
+          GH_TOKEN: ${{ secrets.ARCHIVE_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::The ARCHIVE_TOKEN secret isn't set, so the archive can't be read. See the top of this file."
+            exit 1
+          fi
+          cd isem-data
+          ISEM_RESTORE_PREFIX="$ARCHIVE_PREFIX" ISEM_RESTORE_FORECASTS=0 zsh scripts/restore_data.sh "$ARCHIVE"
+
+      - name: Make the site's data
+        run: ISEM_DATA="$PWD/isem-data" ISEM_PYTHON=python zsh scripts/update-data.sh
+
+      - name: Build
+        run: npx observable build
+
+      - name: Say what was built
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d = json.load(open("src/data/markets/latest.json"))
+          m = json.load(open("src/generation/dispatch-down/data/meta.json"))
+          print("# Daily build\n")
+          print(f"- Day-ahead prices to {d['price_day']}; system data to {d['system_last_utc']}")
+          print(f"- Dispatch-down data: {m['first_day']} to {m['last_day']}, {m['farms']} farms; days missing: {', '.join(m['missing_days']) or 'none'}")
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist
+          retention-days: 7
