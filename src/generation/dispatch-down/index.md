@@ -13,6 +13,7 @@ const farmMonthly = FileAttachment("data/farm_monthly.csv").csv({typed: true});
 const farmDaily = FileAttachment("data/farm_daily.csv").csv({typed: true});
 const places = FileAttachment("data/farm_locations.csv").csv({typed: true});
 const meta = FileAttachment("data/meta.json").json();
+const island = FileAttachment("../../data/ireland.json").json(); // outline, from Natural Earth
 ```
 
 ```js
@@ -156,6 +157,7 @@ const dots = farmMonthly
           },
           r: {range: [1.5, 12]},
           marks: [
+            Plot.geo(island, {fill: "var(--line)", fillOpacity: 0.6, stroke: "var(--line-strong)", strokeWidth: 0.75}),
             Plot.dot(dots, {
               x: "lon",
               y: "lat",

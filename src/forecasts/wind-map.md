@@ -38,7 +38,7 @@ import {BOUNDS, COLUMNS, PICTURE_WIDTH, PICTURE_HEIGHT, grid, windForecast, spee
 
 const places = FileAttachment("../generation/dispatch-down/data/farm_locations.csv").csv({typed: true});
 const farmList = FileAttachment("../generation/dispatch-down/data/farms.csv").csv({typed: true});
-const island = FileAttachment("ireland.json").json(); // outline of the island, from Natural Earth
+const island = FileAttachment("../data/ireland.json").json(); // outline of the island, from Natural Earth
 ```
 
 ```js

@@ -2,8 +2,8 @@
 
 import {readdirSync} from "node:fs";
 
-// The site's name: a working title, set here only.
-const SITE = "Irish Power Lab";
+// The site's name, set here only. General on purpose: Ireland is the first market, others may follow.
+const SITE = "Open Power Lab";
 
 // One page per wind farm, from the template src/generation/dispatch-down/farms/[farm].md:
 // one for each data file in src/generation/dispatch-down/data/farms/.

@@ -53,6 +53,7 @@ const files = [
 | Battery day-ahead orders | Each unit's cleared orders in SEMOpx's day-ahead results | 30 min | 1 year | Daily |
 | Farm names | SEMO's published lists of registered units | Per unit | Current | Now and then |
 | Farm positions | [OpenStreetMap](https://www.openstreetmap.org) | Per farm | Current | Now and then |
+| Island outline (maps) | [Natural Earth](https://www.naturalearthdata.com) 1:10m land, simplified (public domain) | About 400 m | Current | Rarely |
 | Dispatch-down since 2016 | EirGrid's [dispatch-down summary report](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx) (V24) | Monthly | Since January 2016 | When EirGrid publishes, about six weeks after each month |
 | Wind index for the weather adjustment | ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com) (CC BY 4.0) | Hourly, 12 points | Since 2000 | With each new EirGrid report |
 | Wind forecast (Wind map) | [Open-Meteo](https://open-meteo.com), fetched by your browser; "Weather data by Open-Meteo.com" (CC BY 4.0) | Hourly, about 30 km grid | Next 3 days | Each visit |
