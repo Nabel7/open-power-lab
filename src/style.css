@@ -1427,7 +1427,7 @@ body {
   position: absolute;
   inset: 0 calc(50% - 50vw);
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.4;
   /* Fade out at the bottom, and lighter behind the text on the left. */
   -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent), linear-gradient(to right, rgb(0 0 0 / 0.45), black 70%);
   -webkit-mask-composite: source-in;
@@ -1447,6 +1447,6 @@ body {
 }
 @media (max-width: 640px) {
   .streaks {
-    opacity: 0.5; /* the text fills the width on a phone, so the streaks stay further back */
+    opacity: 0.25; /* the text fills the width on a phone, so the streaks stay further back */
   }
 }

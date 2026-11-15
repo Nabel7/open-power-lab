@@ -1,5 +1,5 @@
 ---
-title: Irish Power Lab
+title: Open Power Lab
 ---
 
 ```js

@@ -20,7 +20,7 @@ const farmList = FileAttachment("../data/farms.csv").csv({typed: true});
 
 ```js
 // The browser tab shows the farm's name.
-document.title = `${farm.name} | Dispatch-down | Irish Power Lab`;
+document.title = `${farm.name} | Dispatch-down | Open Power Lab`;
 
 // Totals over everything we have for this farm.
 const lost = d3.sum(farm.daily, (d) => d.lost_mwh);

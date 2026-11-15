@@ -78,7 +78,7 @@ export function startStreaks(canvas, vectors, {colour = "#0e8fb0"} = {}) {
     context.fillRect(0, 0, width, height);
     context.globalCompositeOperation = "source-over";
     context.strokeStyle = colour;
-    context.lineWidth = 1.3;
+    context.lineWidth = 1.1;
     context.beginPath();
     for (const p of particles) {
       const wind = windAt(p.x, p.y, width, height, vectors);
