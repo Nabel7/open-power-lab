@@ -5,6 +5,8 @@ title: Irish Power Lab
 ```js
 import "./components/shell.js";
 import {COLOURS, eurMwh, percent, gwh, shortDay, irishTime, plotStyle, key} from "./components/format.js";
+import {grid, windForecast} from "./components/weather.js";
+import {startStreaks, windVectors} from "./components/streaks.js";
 
 const pricesDaily = FileAttachment("data/markets/prices_daily.csv").csv({typed: true});
 const systemDaily = FileAttachment("data/markets/system_daily.csv").csv({typed: true});
@@ -57,13 +59,38 @@ const spark = (rows, x, y, colour) =>
   });
 ```
 
-<div class="page-head">
+```js
+// Behind the introduction: streaks moving with this hour's forecast wind over Ireland,
+// from the same forecast as the Wind map (kept in the browser for 30 minutes, so the two
+// pages share one download). If the forecast can't be fetched, the intro stays plain.
+const streakCanvas = document.createElement("canvas");
+const wind = await windForecast(grid()).catch(() => null);
+const nowHour = wind ? Math.max(0, d3.bisectLeft(wind.times, new Date()) - 1) : null;
+const streakNote = wind
+  ? html`<a href="./forecasts/wind-map" class="streak-note">Background: the forecast wind over Ireland this hour →</a>`
+  : "";
+```
+
+```js
+if (wind) {
+  const vectors = windVectors(
+    wind.speed.map((s) => s[nowHour]),
+    wind.direction.map((d) => d[nowHour])
+  );
+  const stop = startStreaks(streakCanvas, vectors, {colour: "#0e8fb0"});
+  invalidation.then(stop);
+}
+```
+
+<div class="page-head hero-intro">
+  <div class="streaks" aria-hidden="true">${streakCanvas}</div>
   <h1>The Irish electricity market, in public data</h1>
   <p class="lede">Independent data and analysis on the all-island market: prices, wind, batteries, and how much wind power the grid turns away. Built from SEMO, SEMOpx and EirGrid's public data, and updated daily.</p>
   <div class="meta">
     <span>Day-ahead results to ${shortDay(priceDay.day)}</span>
     <span>System data to ${irishTime(new Date(latest.system_last_utc))}</span>
     <span>Not live</span>
+    ${streakNote}
   </div>
 </div>
 
