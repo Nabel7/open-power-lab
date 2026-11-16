@@ -48,6 +48,7 @@ Observable Framework sends anonymous usage telemetry unless `OBSERVABLE_TELEMETR
 | Day-ahead | `src/markets/day-ahead.md` | 30 days to 1 year: daily average and range, a heatmap of every half-hour, volume by zone, price by time of day, monthly table |
 | Wind & demand | `src/generation/wind.md` | Wind against demand, and EirGrid's wind forecast against what happened (error, bias, monthly table) |
 | Batteries | `src/generation/batteries.md` | The grid batteries: when they charge and discharge against the price, each battery's energy and day-ahead value, their day-ahead trading over the year |
+| Price forecasts | `src/forecasts/prices.md` | Chronos-2 (Amazon's pre-trained forecasting model) forecasting each day's prices from what was known before the auction, with and without EirGrid's wind forecast, scored against simple methods: one day at a time, day by day, by month. Data from isem-forecast (see below) |
 | Wind map | `src/forecasts/wind-map.md` | Forecast wind speed at 100 m over the island, hourly for three days, with the wind farms on top and a play button. Fetched in the browser from Open-Meteo (`src/components/weather.js`, checked by `node --test scripts/weather.test.mjs`) |
 | Battery simulator | `src/tools/battery-simulator.md` | Choose a battery; it finds the best daily schedule on real day-ahead prices (`src/components/battery.js`, checked by `node --test scripts/battery.test.mjs`) |
 | Datasets | `src/data.md` | Sources, update frequency, licences, every download |
@@ -65,6 +66,14 @@ Shared formats and colours are in `src/components/format.js`; the look in `src/s
 
 ```bash
 cd ~/Developer/isem-data && .venv/bin/python -m isem_data --datasets farm_names osm_wind_farms
+```
+
+## Price forecasts
+
+The forecast page's data in `src/forecasts/data/chronos/` is made by [isem-forecast](https://github.com/Nabel7/isem-forecast), not by `update-data`: it runs a 120-million-weight model, too heavy for the daily build. Refresh it by hand (about a minute on an M1 Mac), with isem-forecast set up next to isem-data and its `foundation` extra installed:
+
+```bash
+cd ~/Developer/isem-forecast && .venv/bin/python -m isem_forecast.site --out ~/Developer/dispatch-down-tracker/src/forecasts/data/chronos
 ```
 
 ## Updating each month

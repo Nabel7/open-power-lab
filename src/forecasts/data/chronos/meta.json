@@ -1,0 +1,35 @@
+{
+  "made": "2026-11-16T23:13Z",
+  "model": "amazon/chronos-2",
+  "context_days": 28,
+  "labels": {
+    "chronos2_wind": "Chronos-2 + wind forecast",
+    "chronos2": "Chronos-2, prices only",
+    "week_average": "Average of the last 7 days",
+    "yesterday": "Same time yesterday",
+    "last_week": "Same time last week"
+  },
+  "year": {
+    "first_day": "2025-11-14",
+    "last_day": "2026-11-14",
+    "half_hours": 17566
+  },
+  "wind": {
+    "first_day": "2026-09-09",
+    "last_day": "2026-11-14",
+    "half_hours": 3218,
+    "days": 67,
+    "cutoff_hour_utc": 9,
+    "fallback_versions": [
+      {
+        "day": "2026-09-10",
+        "published_utc": "2026-09-08T16:23Z"
+      },
+      {
+        "day": "2026-10-03",
+        "published_utc": "2026-10-01T18:13Z"
+      }
+    ],
+    "peeking_mae": 35.581
+  }
+}
