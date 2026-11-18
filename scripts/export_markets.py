@@ -99,9 +99,15 @@ def system() -> tuple[pd.DataFrame, pd.DataFrame]:
         bias_mw=("error", "mean"),
         mae_mw=("error", lambda e: e.abs().mean()),
         readings=("wind", "count"),
+        demand_readings=("demand", "count"),
     )
+    # Keep (nearly) whole days of both wind and demand. EirGrid's two series sometimes
+    # arrive a day apart: a day with wind but no demand would give a wind share of
+    # infinity, which isn't valid JSON, and the page couldn't read its data.
+    whole = 2 * half_hours_in(daily.index) - 4
+    daily = daily[(daily["readings"] >= whole) & (daily["demand_readings"] >= whole)]
+    daily = daily.drop(columns="demand_readings")
     daily["wind_share"] = 100 * daily["wind_mwh"] / daily["demand_mwh"]
-    daily = daily[daily["readings"] >= 2 * half_hours_in(daily.index) - 4]  # (nearly) whole days
     # Half-hourly averages for the last RECENT_DAYS days, for the detailed charts.
     since = table.index.max().floor("D") - pd.Timedelta(days=RECENT_DAYS - 1)
     hh = table[table.index >= since].resample("30min").mean().reset_index()
@@ -149,7 +155,9 @@ def main() -> None:
     for name, table in files.items():
         table.to_csv(OUT / name, index=False, date_format="%Y-%m-%dT%H:%MZ")
     info = latest(prices_hh, system_hh, prices_daily, system_daily)
-    (OUT / "latest.json").write_text(json.dumps(info, indent=2) + "\n")
+    # allow_nan=False: stop here rather than write NaN or Infinity, which browsers can't
+    # read; the site then keeps its last good data instead of breaking.
+    (OUT / "latest.json").write_text(json.dumps(info, indent=2, allow_nan=False) + "\n")
     for path in sorted(OUT.iterdir()):
         print(f"{path.name:18} {path.stat().st_size / 1000:7,.0f} kB")
     print(json.dumps(info, indent=2), file=sys.stderr)
