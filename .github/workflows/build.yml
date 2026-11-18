@@ -3,8 +3,8 @@
 # Each run takes the main datasets from the archive (Nabel7/isem-data-archive, filled
 # by its own Daily download workflow about 45 minutes earlier), makes the site's data
 # files with scripts/update-data.sh, and builds the site. The data files aren't
-# committed, so the repository doesn't grow every day. For now the built site is kept
-# as a downloadable artifact for 7 days; publishing it is a separate step for later.
+# committed, so the repository doesn't grow every day. The built site is then published
+# on GitHub Pages.
 #
 # Needs one secret, ARCHIVE_TOKEN: a fine-grained GitHub token that can read the
 # archive repository's contents (and nothing else).
@@ -13,7 +13,11 @@ name: Daily build
 
 on:
   schedule:
-    - cron: "15 7 * * *" # 07:15 UTC, after the archive's 06:30 download
+    # GitHub often starts scheduled runs hours late (the 06:30 download has been starting
+    # around 16:15), so build twice: in the morning, and again in the evening, after a
+    # late download.
+    - cron: "15 7 * * *" # 07:15 UTC
+    - cron: "15 19 * * *" # 19:15 UTC
   workflow_dispatch:
     inputs:
       isem_data_ref:
@@ -22,6 +26,8 @@ on:
 
 permissions:
   contents: read
+  pages: write # publish to GitHub Pages
+  id-token: write # needed by the Pages deploy to prove which workflow it is
 
 concurrency: daily-build
 
@@ -87,8 +93,16 @@ jobs:
           print(f"- Dispatch-down data: {m['first_day']} to {m['last_day']}, {m['farms']} farms; days missing: {', '.join(m['missing_days']) or 'none'}")
           PY
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          name: site
           path: dist
-          retention-days: 7
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
