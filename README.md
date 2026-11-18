@@ -13,7 +13,7 @@ Supported by EirGrid Group Data. Independent; not affiliated with or endorsed by
 ## How it fits together
 
 ```
-SEMO reports ──daily──► isem-data (raw archive, on this Mac)
+SEMO and EirGrid ──daily──► isem-data (raw archive, backed up as GitHub releases)
                               │
               scripts/update-data.sh   (python -m isem_data.tracker)
                               ▼

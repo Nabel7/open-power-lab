@@ -14,8 +14,8 @@ Two sources:
 - A wind index (scripts/history/wind_index.csv): how windy each month was at the island's
   wind farms, from ERA5 reanalysis wind at 100 m (via Open-Meteo, CC BY 4.0) at 12 points
   weighted by farm capacity, through a generic turbine curve. 2000 to October 2026.
-  It is built by the analysis in the Partner vault (ml/weather-adjusted-dispatch-down:
-  fetch_weather.py, then build_panel.py); copy its data/wind_index.csv here to extend it.
+  It comes from a separate analysis, not in this repository; to extend it, add later
+  months to the CSV in the same format.
 
 The weather adjustment asks: what would each month's dispatch-down have been with normal
 wind for that time of year? For constraint and for curtailment separately, it fits the
