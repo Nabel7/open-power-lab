@@ -1,8 +1,0 @@
-test,method,MAE,RMSE,inside_range
-year,chronos2,28.6533,44.3838,0.7242
-year,week_average,37.4514,54.2856,
-year,yesterday,41.0757,60.4153,
-year,last_week,49.4065,74.1513,
-wind,chronos2_wind,36.4888,53.2437,0.7222
-wind,chronos2,46.8643,67.4898,0.6964
-wind,week_average,66.3487,87.8198,
