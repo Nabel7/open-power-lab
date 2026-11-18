@@ -1,24 +1,30 @@
 {
-  "made": "2026-11-16T23:13Z",
+  "made": "2026-11-18T11:52Z",
   "model": "amazon/chronos-2",
   "context_days": 28,
   "labels": {
     "chronos2_wind": "Chronos-2 + wind forecast",
     "chronos2": "Chronos-2, prices only",
+    "lightgbm_wind": "LightGBM + wind forecast",
+    "lightgbm": "LightGBM, prices only",
     "week_average": "Average of the last 7 days",
     "yesterday": "Same time yesterday",
     "last_week": "Same time last week"
   },
+  "lightgbm_checks": {
+    "train on every day since November 2025": 49.94,
+    "forecast the price itself": 43.856
+  },
   "year": {
-    "first_day": "2025-11-14",
-    "last_day": "2026-11-14",
-    "half_hours": 17566
+    "first_day": "2025-12-06",
+    "last_day": "2026-11-17",
+    "half_hours": 16654
   },
   "wind": {
     "first_day": "2026-09-09",
-    "last_day": "2026-11-14",
-    "half_hours": 3218,
-    "days": 67,
+    "last_day": "2026-11-17",
+    "half_hours": 3362,
+    "days": 70,
     "cutoff_hour_utc": 9,
     "fallback_versions": [
       {
@@ -30,6 +36,6 @@
         "published_utc": "2026-10-01T18:13Z"
       }
     ],
-    "peeking_mae": 35.581
+    "peeking_mae": 35.561
   }
 }

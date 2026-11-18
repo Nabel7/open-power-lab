@@ -1,0 +1,11 @@
+test,method,MAE,RMSE,inside_range
+year,chronos2,28.5060,43.5213,0.7292
+year,week_average,37.5412,54.0633,
+year,lightgbm,38.0052,54.6727,0.5704
+year,yesterday,40.6905,59.4474,
+year,last_week,49.4832,73.9233,
+wind,chronos2_wind,36.2912,52.9440,0.7302
+wind,lightgbm_wind,46.6111,64.5617,0.4735
+wind,chronos2,47.2661,67.8625,0.6987
+wind,lightgbm,65.5949,87.0319,0.5184
+wind,week_average,66.2614,87.2839,
