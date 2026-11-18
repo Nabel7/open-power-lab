@@ -14,7 +14,7 @@ Run with isem-data's Python, so it can read isem-data's archive:
 | latest.json       | the newest reading of each series, for the top-of-page strip  |
 
 Day-ahead prices are the same in Ireland and Northern Ireland (one coupled market), so
-there is one price; volumes are per zone. Prototype: this belongs in isem-data later.
+there is one price; volumes are per zone.
 """
 
 import json
@@ -111,8 +111,10 @@ def system() -> tuple[pd.DataFrame, pd.DataFrame]:
 def latest(prices_hh: pd.DataFrame, system_hh: pd.DataFrame, prices_daily, system_daily) -> dict:
     last_price_day = prices_daily.iloc[-1]
     prev_price_day = prices_daily.iloc[-2]
-    last_system_day = system_daily.iloc[-1]
-    newest = system_hh.dropna(subset=["wind"]).iloc[-1]
+    # EirGrid's wind and demand figures sometimes arrive a day apart. Use the newest day and
+    # half-hour that have both, so one late dataset never leaves a gap (or a NaN) in the strip.
+    last_system_day = system_daily.dropna(subset=["wind_share"]).iloc[-1]
+    newest = system_hh.dropna(subset=["wind", "demand"]).iloc[-1]
     return {
         "built_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "price_day": last_price_day["day"],

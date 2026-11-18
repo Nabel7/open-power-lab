@@ -62,6 +62,7 @@ const files = [
 | Wind index for the weather adjustment | ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com) (CC BY 4.0) | Hourly, 12 points | Since 2000 | With each new EirGrid report |
 | EirGrid's wind forecast, every version (Price forecasts) | SEMO report BM-012, per-farm forecasts, about four versions a day, added up for the island | 15 min | Since August 2026 | Daily |
 | Price forecasts | [Chronos-2](https://huggingface.co/amazon/chronos-2) (Amazon, Apache 2.0), run with [isem-forecast](https://github.com/Nabel7/isem-forecast) on the data above | 30 min | Since November 2025 | By hand |
+| Measured wind (Wind map) | [Met Éireann](https://www.met.ie/) weather stations, fetched by your browser; Met Éireann data are published under CC BY 4.0 | Hourly, 10 m above ground | Latest reading | Every 10 minutes |
 | Wind forecast (Wind map) | [Open-Meteo](https://open-meteo.com), fetched by your browser; "Weather data by Open-Meteo.com" (CC BY 4.0) | Hourly, about 30 km grid | Next 3 days | Each visit |
 
   </div>
