@@ -192,6 +192,7 @@ if (wind) {
     </div>
     <div>
       <p class="label">Forecasts and tools</p>
+      <a href="./forecasts/prices">Price forecasts</a>
       <a href="./forecasts/wind-map">Wind map</a>
       <a href="./generation/wind#forecast">EirGrid's wind forecast</a>
       <a href="./tools/battery-simulator">Battery simulator</a>

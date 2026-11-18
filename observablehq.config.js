@@ -40,6 +40,7 @@ const MENUS = [
     name: "Forecasts",
     section: "/forecasts",
     items: [
+      {title: "Price forecasts", path: "/forecasts/prices", note: "A pre-trained AI model forecasting tomorrow's prices, scored day by day"},
       {title: "Wind map", path: "/forecasts/wind-map", note: "Forecast wind over the island, hour by hour, and measured wind now"},
       {title: "EirGrid's wind forecast", path: "/generation/wind#forecast", note: "Against what happened"}
     ]
@@ -109,6 +110,6 @@ export default {
   footer: `<div class="footer-grid">
   <div><strong>${SITE}</strong><p>Independent analysis of the Irish electricity market, built from public data. Not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx.</p></div>
   <div><strong>Sources</strong><p>Supported by EirGrid Group Data. Farm positions © OpenStreetMap contributors. Figures are estimates; see <a href="/data">Datasets</a>.</p></div>
-  <div><strong>Explore</strong><p><a href="/markets/day-ahead">Day-ahead prices</a> · <a href="/generation/wind">Wind &amp; demand</a> · <a href="/generation/dispatch-down/">Dispatch-down</a> · <a href="/generation/dispatch-down/history">Since 2016</a> · <a href="/forecasts/wind-map">Wind map</a> · <a href="/generation/batteries">Batteries</a></p></div>
+  <div><strong>Explore</strong><p><a href="/markets/day-ahead">Day-ahead prices</a> · <a href="/generation/wind">Wind &amp; demand</a> · <a href="/generation/dispatch-down/">Dispatch-down</a> · <a href="/generation/dispatch-down/history">Since 2016</a> · <a href="/forecasts/prices">Price forecasts</a> · <a href="/forecasts/wind-map">Wind map</a> · <a href="/generation/batteries">Batteries</a></p></div>
 </div>`
 };

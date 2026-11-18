@@ -1450,3 +1450,18 @@ body {
     opacity: 0.25; /* the text fills the width on a phone, so the streaks stay further back */
   }
 }
+
+/* A button that looks like a link (e.g. "Show its worst day" on Price forecasts). */
+.text-button {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--brand);
+  font: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
