@@ -5,6 +5,13 @@ import {readdirSync} from "node:fs";
 // The site's name, set here only. General on purpose: Ireland is the first market, others may follow.
 const SITE = "Open Power Lab";
 
+// While the site is shared with a few people before its launch, ask search engines not to
+// list it. Set to false at the launch.
+const HIDE_FROM_SEARCH = true;
+
+const DESCRIPTION =
+  "Independent data and analysis on the Irish electricity market (I-SEM): day-ahead prices, wind, demand, dispatch-down and forecasts, built from public data.";
+
 // One page per wind farm, from the template src/generation/dispatch-down/farms/[farm].md:
 // one for each data file in src/generation/dispatch-down/data/farms/.
 const farmPages = readdirSync("src/generation/dispatch-down/data/farms")
@@ -103,7 +110,10 @@ export default {
   header,
 
   head:
-    '<meta name="description" content="Independent data and analysis on the Irish electricity market (I-SEM): day-ahead prices, wind, demand, dispatch-down and forecasts, built from public data.">' +
+    `<meta name="description" content="${DESCRIPTION}">` +
+    // How the link looks when shared in a message or on LinkedIn.
+    `<meta property="og:site_name" content="${SITE}"><meta property="og:title" content="${SITE}"><meta property="og:description" content="${DESCRIPTION}"><meta property="og:type" content="website">` +
+    (HIDE_FROM_SEARCH ? '<meta name="robots" content="noindex, nofollow">' : "") +
     '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
 
   // The EirGrid Group Open Data Licence asks for this credit, and for no suggestion of endorsement.

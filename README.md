@@ -76,6 +76,12 @@ The forecast page's data in `src/forecasts/data/chronos/` is made by [isem-forec
 cd ~/Developer/isem-forecast && .venv/bin/python -m isem_forecast.site --out ~/Developer/dispatch-down-tracker/src/forecasts/data/chronos
 ```
 
+## Publishing
+
+The daily build (`.github/workflows/build.yml`) publishes the site on GitHub Pages at https://nabel7.github.io/open-power-lab/, twice a day (07:15 and 19:15 UTC, often later: GitHub runs scheduled jobs late when it's busy). To publish now, run the "Daily build" workflow by hand in the Actions tab.
+
+Before the launch the site asks search engines not to list it: `HIDE_FROM_SEARCH` in `observablehq.config.js`. Set it to `false` to launch.
+
 ## Updating each month
 
 1. Check isem-data's daily download has the whole month.
