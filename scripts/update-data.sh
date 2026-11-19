@@ -15,3 +15,4 @@ python=${ISEM_PYTHON:-$isem_data/.venv/bin/python}   # a Python with isem-data i
 "$python" -m isem_data.tracker --out src/generation/dispatch-down/data
 "$python" scripts/export_markets.py
 "$python" scripts/export_batteries.py
+"$python" scripts/export_wind_forecast.py

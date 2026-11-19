@@ -49,7 +49,7 @@ const MENUS = [
     items: [
       {title: "Price forecasts", path: "/forecasts/prices", note: "A pre-trained AI model forecasting tomorrow's prices, scored day by day"},
       {title: "Wind map", path: "/forecasts/wind-map", note: "Forecast wind over the island, hour by hour, and measured wind now"},
-      {title: "EirGrid's wind forecast", path: "/generation/wind#forecast", note: "Against what happened"}
+      {title: "EirGrid's wind forecast", path: "/forecasts/wind-forecast", note: "How accurate it is, from hours to days ahead"}
     ]
   },
   {
