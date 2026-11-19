@@ -46,7 +46,7 @@ const files = [
 
 <div class="section">
   <div class="section-head"><h2>Sources</h2></div>
-  <div class="card" style="padding: 0.4rem 0.9rem;">
+  <div class="card table-scroll" style="padding: 0.4rem 0.9rem;">
 
 | Data | Source | Resolution | History here | Updated |
 |---|---|---|---|---|

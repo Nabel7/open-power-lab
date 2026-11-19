@@ -1465,3 +1465,8 @@ body {
 .text-button:hover {
   text-decoration: underline;
 }
+
+/* A wide table scrolls sideways inside its card on a phone, instead of the whole page. */
+.table-scroll {
+  overflow-x: auto;
+}
