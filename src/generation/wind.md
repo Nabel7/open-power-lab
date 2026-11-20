@@ -194,7 +194,7 @@ Inputs.table(months, {
   </div>
   <div class="note" style="margin-top: 0.75rem;">
 
-**About the forecast.** This is the wind forecast shown on EirGrid's Smart Grid Dashboard. We don't know exactly when each value was made, and it may be updated during the day, so these errors are not the same as a day-ahead forecast's. A fair day-ahead comparison needs forecasts saved as they were published: that is what the planned forecast scoreboard will do.
+**About the forecast.** This is the wind forecast shown on EirGrid's Smart Grid Dashboard, in its latest revision. EirGrid updates it during the day, so it has often seen more recent weather than a forecast made the day before, and these errors are smaller than a day-ahead forecast's. The [Price forecasts](../forecasts/prices) page uses EirGrid's forecast as it stood before each day-ahead auction instead.
 
   </div>
 </div>
