@@ -11,10 +11,17 @@ Run with isem-data's Python, so it can read isem-data's archive:
 | prices_daily.csv  | trading day: average, lowest and highest price, negative hours |
 | system_hh.csv     | half-hour, last 60 days: wind (actual, EirGrid forecast), demand |
 | system_daily.csv  | Irish day: wind and demand energy, wind share, forecast error |
+| prices_ahead.csv  | hour: ENTSO-E's price for days SEMO hasn't published yet      |
 | latest.json       | the newest reading of each series, for the top-of-page strip  |
 
 Day-ahead prices are the same in Ireland and Northern Ireland (one coupled market), so
 there is one price; volumes are per zone.
+
+SEMO's results file for a day only appears at about 01:00 after it, so its newest day
+is yesterday. ENTSO-E has the same auction's prices from the afternoon before, hourly
+(each hour is the average of SEMO's two half-hours): prices_ahead.csv holds them for
+the whole trading days SEMO doesn't have yet, usually today and, from mid-afternoon,
+tomorrow. When SEMO's file arrives, its half-hours take over.
 """
 
 import json
@@ -77,6 +84,44 @@ def prices() -> tuple[pd.DataFrame, pd.DataFrame]:
     return hh.drop(columns="day"), daily.reset_index()
 
 
+AHEAD_COLUMNS = ["timestamp_utc", "day", "price"]
+
+
+def prices_ahead(last_semo_day: str) -> pd.DataFrame:
+    """ENTSO-E's hourly prices for whole trading days after `last_semo_day`. Empty
+    (with its columns) when the archive has no ENTSO-E prices, so the site still builds."""
+    try:
+        raw = storage.load("entsoe_prices")
+    except FileNotFoundError:
+        return pd.DataFrame(columns=AHEAD_COLUMNS)
+    hours = raw[raw["series"] == "dam_price_eur_mwh"].rename(columns={"value": "price"})
+    hours = hours.assign(day=trading_day(hours["timestamp_utc"]))
+    hours = hours[hours["day"] > last_semo_day]
+    # Whole days only: 24 hours, or 23 / 25 on clock-change days.
+    counts = hours.groupby("day")["price"].transform("count")
+    expected = (half_hours_in(pd.Index(hours["day"].unique())) // 2).reindex(hours["day"]).to_numpy()
+    hours = hours[counts.to_numpy() == expected]
+    return hours[AHEAD_COLUMNS].sort_values("timestamp_utc").reset_index(drop=True)
+
+
+def ahead_summary(ahead: pd.DataFrame) -> list[dict]:
+    """Each day in prices_ahead: average, cheapest and dearest hour."""
+    days = []
+    for day, hours in ahead.groupby("day"):
+        low, high = hours.loc[hours["price"].idxmin()], hours.loc[hours["price"].idxmax()]
+        days.append(
+            {
+                "day": day,
+                "avg": round(float(hours["price"].mean()), 2),
+                "low": round(float(low["price"]), 2),
+                "low_utc": low["timestamp_utc"].strftime("%Y-%m-%dT%H:%MZ"),
+                "high": round(float(high["price"]), 2),
+                "high_utc": high["timestamp_utc"].strftime("%Y-%m-%dT%H:%MZ"),
+            }
+        )
+    return days
+
+
 def system() -> tuple[pd.DataFrame, pd.DataFrame]:
     wind = storage.load("wind")
     demand = storage.load("demand")
@@ -114,7 +159,9 @@ def system() -> tuple[pd.DataFrame, pd.DataFrame]:
     return hh, daily.reset_index()
 
 
-def latest(prices_hh: pd.DataFrame, system_hh: pd.DataFrame, prices_daily, system_daily) -> dict:
+def latest(
+    prices_hh: pd.DataFrame, system_hh: pd.DataFrame, prices_daily, system_daily, ahead=None
+) -> dict:
     last_price_day = prices_daily.iloc[-1]
     prev_price_day = prices_daily.iloc[-2]
     # EirGrid's wind and demand figures sometimes arrive a day apart. Use the newest day and
@@ -135,6 +182,8 @@ def latest(prices_hh: pd.DataFrame, system_hh: pd.DataFrame, prices_daily, syste
         "system_last_utc": newest["timestamp_utc"].strftime("%Y-%m-%dT%H:%MZ"),
         "wind_mw": round(float(newest["wind"])),
         "demand_mw": round(float(newest["demand"])),
+        # ENTSO-E's prices for days SEMO hasn't published yet (see prices_ahead).
+        "ahead": ahead_summary(ahead) if ahead is not None else [],
     }
 
 
@@ -142,6 +191,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     prices_hh, prices_daily = prices()
     system_hh, system_daily = system()
+    ahead = prices_ahead(prices_daily["day"].iloc[-1])
     numbers = lambda t, n: t.round({c: n for c in t.select_dtypes("number").columns})  # noqa: E731
     files = {
         "prices_hh.csv": numbers(prices_hh, 2),
@@ -151,10 +201,11 @@ def main() -> None:
         "prices_daily.csv": numbers(prices_daily, 2),
         "system_hh.csv": numbers(system_hh, 1),
         "system_daily.csv": numbers(system_daily, 2),
+        "prices_ahead.csv": numbers(ahead, 2),
     }
     for name, table in files.items():
         table.to_csv(OUT / name, index=False, date_format="%Y-%m-%dT%H:%MZ")
-    info = latest(prices_hh, system_hh, prices_daily, system_daily)
+    info = latest(prices_hh, system_hh, prices_daily, system_daily, ahead)
     # allow_nan=False: stop here rather than write NaN or Infinity, which browsers can't
     # read; the site then keeps its last good data instead of breaking.
     (OUT / "latest.json").write_text(json.dumps(info, indent=2, allow_nan=False) + "\n")

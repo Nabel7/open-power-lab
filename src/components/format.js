@@ -76,3 +76,6 @@ export const shareDown = (rows) => {
   const available = lost + d3.sum(rows, (d) => d.produced_mwh);
   return available > 0 ? (100 * lost) / available : NaN;
 };
+
+// Today / tomorrow and Irish clock times (their own file, so they can be tested in Node).
+export {relativeDay, irishClock} from "./days.js";

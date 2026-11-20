@@ -4,7 +4,7 @@ title: Open Power Lab
 
 ```js
 import "./components/shell.js";
-import {COLOURS, eurMwh, percent, gwh, shortDay, irishTime, plotStyle, key} from "./components/format.js";
+import {COLOURS, eurMwh, percent, gwh, shortDay, irishTime, relativeDay, plotStyle, key} from "./components/format.js";
 import {grid, windForecast} from "./components/weather.js";
 import {startStreaks, windVectors} from "./components/streaks.js";
 
@@ -22,6 +22,8 @@ const priceDay = pricesDaily.at(-1);
 const pricePrev = pricesDaily.at(-2);
 const change = priceDay.avg - pricePrev.avg;
 const systemDay = systemDaily.at(-1);
+// The newest day ENTSO-E has that SEMO hasn't published yet (usually tomorrow), if any.
+const aheadDay = (latest.ahead ?? []).at(-1);
 
 // Ten years from EirGrid: 12-month averages, reported and weather-adjusted, all-island.
 const asMonth = (m) => (m instanceof Date ? m : new Date(`${m}-01T00:00:00Z`));
@@ -85,7 +87,7 @@ if (wind) {
 <div class="page-head hero-intro">
   <div class="streaks" aria-hidden="true">${streakCanvas}</div>
   <h1>The Irish electricity market, in public data</h1>
-  <p class="lede">Independent data and analysis on the all-island market: prices, wind, batteries, and how much wind power the grid turns away. Built from SEMO, SEMOpx and EirGrid's public data, and updated daily.</p>
+  <p class="lede">Independent data and analysis on the all-island market: prices, wind, batteries, and how much wind power the grid turns away. Built from SEMO, SEMOpx, EirGrid and ENTSO-E public data, and updated daily.</p>
   <div class="meta">
     <span>Day-ahead results to ${shortDay(priceDay.day)}</span>
     <span>System data to ${irishTime(new Date(latest.system_last_utc))}</span>
@@ -99,6 +101,7 @@ if (wind) {
     <span class="label">Day-ahead average · ${shortDay(priceDay.day)}</span>
     <span class="value">${eurMwh(priceDay.avg)}<small>/MWh</small></span>
     <span class="sub"><span class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "▲" : "▼"} ${eurMwh(Math.abs(change))}</span> on ${shortDay(pricePrev.day)} · range ${eurMwh(priceDay.low)} – ${eurMwh(priceDay.high)}</span>
+    ${aheadDay ? html`<span class="sub">${relativeDay(aheadDay.day) || shortDay(new Date(`${aheadDay.day}T00:00Z`))}: <b>${eurMwh(aheadDay.avg)}</b> average, hourly from ENTSO-E</span>` : ""}
     <div class="spark">${spark(daily30, "day", "avg", COLOURS.price)}</div>
   </a>
   <a class="stat" href="./generation/wind" style="color: inherit; text-decoration: none;">

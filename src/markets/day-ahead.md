@@ -4,11 +4,12 @@ title: Day-ahead prices
 
 ```js
 import "../components/shell.js";
-import {COLOURS, eurMwh, longDay, shortDay, monthName, irishTime, plotStyle, key} from "../components/format.js";
+import {COLOURS, eurMwh, longDay, shortDay, monthName, irishTime, irishClock, relativeDay, plotStyle, key} from "../components/format.js";
 
 const pricesHH = FileAttachment("../data/markets/prices_hh.csv").csv({typed: true});
 const pricesDaily = FileAttachment("../data/markets/prices_daily.csv").csv({typed: true});
 const latest = FileAttachment("../data/markets/latest.json").json();
+const pricesAhead = FileAttachment("../data/markets/prices_ahead.csv").csv({typed: true});
 ```
 
 ```js
@@ -79,6 +80,103 @@ const zoneVolumes = d3
     <span>Times are Irish time; a trading day runs 23:00 to 23:00</span>
   </div>
 </div>
+
+```js
+// Today's and tomorrow's prices, before SEMO publishes them: ENTSO-E has the auction's
+// results from the afternoon before, hourly. Shown only when there are such days.
+const aheadDays = latest.ahead ?? [];
+if (aheadDays.length && pricesAhead.length) {
+  const named = (day) => {
+    const rel = relativeDay(day);
+    const date = d3.utcFormat("%A %-d %B")(new Date(`${day}T12:00Z`));
+    return rel ? `${rel}, ${date}` : date;
+  };
+  const short = (day) => relativeDay(day) || shortDay(new Date(`${day}T00:00Z`));
+  const inSentence = (day) => relativeDay(day).toLowerCase() || shortDay(new Date(`${day}T00:00Z`));
+  const newest = aheadDays.at(-1);
+  const before = aheadDays.length > 1 ? {...aheadDays.at(-2), source: "ENTSO-E"} : {...latest, day: latest.price_day, avg: latest.price_avg, low: latest.price_low, high: latest.price_high, source: "SEMO"};
+  const change = newest.avg - before.avg;
+  // A trading day starts at 23:00 the evening before, so that hour says so.
+  const toDay = new Intl.DateTimeFormat("en-CA", {timeZone: "Europe/Dublin"});
+  const hourAt = (iso, day) => {
+    const t = new Date(iso);
+    return toDay.format(t) === day ? irishClock(t) : `${irishClock(t)} the evening before`;
+  };
+
+  // The timeline: SEMO's last trading day, half-hourly, then ENTSO-E's hours. Each step
+  // is drawn to the end of its period, so the last one gets a closing point.
+  const start = +pricesAhead[0].timestamp_utc;
+  const semo = pricesHH.filter((d) => +d.timestamp_utc >= start - 24 * 3600e3).map((d) => ({t: d.timestamp_utc, price: d.price}));
+  const ahead = pricesAhead.map((d) => ({t: d.timestamp_utc, price: d.price, day: d.day}));
+  const closed = (rows, step) => (rows.length ? [...rows, {...rows.at(-1), t: new Date(+rows.at(-1).t + step)}] : rows);
+  const end = +ahead.at(-1).t + 3600e3;
+  const now = new Date();
+  // Day boundaries and names, at 23:00 Irish time.
+  const dayStarts = [...new Set(ahead.map((d) => +d.day))].map((day) => {
+    const first = ahead.find((d) => +d.day === day);
+    return {t: first.t, day: new Date(day).toISOString().slice(0, 10)};
+  });
+  const semoDay = latest.price_day;
+  const labels = [
+    ...(semo.length ? [{t: new Date((+semo[0].t + start) / 2), day: short(semoDay), source: "SEMO"}] : []),
+    ...dayStarts.map((d, i) => ({t: new Date((+d.t + (dayStarts[i + 1] ? +dayStarts[i + 1].t : end)) / 2), day: short(d.day), source: "ENTSO-E"}))
+  ];
+
+  display(html`<div class="section first">
+    <div class="section-head">
+      <h2>${named(newest.day)}</h2>
+      <p class="muted">Hourly prices from ENTSO-E, published the afternoon before. SEMO's half-hourly results replace them once the day is over.</p>
+    </div>
+    <div class="stats" style="margin-bottom: 0.75rem;">
+      <div class="stat">
+        <span class="label">Average · ${short(newest.day)}</span>
+        <span class="value">${eurMwh(newest.avg)}<small>/MWh</small></span>
+        <span class="sub"><span class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "▲" : "▼"} ${eurMwh(Math.abs(change))}</span> on ${inSentence(before.day)}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Cheapest hour</span>
+        <span class="value">${eurMwh(newest.low)}</span>
+        <span class="sub">From ${hourAt(newest.low_utc, newest.day)}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Dearest hour</span>
+        <span class="value">${eurMwh(newest.high)}</span>
+        <span class="sub">From ${hourAt(newest.high_utc, newest.day)}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Average · ${short(before.day)}</span>
+        <span class="value">${eurMwh(before.avg)}<small>/MWh</small></span>
+        <span class="sub">${before.source === "SEMO" ? "SEMO's results, half-hourly" : "From ENTSO-E"} · range ${eurMwh(before.low)} – ${eurMwh(before.high)}</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="label"><span>${key("var(--ink-faint)")}SEMO, half-hourly</span> <span>${key(COLOURS.price)}ENTSO-E, hourly</span></span><span class="label">€/MWh · Irish time</span></div>
+      ${resize((width) =>
+        Plot.plot({
+          width,
+          height: 240,
+          marginLeft: 42,
+          marginTop: 22,
+          style: plotStyle,
+          x: {type: "utc", label: null, domain: [new Date(semo.length ? +semo[0].t : start), new Date(end)], ticks: d3.utcHour.every(width < 600 ? 12 : 6), tickFormat: irishClock},
+          y: {label: null, grid: true},
+          marks: [
+            Plot.ruleX(dayStarts, {x: "t", stroke: "var(--line-strong)"}),
+            // On a phone there's room for the day only; the key above says which line is which.
+            Plot.text(labels, {x: "t", text: (d) => (width < 560 ? d.day : `${d.day} · ${d.source}`), frameAnchor: "top", dy: -14, fill: "var(--ink-muted)", fontSize: 11.5}),
+            Plot.lineY(closed(semo, 1800e3), {x: "t", y: "price", stroke: "var(--ink-faint)", strokeWidth: 1.5, curve: "step-after"}),
+            Plot.lineY(closed(ahead, 3600e3), {x: "t", y: "price", stroke: COLOURS.price, strokeWidth: 2, curve: "step-after"}),
+            now > start && now < end ? Plot.ruleX([now], {stroke: "var(--ink-muted)", strokeDasharray: "3,3"}) : null,
+            now > start && now < end ? Plot.text([now], {x: (d) => d, text: () => "Now", frameAnchor: "top", dx: 4, dy: 6, textAnchor: "start", fill: "var(--ink-muted)", fontSize: 11}) : null,
+            Plot.tip([...semo.map((d) => ({...d, source: "SEMO"})), ...ahead.map((d) => ({...d, source: "ENTSO-E"}))], Plot.pointerX({x: "t", y: "price", title: (d) => `${irishTime(d.t)}
+${eurMwh(d.price)}/MWh · ${d.source}`}))
+          ]
+        })
+      )}
+    </div>
+  </div>`);
+}
+```
 
 <div class="toolbar">${rangeInput}<span class="muted">${longDay(first)} to ${longDay(daily.at(-1).day)}</span></div>
 

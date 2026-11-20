@@ -12,6 +12,7 @@ const meta = FileAttachment("generation/dispatch-down/data/meta.json").json();
 const files = [
   ["Day-ahead prices", FileAttachment("data/markets/prices_hh.csv"), "Half-hourly SEM price and volume in each zone, past year"],
   ["Day-ahead prices", FileAttachment("data/markets/prices_daily.csv"), "Daily average, volume-weighted average, lowest, highest, negative half-hours"],
+  ["Day-ahead prices", FileAttachment("data/markets/prices_ahead.csv"), "Hourly prices from ENTSO-E for the days SEMO hasn't published yet (today, and tomorrow from mid-afternoon)"],
   ["Wind & demand", FileAttachment("data/markets/system_hh.csv"), "Half-hourly wind, EirGrid wind forecast and demand, last 60 days"],
   ["Wind & demand", FileAttachment("data/markets/system_daily.csv"), "Daily wind and demand energy, wind share, forecast bias and error, past year"],
   ["Dispatch-down", FileAttachment("generation/dispatch-down/data/monthly.csv"), "By month and region"],
@@ -54,6 +55,7 @@ const files = [
 | Data | Source | Resolution | History here | Updated |
 |---|---|---|---|---|
 | Day-ahead prices and volumes | SEMOpx auction results, published by SEMO | 30 min | 1 year | Daily |
+| Today's and tomorrow's day-ahead prices | [ENTSO-E Transparency Platform](https://transparency.entsoe.eu), until SEMO's results arrive | 60 min | Until SEMO publishes | Daily |
 | Wind output, EirGrid wind forecast, demand | EirGrid [Smart Grid Dashboard](https://www.smartgriddashboard.com) | 15 min | 1 year | Daily |
 | Wind farm dispatch instructions, availability, metered output, unit list | SEMO balancing market reports BM-037, BM-101, BM-086, BM-091 | Per instruction, 30 min | About 2 months | Daily |
 | Battery availability and metered output | The same SEMO reports, for units listed as battery storage | 30 min | About 2 months | Daily |
@@ -98,6 +100,8 @@ Inputs.table(
   <div class="section-head"><h2>Licences and independence</h2></div>
 
 Supported by EirGrid Group Data, used under the [EirGrid Group Open Data Licence](https://www.smartgriddashboard.com/ni/open-data-license). This site is independent and is not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx. The data is provided as is, and figures here are estimates; for official figures, use EirGrid's and SEMO's own publications.
+
+Today's and tomorrow's prices are from the [ENTSO-E Transparency Platform](https://transparency.entsoe.eu). ENTSO-E is not responsible for this site or its use of the data.
 
 Farm positions and map backgrounds are © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors. The farm positions file is available under the [Open Database Licence](https://opendatacommons.org/licenses/odbl/).
 
