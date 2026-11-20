@@ -395,7 +395,7 @@ Plot.legend({
           ]
         })
   )}
-  <p class="muted" style="margin-top: 0.5rem;">The black line is the hour on the map. For the grid operator's own forecast of wind power, see <a href="../generation/wind#forecast">Wind &amp; demand</a>.</p>
+  <p class="muted" style="margin-top: 0.5rem;">The black line is the hour on the map. For the grid operator's own forecast of wind power, and how accurate it is, see <a href="./wind-forecast">EirGrid's wind forecast</a>.</p>
 </div>
 
 <div class="note" style="margin-top: 2rem;">

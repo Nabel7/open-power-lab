@@ -65,7 +65,7 @@ jobs:
           pip install -q -e isem-data
           npm ci --no-audit --no-fund
 
-      - name: Restore the main datasets
+      - name: Restore the datasets
         env:
           GH_TOKEN: ${{ secrets.ARCHIVE_TOKEN }}
         run: |
@@ -74,7 +74,9 @@ jobs:
             exit 1
           fi
           cd isem-data
-          ISEM_RESTORE_PREFIX="$ARCHIVE_PREFIX" ISEM_RESTORE_FORECASTS=0 zsh scripts/restore_data.sh "$ARCHIVE"
+          # With every version of EirGrid's per-farm wind forecast (about 130 MB by Nov 2026),
+          # for the "EirGrid's wind forecast" page.
+          ISEM_RESTORE_PREFIX="$ARCHIVE_PREFIX" zsh scripts/restore_data.sh "$ARCHIVE"
 
       - name: Make the site's data
         run: ISEM_DATA="$PWD/isem-data" ISEM_PYTHON=python zsh scripts/update-data.sh
@@ -91,6 +93,8 @@ jobs:
           print("# Daily build\n")
           print(f"- Day-ahead prices to {d['price_day']}; system data to {d['system_last_utc']}")
           print(f"- Dispatch-down data: {m['first_day']} to {m['last_day']}, {m['farms']} farms; days missing: {', '.join(m['missing_days']) or 'none'}")
+          w = json.load(open("src/forecasts/data/wind-forecast/meta.json"))
+          print(f"- EirGrid's wind forecast: {w['first_day']} to {w['last_day']}; day-ahead average miss {w['day_ahead']['mae_mw']:.0f} MW")
           PY
 
       - uses: actions/upload-pages-artifact@v3

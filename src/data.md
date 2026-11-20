@@ -27,6 +27,9 @@ const files = [
   ["Batteries", FileAttachment("data/batteries/fleet_hh.csv"), "Half-hourly: all batteries' charging and discharging, with the day-ahead price"],
   ["Batteries", FileAttachment("data/batteries/unit_totals.csv"), "Each battery: energy in and out, and day-ahead value, over the metered period"],
   ["Batteries", FileAttachment("data/batteries/dam_monthly.csv"), "The batteries' day-ahead purchases, sales and value, by month"],
+  ["EirGrid's wind forecast", FileAttachment("forecasts/data/wind-forecast/halfhours.csv"), "Every half-hour since September: the day-ahead and latest forecasts, available power and output, for the market's wind farms"],
+  ["EirGrid's wind forecast", FileAttachment("forecasts/data/wind-forecast/by_hours.csv"), "Average miss and bias of every forecast version, by hours ahead (0 to 95)"],
+  ["EirGrid's wind forecast", FileAttachment("forecasts/data/wind-forecast/daily.csv"), "The day-ahead and latest forecasts' miss and bias, by day"],
   ["Price forecasts", FileAttachment("forecasts/data/prices/halfhours.csv"), "Every half-hour of the wind test: actual price, each method's forecast, Chronos-2's and LightGBM's 80% ranges, the wind forecast they were given"],
   ["Price forecasts", FileAttachment("forecasts/data/prices/scores.csv"), "Each method's average miss (MAE, RMSE) in both tests, and how often the price landed in each model's range"],
   ["Price forecasts", FileAttachment("forecasts/data/prices/monthly.csv"), "Each method's average miss by month, in both tests"],
@@ -60,7 +63,7 @@ const files = [
 | Island outline (maps) | [Natural Earth](https://www.naturalearthdata.com) 1:10m land, simplified (public domain) | About 400 m | Current | Rarely |
 | Dispatch-down since 2016 | EirGrid's [dispatch-down summary report](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx) (V24) | Monthly | Since January 2016 | When EirGrid publishes, about six weeks after each month |
 | Wind index for the weather adjustment | ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com) (CC BY 4.0) | Hourly, 12 points | Since 2000 | With each new EirGrid report |
-| EirGrid's wind forecast, every version (Price forecasts) | SEMO report BM-012, per-farm forecasts, about four versions a day, added up for the island | 15 min | Since August 2026 | Daily |
+| EirGrid's wind forecast, every version (EirGrid's wind forecast, Price forecasts) | SEMO report BM-012, per-farm forecasts, about four versions a day, added up for the island | 15 min | Since August 2026 | Daily |
 | Price forecasts | [Chronos-2](https://huggingface.co/amazon/chronos-2) (Amazon, Apache 2.0) and LightGBM, run with [isem-forecast](https://github.com/Nabel7/isem-forecast) on the data above | 30 min | Since November 2025 | By hand |
 | Measured wind (Wind map) | [Met Éireann](https://www.met.ie/) weather stations, fetched by your browser; Met Éireann data are published under CC BY 4.0 | Hourly, 10 m above ground | Latest reading | Every 10 minutes |
 | Wind forecast (Wind map) | [Open-Meteo](https://open-meteo.com), fetched by your browser; "Weather data by Open-Meteo.com" (CC BY 4.0) | Hourly, about 30 km grid | Next 3 days | Each visit |

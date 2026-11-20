@@ -1,0 +1,38 @@
+{
+  "built_at_utc": "2026-11-19T23:16:32Z",
+  "first_day": "2026-09-08",
+  "last_day": "2026-11-18",
+  "days": 71,
+  "farms": 210,
+  "cutoff_hour_utc": 9,
+  "day_ahead": {
+    "mae_mw": 268.2,
+    "bias_mw": -9.9,
+    "available_mw": 1932.6,
+    "hours_ahead_min": 14.4
+  },
+  "latest": {
+    "mae_mw": 208.2,
+    "median_hours_ahead": 3.2
+  },
+  "against_output": {
+    "mae_mw": 432.0,
+    "bias_mw": 344.6
+  },
+  "mae_by_day_ahead": {
+    "1": 231.5,
+    "2": 313.3,
+    "3": 452.8,
+    "4": 594.0
+  },
+  "fallback_versions": [
+    {
+      "day": "2026-09-10",
+      "published_utc": "2026-09-08T16:23Z"
+    },
+    {
+      "day": "2026-10-03",
+      "published_utc": "2026-10-01T18:13Z"
+    }
+  ]
+}
