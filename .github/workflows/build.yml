@@ -92,6 +92,7 @@ jobs:
           m = json.load(open("src/generation/dispatch-down/data/meta.json"))
           print("# Daily build\n")
           print(f"- Day-ahead prices to {d['price_day']}; system data to {d['system_last_utc']}")
+          print(f"- Prices ahead of SEMO, from ENTSO-E: {', '.join(x['day'] for x in d.get('ahead', [])) or 'none'}")
           print(f"- Dispatch-down data: {m['first_day']} to {m['last_day']}, {m['farms']} farms; days missing: {', '.join(m['missing_days']) or 'none'}")
           w = json.load(open("src/forecasts/data/wind-forecast/meta.json"))
           print(f"- EirGrid's wind forecast: {w['first_day']} to {w['last_day']}; day-ahead average miss {w['day_ahead']['mae_mw']:.0f} MW")

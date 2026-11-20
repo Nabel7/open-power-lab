@@ -103,7 +103,14 @@ Promise.all([latestFile.json(), ddFile.csv({typed: true})]).then(([d, dd]) => {
   const island = dd.filter((r) => r.region === "ALL");
   const month = island.filter((r) => r.days_with_data >= 0.8 * r.days_in_month).at(-1) ?? island.at(-1);
   const monthName = month.month.toLocaleDateString("en-IE", {month: "long", timeZone: "UTC"});
+  // ENTSO-E's newest day ahead of SEMO's results (usually tomorrow), named by the
+  // reader's date, so a page built yesterday still says "Tomorrow" correctly.
+  const ahead = (d.ahead ?? []).at(-1);
+  const today = new Intl.DateTimeFormat("en-CA", {timeZone: "Europe/Dublin"}).format(new Date());
+  const offset = ahead ? Math.round((Date.parse(`${ahead.day}T00:00Z`) - Date.parse(`${today}T00:00Z`)) / 864e5) : null;
+  const aheadName = {0: "Today", 1: "Tomorrow"}[offset] ?? "Day-ahead";
   const items = [
+    ...(ahead ? [link("markets/day-ahead", `${aheadName} ${day(ahead.day)}`, `<b>${euro(ahead.avg)}</b>/MWh`)] : []),
     link("markets/day-ahead", `Day-ahead ${day(d.price_day)}`, `<b>${euro(d.price_avg)}</b>/MWh <span class="${up ? "up" : "down"}">${up ? "▲" : "▼"} ${euro(Math.abs(d.price_avg_change))}</span>`),
     link("markets/day-ahead", "Range", `<b>${euro(d.price_low)}</b> – <b>${euro(d.price_high)}</b>`),
     link("markets/day-ahead", "Volume-weighted", `<b>${euro(d.price_vwap)}</b>/MWh`),
