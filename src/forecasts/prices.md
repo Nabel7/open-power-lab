@@ -66,11 +66,13 @@ const record = [
   day: asDay(f.day),
   made: new Date(f.made_at_utc),
   in_time: f.in_time,
-  status: f.status === "auction" ? "Waiting for the auction" : STATUS[f.status],
+  // A late forecast says so straight away, not only once it is scored.
+  status: !f.in_time && f.status !== "late" ? "Late: won't count" : f.status === "auction" ? "Waiting for the auction" : STATUS[f.status],
   ...Object.fromEntries(LIVE_ORDER.map((m) => [m, missOf(f.day, m)])),
   link: f.day
 }));
 const counted = liveMeta.days_counted;
+const firstInTime = record.filter((f) => f.in_time).at(-1);
 ```
 
 ```js
@@ -187,7 +189,7 @@ const scoreCard = html`<div class="card" style="margin-top: 0.75rem;">
       format: {method: label, MAE: eurMwh, inside_range: (v) => (v == null ? "" : percent(v * 100)), days_beaten: (v) => (v == null ? "" : `${v} of ${counted}`)},
       layout: "auto",
       select: false
-    }) : html`<p class="muted" style="margin: 0;">${record.length ? `The first day, ${longDay(record.at(-1).day)}, is scored once SEMO publishes its prices, the morning after.` : "Nothing to score yet."}</p>`}
+    }) : html`<p class="muted" style="margin: 0;">${firstInTime ? `The first day forecast in time, ${longDay(firstInTime.day)}, is scored once SEMO publishes its prices, the morning after.` : "Nothing to score yet: no forecast has been made in time so far."}</p>`}
     ${counted && counted < liveMeta.too_few_days ? html`<p class="muted" style="margin-top: 0.5rem;">Only ${counted} day${counted === 1 ? "" : "s"}: too few to judge yet. The back-tests below cover ${meta.wind.days}. Scored the same way: the average miss over the same half-hours for every method.</p>` : ""}
   </div>`;
 
@@ -211,7 +213,7 @@ const recordCard = record.length ? html`<div class="card" style="margin-top: 0.7
 ```
 
 <div class="section first">
-  <div class="section-head"><h2>The live record</h2><p>Every morning at about 07:30 UTC, before the 09:00 cut-off, tomorrow's forecast is saved to <a href="https://github.com/Nabel7/isem-live-forecasts">a public repository</a>, where it can't be changed afterwards: each commit shows when it was saved. Each day is scored against SEMO's prices once SEMO publishes them, the morning after.</p></div>
+  <div class="section-head"><h2>The live record</h2><p>Every morning, before the 09:00 UTC cut-off, tomorrow's forecast is saved to <a href="https://github.com/Nabel7/isem-live-forecasts">a public repository</a>, where it can't be changed afterwards: each commit shows when it was saved. Each day is scored against SEMO's prices once SEMO publishes them, the morning after.</p></div>
 
 ${newestCard}
 
