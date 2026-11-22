@@ -1,5 +1,5 @@
 ---
-title: Dispatch-down
+title: Dispatch down
 ---
 
 ```js
@@ -214,7 +214,7 @@ const byMonth = monthly.filter((d) => d.region !== "ALL" && shownMonths.has(+d.m
         ]
       })
     )}
-    <p class="muted" style="margin-top: 0.75rem;">Months with less than 80% of their days covered are left out. For every month since 2016, from EirGrid's own figures and adjusted for the weather, see <a href="./history">ten years of dispatch-down →</a></p>
+    <p class="muted" style="margin-top: 0.75rem;">Months with less than 80% of their days covered are left out. For every month since 2016, from EirGrid's own figures and adjusted for the weather, see <a href="./history">ten years of dispatch down →</a></p>
   </div>
 </div>
 

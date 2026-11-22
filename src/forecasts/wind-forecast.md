@@ -68,7 +68,7 @@ const theDay = halfhours.filter((d) => +d.day === +chosen.day);
   <div class="stat">
     <span class="label">Scored against output instead</span>
     <span class="value">${mw(meta.against_output.mae_mw)}</span>
-    <span class="sub">It would seem ${mw(meta.against_output.bias_mw)} too high: that's dispatch-down, not the forecast</span>
+    <span class="sub">It would seem ${mw(meta.against_output.bias_mw)} too high: that's dispatch down, not the forecast</span>
   </div>
 </div>
 
@@ -171,7 +171,7 @@ Inputs.table([...monthly].reverse(), {
     <div class="step">
       <span class="label"><span>2</span><span>The truth</span></span>
       <h3>What the farms could produce</h3>
-      <p>Each forecast is compared with the farms' available power (SEMO's availability, checked against their output as for the dispatch-down figures), not with what they produced. Output is lower whenever the grid turns farms down, and that's not the forecast's mistake.</p>
+      <p>Each forecast is compared with the farms' available power (SEMO's availability, checked against their output as for the dispatch down figures), not with what they produced. Output is lower whenever the grid turns farms down, and that's not the forecast's mistake.</p>
     </div>
     <div class="step">
       <span class="label"><span>3</span><span>The auction's forecast</span></span>

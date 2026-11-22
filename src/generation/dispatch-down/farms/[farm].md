@@ -20,7 +20,7 @@ const farmList = FileAttachment("../data/farms.csv").csv({typed: true});
 
 ```js
 // The browser tab shows the farm's name.
-document.title = `${farm.name} | Dispatch-down | Open Power Lab`;
+document.title = `${farm.name} | Dispatch down | Open Power Lab`;
 
 // Totals over everything we have for this farm.
 const lost = d3.sum(farm.daily, (d) => d.lost_mwh);
@@ -133,7 +133,7 @@ const recentMax = d3.max(halfHours, (d) => d.available) || 1;
       ]
     })
   )}
-  <p class="muted" style="margin-top: 0.75rem;">"Could have made" is SEMO's availability figure. The gap inside a shaded band is energy lost to dispatch-down.</p>
+  <p class="muted" style="margin-top: 0.75rem;">"Could have made" is SEMO's availability figure. The gap inside a shaded band is energy lost to dispatch down.</p>
 </div>
 </div>
 

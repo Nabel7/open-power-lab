@@ -15,15 +15,15 @@ const files = [
   ["Day-ahead prices", FileAttachment("data/markets/prices_ahead.csv"), "Hourly prices from ENTSO-E for the days SEMO hasn't published yet (today, and tomorrow from mid-afternoon)"],
   ["Wind & demand", FileAttachment("data/markets/system_hh.csv"), "Half-hourly wind, EirGrid wind forecast and demand, last 60 days"],
   ["Wind & demand", FileAttachment("data/markets/system_daily.csv"), "Daily wind and demand energy, wind share, forecast bias and error, past year"],
-  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/monthly.csv"), "By month and region"],
-  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/daily.csv"), "By day and region"],
-  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farms.csv"), "By farm, whole period"],
-  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_monthly.csv"), "By farm and month"],
-  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_daily.csv"), "By farm and day"],
-  ["Dispatch-down", FileAttachment("generation/dispatch-down/data/farm_locations.csv"), "Farm positions, from OpenStreetMap (Open Database Licence)"],
-  ["Dispatch-down since 2016", FileAttachment("generation/dispatch-down/data/history_monthly.csv"), "By month and region since 2016, from EirGrid: reported and weather-adjusted shares, wind against normal"],
-  ["Dispatch-down since 2016", FileAttachment("generation/dispatch-down/data/history_yearly.csv"), "The same by year"],
-  ["Dispatch-down since 2016", FileAttachment("generation/dispatch-down/data/history_season.csv"), "Normal wind by calendar month, and the share turned down at the same wind"],
+  ["Dispatch down", FileAttachment("generation/dispatch-down/data/monthly.csv"), "By month and region"],
+  ["Dispatch down", FileAttachment("generation/dispatch-down/data/daily.csv"), "By day and region"],
+  ["Dispatch down", FileAttachment("generation/dispatch-down/data/farms.csv"), "By farm, whole period"],
+  ["Dispatch down", FileAttachment("generation/dispatch-down/data/farm_monthly.csv"), "By farm and month"],
+  ["Dispatch down", FileAttachment("generation/dispatch-down/data/farm_daily.csv"), "By farm and day"],
+  ["Dispatch down", FileAttachment("generation/dispatch-down/data/farm_locations.csv"), "Farm positions, from OpenStreetMap (Open Database Licence)"],
+  ["Dispatch down since 2016", FileAttachment("generation/dispatch-down/data/history_monthly.csv"), "By month and region since 2016, from EirGrid: reported and weather-adjusted shares, wind against normal"],
+  ["Dispatch down since 2016", FileAttachment("generation/dispatch-down/data/history_yearly.csv"), "The same by year"],
+  ["Dispatch down since 2016", FileAttachment("generation/dispatch-down/data/history_season.csv"), "Normal wind by calendar month, and the share turned down at the same wind"],
   ["Batteries", FileAttachment("data/batteries/units.csv"), "Each grid battery: name, company, region, size in MW"],
   ["Batteries", FileAttachment("data/batteries/fleet_hh.csv"), "Half-hourly: all batteries' charging and discharging, with the day-ahead price"],
   ["Batteries", FileAttachment("data/batteries/unit_totals.csv"), "Each battery: energy in and out, and day-ahead value, over the metered period"],
@@ -46,7 +46,7 @@ const files = [
   <p class="lede">Every figure on this site comes from public data. Here is where it comes from, how often it's updated, and the files behind each page, free to reuse with the credits below.</p>
   <div class="meta">
     <span>Market data to ${irishTime(new Date(latest.system_last_utc))}</span>
-    <span>Dispatch-down data ${meta.first_day} to ${meta.last_day}</span>
+    <span>Dispatch down data ${meta.first_day} to ${meta.last_day}</span>
   </div>
 </div>
 
@@ -65,7 +65,7 @@ const files = [
 | Farm names | SEMO's published lists of registered units | Per unit | Current | Now and then |
 | Farm positions | [OpenStreetMap](https://www.openstreetmap.org) | Per farm | Current | Now and then |
 | Island outline (maps) | [Natural Earth](https://www.naturalearthdata.com) 1:10m land, simplified (public domain) | About 400 m | Current | Rarely |
-| Dispatch-down since 2016 | EirGrid's [dispatch-down summary report](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx) (V24) | Monthly | Since January 2016 | When EirGrid publishes, about six weeks after each month |
+| Dispatch down since 2016 | EirGrid's [dispatch down summary report](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx) (V24) | Monthly | Since January 2016 | When EirGrid publishes, about six weeks after each month |
 | Wind index for the weather adjustment | ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com) (CC BY 4.0) | Hourly, 12 points | Since 2000 | With each new EirGrid report |
 | EirGrid's wind forecast, every version (EirGrid's wind forecast, Price forecasts) | SEMO report BM-012, per-farm forecasts, about four versions a day, added up for the island | 15 min | Since August 2026 | Daily |
 | Price forecasts | [Chronos-2](https://huggingface.co/amazon/chronos-2) (Amazon, Apache 2.0) and LightGBM, run with [isem-forecast](https://github.com/Nabel7/isem-forecast) on the data above | 30 min | Since November 2025 | Back-tests by hand; the [live record](https://github.com/Nabel7/isem-live-forecasts) daily |

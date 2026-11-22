@@ -10,7 +10,7 @@ const SITE = "Open Power Lab";
 const HIDE_FROM_SEARCH = true;
 
 const DESCRIPTION =
-  "Independent data and analysis on the Irish electricity market (I-SEM): day-ahead prices, wind, demand, dispatch-down and forecasts, built from public data.";
+  "Independent data and analysis on the Irish electricity market (I-SEM): day-ahead prices, wind, demand, dispatch down and forecasts, built from public data.";
 
 // One page per wind farm, from the template src/generation/dispatch-down/farms/[farm].md:
 // one for each data file in src/generation/dispatch-down/data/farms/.
@@ -33,7 +33,7 @@ const MENUS = [
     ]
   },
   {
-    name: "Dispatch-down",
+    name: "Dispatch down",
     section: "/generation/dispatch-down",
     items: [
       {title: "Monthly", path: "/generation/dispatch-down/", note: "Wind turned down, why and where, month by month"},
@@ -120,6 +120,6 @@ export default {
   footer: `<div class="footer-grid">
   <div><strong>${SITE}</strong><p>Independent analysis of the Irish electricity market, built from public data. Not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx.</p></div>
   <div><strong>Sources</strong><p>Supported by EirGrid Group Data. Farm positions © OpenStreetMap contributors. Figures are estimates; see <a href="/data">Datasets</a>.</p></div>
-  <div><strong>Explore</strong><p><a href="/markets/day-ahead">Day-ahead prices</a> · <a href="/generation/wind">Wind &amp; demand</a> · <a href="/generation/dispatch-down/">Dispatch-down</a> · <a href="/generation/dispatch-down/history">Since 2016</a> · <a href="/forecasts/prices">Price forecasts</a> · <a href="/forecasts/wind-map">Wind map</a> · <a href="/generation/batteries">Batteries</a></p></div>
+  <div><strong>Explore</strong><p><a href="/markets/day-ahead">Day-ahead prices</a> · <a href="/generation/wind">Wind &amp; demand</a> · <a href="/generation/dispatch-down/">Dispatch down</a> · <a href="/generation/dispatch-down/history">Since 2016</a> · <a href="/forecasts/prices">Price forecasts</a> · <a href="/forecasts/wind-map">Wind map</a> · <a href="/generation/batteries">Batteries</a></p></div>
 </div>`
 };

@@ -1,5 +1,5 @@
 ---
-title: Dispatch-down since 2016
+title: Dispatch down since 2016
 ---
 
 ```js
@@ -79,7 +79,7 @@ const fromWind = rise > 0 ? (100 * (rise - underlyingRise)) / rise : null;
 const windStory =
   `The wind went from ${signed(comparison.windBefore)} to ${signed(comparison.windNow)} on normal. ` +
   (fromWind == null
-    ? "Reported dispatch-down didn't rise."
+    ? "Reported dispatch down didn't rise."
     : fromWind >= 100
       ? `The weather-adjusted figure didn't rise, so the whole ${rise.toFixed(1)}-point rise is the weather.`
       : fromWind <= 0
@@ -328,6 +328,6 @@ const ours = tracker.find((d) => d.region === region && d.month.getTime() === la
 
 **How far to trust it.** Within each year and season, the wind explains about ${meta.wind_explains_pct}% of the month-to-month variation; a single month typically misses the fit by about ${meta.typical_monthly_miss_pts} points. The wind index tracks EirGrid's own availability figures closely (a correlation of 0.97, once fleet growth and season are removed). Shuffling the wind between years 2,000 times never produced an effect as strong as the real one. "Underlying" means everything except the wind (grid, fleet, demand, interconnectors, operating rules), and this doesn't separate those. The adjustment assumes a windy month has the same proportional effect every year; if the effect is growing, older years are slightly over- or under-adjusted.
 
-**Sources.** Dispatch-down: ${html`<a href=${meta.workbook_url}>${meta.workbook}</a>`}, sheet "Wind & Solar Monthly Detailed", wind only. Weather: ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com/), CC BY 4.0. The code is in this site's repository (`scripts/export_history.py`).
+**Sources.** Dispatch down: ${html`<a href=${meta.workbook_url}>${meta.workbook}</a>`}, sheet "Wind & Solar Monthly Detailed", wind only. Weather: ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com/), CC BY 4.0. The code is in this site's repository (`scripts/export_history.py`).
 
 </div>
