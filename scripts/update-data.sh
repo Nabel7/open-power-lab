@@ -2,7 +2,8 @@
 # Refresh the site's data files from the isem-data archive on this machine.
 #
 # The raw SEMO data stays in isem-data; this writes only the small summary files
-# the pages read (src/generation/dispatch-down/data/ and src/data/markets/). Set ISEM_DATA if the isem-data
+# the pages read (src/generation/dispatch-down/data/, src/data/markets/ and the forecast
+# pages' data). The live record also reads the forecasts saved in isem-live-forecasts. Set ISEM_DATA if the isem-data
 # project isn't at ~/Developer/isem-data, and ISEM_PYTHON to use a Python other than its .venv
 # (as the daily build on GitHub does).
 
@@ -16,3 +17,4 @@ python=${ISEM_PYTHON:-$isem_data/.venv/bin/python}   # a Python with isem-data i
 "$python" scripts/export_markets.py
 "$python" scripts/export_batteries.py
 "$python" scripts/export_wind_forecast.py
+"$python" scripts/export_live.py  # the live record: ISEM_LIVE_FORECASTS, default ~/Developer/isem-live-forecasts
