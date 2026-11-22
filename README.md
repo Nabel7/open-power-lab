@@ -48,7 +48,7 @@ Observable Framework sends anonymous usage telemetry unless `OBSERVABLE_TELEMETR
 | Day-ahead | `src/markets/day-ahead.md` | 30 days to 1 year: daily average and range, a heatmap of every half-hour, volume by zone, price by time of day, monthly table |
 | Wind & demand | `src/generation/wind.md` | Wind against demand, and EirGrid's wind forecast against what happened (error, bias, monthly table) |
 | Batteries | `src/generation/batteries.md` | The grid batteries: when they charge and discharge against the price, each battery's energy and day-ahead value, their day-ahead trading over the year |
-| Price forecasts | `src/forecasts/prices.md` | Chronos-2 (Amazon's pre-trained forecasting model) and LightGBM (fitted on Irish data) forecasting each day's prices from what was known before the auction, with and without EirGrid's wind forecast, scored against each other and simple methods: one day at a time, day by day, by month. Data from isem-forecast (see below) |
+| Price forecasts | `src/forecasts/prices.md` | Chronos-2 (Amazon's pre-trained forecasting model) and LightGBM (fitted on Irish data) forecasting each day's prices from what was known before the auction, with and without EirGrid's wind forecast, scored against each other and simple methods: one day at a time, day by day, by month. Data from isem-forecast (see below). At the top, the live record: each morning's forecast, saved before the auction in [isem-live-forecasts](https://github.com/Nabel7/isem-live-forecasts) and scored once SEMO publishes (`scripts/export_live.py`; tomorrow's is fetched in the browser, `src/components/live.js`, checked by `node --test scripts/live.test.mjs`) |
 | EirGrid's wind forecast | `src/forecasts/wind-forecast.md` | Every saved version of EirGrid's per-farm wind forecast scored against what the farms could have produced (availability, not output): miss against hours ahead, the day-ahead forecast day by day, any day in detail. Data from `scripts/export_wind_forecast.py`, daily |
 | Wind map | `src/forecasts/wind-map.md` | Forecast wind speed at 100 m over the island, hourly for three days, with the wind farms on top and a play button. Fetched in the browser from Open-Meteo (`src/components/weather.js`, checked by `node --test scripts/weather.test.mjs`) |
 | Battery simulator | `src/tools/battery-simulator.md` | Choose a battery; it finds the best daily schedule on real day-ahead prices (`src/components/battery.js`, checked by `node --test scripts/battery.test.mjs`) |
@@ -76,6 +76,8 @@ The forecast page's data in `src/forecasts/data/prices/` is made by [isem-foreca
 ```bash
 cd ~/Developer/isem-forecast && .venv/bin/python -m isem_forecast.site --out ~/Developer/dispatch-down-tracker/src/forecasts/data/prices
 ```
+
+The live record at the top of the page (`src/forecasts/data/live/`, not committed) is made on every build by `scripts/export_live.py`, from the forecasts saved in [isem-live-forecasts](https://github.com/Nabel7/isem-live-forecasts) (a copy at `~/Developer/isem-live-forecasts`, or `ISEM_LIVE_FORECASTS`). Each day is scored against SEMO's half-hourly prices once SEMO has published all of them.
 
 ## Publishing
 

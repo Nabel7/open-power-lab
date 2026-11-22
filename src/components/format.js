@@ -78,4 +78,4 @@ export const shareDown = (rows) => {
 };
 
 // Today / tomorrow and Irish clock times (their own file, so they can be tested in Node).
-export {relativeDay, irishClock} from "./days.js";
+export {relativeDay, irishClock, irishDay} from "./days.js";

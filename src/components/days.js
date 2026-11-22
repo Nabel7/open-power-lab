@@ -13,3 +13,9 @@ export const relativeDay = (day, now = new Date()) => {
 // The time of day in Ireland, e.g. "17:00".
 export const irishClock = (date) =>
   date.toLocaleString("en-IE", {timeZone: "Europe/Dublin", hour: "2-digit", minute: "2-digit", hourCycle: "h23"});
+
+// The date in Ireland `offset` days from now, as "YYYY-MM-DD": irishDay(1) is tomorrow.
+export const irishDay = (offset = 0, now = new Date()) => {
+  const today = new Intl.DateTimeFormat("en-CA", {timeZone: "Europe/Dublin"}).format(now);
+  return new Date(Date.parse(`${today}T00:00Z`) + offset * 864e5).toISOString().slice(0, 10);
+};

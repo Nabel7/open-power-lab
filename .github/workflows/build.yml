@@ -48,6 +48,12 @@ jobs:
           ref: ${{ inputs.isem_data_ref || 'main' }}
           path: isem-data
 
+      # The live price forecasts (public), for the live record on the Price forecasts page.
+      - uses: actions/checkout@v4
+        with:
+          repository: Nabel7/isem-live-forecasts
+          path: isem-live-forecasts
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -79,7 +85,7 @@ jobs:
           ISEM_RESTORE_PREFIX="$ARCHIVE_PREFIX" zsh scripts/restore_data.sh "$ARCHIVE"
 
       - name: Make the site's data
-        run: ISEM_DATA="$PWD/isem-data" ISEM_PYTHON=python zsh scripts/update-data.sh
+        run: ISEM_DATA="$PWD/isem-data" ISEM_LIVE_FORECASTS="$PWD/isem-live-forecasts" ISEM_PYTHON=python zsh scripts/update-data.sh
 
       - name: Build
         run: npx observable build
@@ -96,6 +102,8 @@ jobs:
           print(f"- Dispatch-down data: {m['first_day']} to {m['last_day']}, {m['farms']} farms; days missing: {', '.join(m['missing_days']) or 'none'}")
           w = json.load(open("src/forecasts/data/wind-forecast/meta.json"))
           print(f"- EirGrid's wind forecast: {w['first_day']} to {w['last_day']}; day-ahead average miss {w['day_ahead']['mae_mw']:.0f} MW")
+          live = json.load(open("src/forecasts/data/live/meta.json"))
+          print(f"- Live price forecasts: {len(live['forecasts'])} saved, {live['days_counted']} day(s) scored")
           PY
 
       - uses: actions/upload-pages-artifact@v3

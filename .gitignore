@@ -2,3 +2,5 @@ node_modules/
 dist/
 src/.observablehq/cache/
 .DS_Store
+# Made by scripts/export_live.py on every build, from the live forecasts repository
+src/forecasts/data/live/
