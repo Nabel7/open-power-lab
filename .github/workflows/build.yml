@@ -90,6 +90,7 @@ jobs:
       - name: Build
         run: |
           npx observable build
+          cp -R static/. dist/      # files served as they are, e.g. Google's verification file
           node scripts/sitemap.mjs  # dist/sitemap.xml: every page, for search engines
 
       - name: Say what was built
