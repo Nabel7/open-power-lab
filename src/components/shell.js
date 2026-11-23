@@ -16,7 +16,7 @@ const here = "/" + location.href.slice(root.href.length).replace(/[?#].*$/, "").
 const groups = [...header.querySelectorAll(".menu-group")];
 
 // The menu this page belongs to: the one whose section its address is in (the longest
-// match, so a dispatch-down page belongs to Dispatch-down even though its address starts
+// match, so a dispatch down page belongs to Dispatch down even though its address starts
 // /generation), or failing that the one with a link to it. The home page has none.
 const page = location.pathname.replace(/\.html$/, "");
 const linksTo = (group) =>
@@ -62,14 +62,14 @@ toggle.addEventListener("click", () => {
 
 // ---- Section tabs -------------------------------------------------------------------------
 
-// Dispatch-down has several pages, so they get tabs along the top, made from the same
+// Dispatch down has several pages, so they get tabs along the top, made from the same
 // links as its menu. A farm's own page counts as part of "Wind farms".
 const TABBED = "/generation/dispatch-down";
 const tabbed = groups.find((group) => group.dataset.section === TABBED);
 if (tabbed && (here === TABBED || here.startsWith(TABBED + "/"))) {
   const tabs = document.createElement("nav");
   tabs.className = "section-tabs";
-  tabs.setAttribute("aria-label", "Dispatch-down pages");
+  tabs.setAttribute("aria-label", "Dispatch down pages");
   for (const link of tabbed.querySelectorAll("a.menu-link")) {
     const path = new URL(link.href).pathname.replace(/\.html$/, "");
     const tab = document.createElement("a");

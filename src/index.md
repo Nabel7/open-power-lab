@@ -121,7 +121,7 @@ if (wind) {
 <div class="section first">
   <div class="grid grid-cols-2 featured">
     <a class="card feature" href="./generation/dispatch-down/history">
-      <span class="label">Dispatch-down since 2016</span>
+      <span class="label">Dispatch down since 2016</span>
       <strong>Most of the recent rise is the weather</strong>
       <p>Over the last 12 months the grid turned down ${percent(last12.reported)} of the wind energy available. With normal wind it would have been about ${percent(last12.adjusted)}. Ten years of EirGrid's figures, adjusted for how windy each month was.</p>
       ${resize((width) =>
@@ -186,7 +186,7 @@ if (wind) {
       <a href="./generation/batteries">Batteries</a>
     </div>
     <div>
-      <p class="label">Dispatch-down</p>
+      <p class="label">Dispatch down</p>
       <a href="./generation/dispatch-down/">Monthly</a>
       <a href="./generation/dispatch-down/history">Since 2016</a>
       <a href="./generation/dispatch-down/farms/">Wind farms</a>
