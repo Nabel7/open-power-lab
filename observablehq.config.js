@@ -5,9 +5,10 @@ import {readdirSync} from "node:fs";
 // The site's name, set here only. General on purpose: Ireland is the first market, others may follow.
 const SITE = "Open Power Lab";
 
-// While the site is shared with a few people before its launch, ask search engines not to
-// list it. Set to false at the launch.
-const HIDE_FROM_SEARCH = true;
+// True asks search engines not to list the site (as while it was shown to a few people
+// before launch, until 23 Nov 2026). The pages are listed in dist/sitemap.xml
+// (scripts/sitemap.mjs), which is submitted in Google Search Console.
+const HIDE_FROM_SEARCH = false;
 
 const DESCRIPTION =
   "Independent data and analysis on the Irish electricity market (I-SEM): day-ahead prices, wind, demand, dispatch down and forecasts, built from public data.";

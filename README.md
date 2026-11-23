@@ -83,7 +83,7 @@ The live record at the top of the page (`src/forecasts/data/live/`, not committe
 
 The daily build (`.github/workflows/build.yml`) publishes the site on GitHub Pages at https://nabel7.github.io/open-power-lab/, twice a day (07:15 and 19:15 UTC, often later: GitHub runs scheduled jobs late when it's busy). To publish now, run the "Daily build" workflow by hand in the Actions tab.
 
-Before the launch the site asks search engines not to list it: `HIDE_FROM_SEARCH` in `observablehq.config.js`. Set it to `false` to launch.
+Search engines may list the site (`HIDE_FROM_SEARCH` in `observablehq.config.js` is `false`; set it to `true` to ask them not to). Each build writes `dist/sitemap.xml`, every page of the site (`scripts/sitemap.mjs`), which is submitted once in Google Search Console.
 
 ## Updating each month
 
