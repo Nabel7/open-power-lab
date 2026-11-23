@@ -26,7 +26,7 @@ import {asDay, irishDay, irishClock, relativeDay} from "../components/format.js"
 import {LIVE_REPOSITORY, savedAt, fetchForecast} from "../components/live.js";
 
 // Tomorrow's forecast, read from the public repository when the page opens: it is saved
-// at about 07:30 UTC, after the morning's site build. Null until then.
+// overnight, before the 09:00 UTC cut-off, often after the site's last build. Null until then.
 const fetched = await fetchForecast(irishDay(1), (text) => d3.csvParse(text, d3.autoType));
 ```
 
@@ -58,6 +58,8 @@ const STATUS = {
   late: "Late: not counted",
   incomplete: "A method gave no forecast: not counted"
 };
+// Made without a wind forecast (none was published in time): the wind models are empty.
+const noWind = (f) => f.wind_forecast_published_utc == null;
 // Every forecast, newest first, with tomorrow's on top once it is saved.
 const record = [
   ...(fetched && !liveMeta.forecasts.some((f) => f.day === fetched.info.day) ? [{...fetched.info, status: "auction"}] : []),
@@ -66,13 +68,18 @@ const record = [
   day: asDay(f.day),
   made: new Date(f.made_at_utc),
   in_time: f.in_time,
+  can_count: f.in_time && !noWind(f),
   // A late forecast says so straight away, not only once it is scored.
-  status: !f.in_time && f.status !== "late" ? "Late: won't count" : f.status === "auction" ? "Waiting for the auction" : STATUS[f.status],
+  status: !f.in_time && f.status !== "late"
+    ? "Late: won't count"
+    : noWind(f) && f.status !== "late"
+    ? `No wind forecast: ${f.status === "incomplete" ? "not counted" : "won't count"}`
+    : f.status === "auction" ? "Waiting for the auction" : STATUS[f.status],
   ...Object.fromEntries(LIVE_ORDER.map((m) => [m, missOf(f.day, m)])),
   link: f.day
 }));
 const counted = liveMeta.days_counted;
-const firstInTime = record.filter((f) => f.in_time).at(-1);
+const firstInTime = record.filter((f) => f.can_count).at(-1);
 ```
 
 ```js
@@ -169,7 +176,7 @@ const newestCard = newest ? html`<div class="card">
           Plot.areaY(newestRows, {x: "timestamp_utc", y1: "chronos2_wind_low", y2: "chronos2_wind_high", fill: COLOURS.price, fillOpacity: 0.15, curve: "step-after"}),
           ...LIVE_ORDER.map((m) => Plot.lineY(newestRows, {x: "timestamp_utc", y: m, stroke: METHOD_COLOURS[m], strokeWidth: m === "chronos2_wind" ? 2 : 1.4, strokeDasharray: m === "week_average" ? "3,3" : null, curve: "step-after"})),
           Plot.lineY(newestRows, {x: "timestamp_utc", y: "actual", stroke: "var(--ink)", strokeWidth: 1.6, curve: "step-after"}),
-          Plot.tip(newestRows, Plot.pointerX({x: "timestamp_utc", y: "chronos2_wind", title: (d) => [irishTime(d.timestamp_utc), d.actual != null ? `Result ${eurMwh(d.actual)}` : null, `${label("chronos2_wind")} ${eurMwh(d.chronos2_wind)} (80%: ${eurMwh(d.chronos2_wind_low)} to ${eurMwh(d.chronos2_wind_high)})`, `${label("lightgbm_wind")} ${eurMwh(d.lightgbm_wind)}`, `${label("week_average")} ${eurMwh(d.week_average)}`, `${label("yesterday")} ${eurMwh(d.yesterday)}`].filter(Boolean).join("\n")}))
+          Plot.tip(newestRows, Plot.pointerX({x: "timestamp_utc", y: (d) => d.chronos2_wind ?? d.week_average, title: (d) => [irishTime(d.timestamp_utc), d.actual != null ? `Result ${eurMwh(d.actual)}` : null, `${label("chronos2_wind")} ${eurMwh(d.chronos2_wind)} (80%: ${eurMwh(d.chronos2_wind_low)} to ${eurMwh(d.chronos2_wind_high)})`, `${label("lightgbm_wind")} ${eurMwh(d.lightgbm_wind)}`, `${label("week_average")} ${eurMwh(d.week_average)}`, `${label("yesterday")} ${eurMwh(d.yesterday)}`].filter(Boolean).join("\n")}))
         ]
       })
     )}
@@ -178,8 +185,10 @@ const newestCard = newest ? html`<div class="card">
       ? "Scored against SEMO's half-hourly prices."
       : resultFrom === "entsoe"
       ? "The auction result is in: hourly prices from ENTSO-E for now. The day is scored once SEMO publishes its half-hours, the morning after."
-      : "The day-ahead auction closes at 11:00 Irish time; the result is drawn in once the site has it, and the day is scored once SEMO publishes its half-hours, the morning after."} Shaded: Chronos-2's 80% range. Wind forecast used: EirGrid's, published ${irishTime(new Date(newest.info.wind_forecast_published_utc))}.</p>
-  </div>` : html`<div class="card"><p class="muted" style="margin: 0;">The first forecast is saved at about 07:30 UTC, for the next day.</p></div>`;
+      : "The day-ahead auction closes at 11:00 Irish time; the result is drawn in once the site has it, and the day is scored once SEMO publishes its half-hours, the morning after."} ${noWind(newest.info)
+      ? "No wind forecast for this day had been published by the cut-off, so the two wind models gave no forecast and the day won't count; the 7-day average is still shown."
+      : `Shaded: Chronos-2's 80% range. Wind forecast used: EirGrid's, published ${irishTime(new Date(newest.info.wind_forecast_published_utc))}.`}</p>
+  </div>` : html`<div class="card"><p class="muted" style="margin: 0;">The first forecast is saved overnight, before the 09:00 UTC cut-off, for the next day.</p></div>`;
 
 const scoreCard = html`<div class="card" style="margin-top: 0.75rem;">
     <div class="card-head"><span class="label">The score so far</span><span class="label">${counted ? `${counted} day${counted === 1 ? "" : "s"}, ${shortDay(asDay(liveMeta.first_counted))} to ${shortDay(asDay(liveMeta.last_counted))}` : "no days yet"}</span></div>
@@ -189,7 +198,7 @@ const scoreCard = html`<div class="card" style="margin-top: 0.75rem;">
       format: {method: label, MAE: eurMwh, inside_range: (v) => (v == null ? "" : percent(v * 100)), days_beaten: (v) => (v == null ? "" : `${v} of ${counted}`)},
       layout: "auto",
       select: false
-    }) : html`<p class="muted" style="margin: 0;">${firstInTime ? `The first day forecast in time, ${longDay(firstInTime.day)}, is scored once SEMO publishes its prices, the morning after.` : "Nothing to score yet: no forecast has been made in time so far."}</p>`}
+    }) : html`<p class="muted" style="margin: 0;">${firstInTime ? `The first day forecast in time, ${longDay(firstInTime.day)}, is scored once SEMO publishes its prices, the morning after.` : "Nothing to score yet: no forecast so far was made in time with every method."}</p>`}
     ${counted && counted < liveMeta.too_few_days ? html`<p class="muted" style="margin-top: 0.5rem;">Only ${counted} day${counted === 1 ? "" : "s"}: too few to judge yet. The back-tests below cover ${meta.wind.days}. Scored the same way: the average miss over the same half-hours for every method.</p>` : ""}
   </div>`;
 
@@ -213,7 +222,7 @@ const recordCard = record.length ? html`<div class="card" style="margin-top: 0.7
 ```
 
 <div class="section first">
-  <div class="section-head"><h2>The live record</h2><p>Every morning, before the 09:00 UTC cut-off, tomorrow's forecast is saved to <a href="https://github.com/Nabel7/isem-live-forecasts">a public repository</a>, where it can't be changed afterwards: each commit shows when it was saved. Each day is scored against SEMO's prices once SEMO publishes them, the morning after.</p></div>
+  <div class="section-head"><h2>The live record</h2><p>Every night, before the 09:00 UTC cut-off, the next day's forecast is saved to <a href="https://github.com/Nabel7/isem-live-forecasts">a public repository</a>, where it can't be changed afterwards: each commit shows when it was saved. Each day is scored against SEMO's prices once SEMO publishes them, the morning after.</p></div>
 
 ${newestCard}
 
