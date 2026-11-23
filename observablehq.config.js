@@ -64,6 +64,13 @@ const MENUS = [
   }
 ];
 
+// The logo: a day's price curve (a morning rise, a midday dip, the evening peak) in the
+// site's blue. The same drawing is the browser-tab icon.
+const WAVE = "M4.5 14c2 0 2.3-6 4.3-6s2.2 8 4.4 8 2.3-6 4.3-6h2";
+const LOGO = `<svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="var(--brand)"/><path d="${WAVE}" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+// Written without % escapes or # (Framework escapes the % again, and # would end the address).
+const FAVICON = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='1' y='1' width='22' height='22' rx='6' fill='rgb(29,78,216)'/><path d='${WAVE}' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>`;
+
 const caret = `<svg class="caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>`;
 
 function menuItem(item) {
@@ -74,7 +81,7 @@ function menuItem(item) {
 }
 
 const header = `<a class="brand" href="/" aria-label="${SITE}, home">
-  <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="currentColor"/><path d="M12 12.5V20M12 12.5l0-7.5M12 12.5l-6.4 3.7M12 12.5l6.4 3.7" stroke="var(--page)" stroke-width="1.8" stroke-linecap="round"/></svg>
+  ${LOGO}
   <span>${SITE}</span>
 </a>
 <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
@@ -114,6 +121,7 @@ export default {
     // How the link looks when shared in a message or on LinkedIn.
     `<meta property="og:site_name" content="${SITE}"><meta property="og:title" content="${SITE}"><meta property="og:description" content="${DESCRIPTION}"><meta property="og:type" content="website">` +
     (HIDE_FROM_SEARCH ? '<meta name="robots" content="noindex, nofollow">' : "") +
+    `<link rel="icon" type="image/svg+xml" href="${FAVICON}">` +
     '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
 
   // The EirGrid Group Open Data Licence asks for this credit, and for no suggestion of endorsement.
