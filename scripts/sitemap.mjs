@@ -11,8 +11,9 @@ import {fileURLToPath} from "node:url";
 // Where the site lives. Change this if it moves to its own domain.
 export const SITE_URL = "https://nabel7.github.io/open-power-lab/";
 
-// Built files that aren't pages.
-const SKIP = new Set(["404.html"]);
+// Built files that aren't pages: the error page, and Google Search Console's
+// verification file (static/google….html, copied in by the build).
+const isPage = (file) => file !== "404.html" && !/^google[0-9a-f]+\.html$/.test(file);
 
 // A built page's file (relative to dist, with /) and the address it is served at: the
 // site uses clean addresses, so "markets/day-ahead.html" is ".../markets/day-ahead" and
@@ -26,7 +27,7 @@ export function pageUrl(file, base = SITE_URL) {
 export function pages(dist) {
   return readdirSync(dist, {recursive: true})
     .map((file) => relative(dist, join(dist, file)).split(sep).join("/"))
-    .filter((file) => file.endsWith(".html") && !file.startsWith("_") && !SKIP.has(file))
+    .filter((file) => file.endsWith(".html") && !file.startsWith("_") && isPage(file))
     .sort();
 }
 

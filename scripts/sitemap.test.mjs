@@ -13,9 +13,9 @@ test("a page's address has no .html, and a folder's index is the folder", () => 
   assert.equal(pageUrl("generation/dispatch-down/index.html", base), "https://example.org/site/generation/dispatch-down/");
 });
 
-test("only pages are listed: not 404.html or Framework's _files", () => {
+test("only pages are listed: not 404.html, Framework's _files or Google's verification file", () => {
   const dist = mkdtempSync(join(tmpdir(), "dist-"));
-  for (const file of ["index.html", "404.html", "data.html", "_file/x.html", "_npm/y.js", "markets/day-ahead.html"]) {
+  for (const file of ["index.html", "404.html", "data.html", "_file/x.html", "_npm/y.js", "markets/day-ahead.html", "google3d72a9a12d29a8ea.html"]) {
     mkdirSync(join(dist, file, ".."), {recursive: true});
     writeFileSync(join(dist, file), "");
   }
