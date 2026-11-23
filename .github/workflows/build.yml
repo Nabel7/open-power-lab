@@ -88,7 +88,9 @@ jobs:
         run: ISEM_DATA="$PWD/isem-data" ISEM_LIVE_FORECASTS="$PWD/isem-live-forecasts" ISEM_PYTHON=python zsh scripts/update-data.sh
 
       - name: Build
-        run: npx observable build
+        run: |
+          npx observable build
+          node scripts/sitemap.mjs  # dist/sitemap.xml: every page, for search engines
 
       - name: Say what was built
         run: |
