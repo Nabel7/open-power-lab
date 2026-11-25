@@ -138,7 +138,7 @@ def main() -> None:
     scores.round({"MAE": 2, "inside_range": 3}).to_csv(OUT / "scores.csv", index=False)
 
     keep = [
-        "day", "made_at_utc", "cutoff_utc", "in_time", "wind_forecast_published_utc",
+        "day", "made_at_utc", "cutoff_utc", "in_time", "wind_source", "wind_forecast_published_utc",
         "newest_price_source", "methods_without_forecast",
     ]
     forecasts = [{**{k: d.get(k) for k in keep}, "status": status.get(d["day"], "waiting")} for d in details]
