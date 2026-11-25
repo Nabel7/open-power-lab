@@ -187,6 +187,8 @@ const newestCard = newest ? html`<div class="card">
       ? "The auction result is in: hourly prices from ENTSO-E for now. The day is scored once SEMO publishes its half-hours, the morning after."
       : "The day-ahead auction closes at 11:00 Irish time; the result is drawn in once the site has it, and the day is scored once SEMO publishes its half-hours, the morning after."} ${noWind(newest.info)
       ? "No wind forecast for this day had been published by the cut-off, so the two wind models gave no forecast and the day won't count; the 7-day average is still shown."
+      : (newest.info.wind_source ?? "SEMO").startsWith("ENTSO-E")
+      ? `Shaded: Chronos-2's 80% range. Wind forecast used: ENTSO-E's${newest.info.wind_source.includes("estimated") ? " (Northern Ireland's estimated from Ireland's)" : ""}, first seen ${irishTime(new Date(newest.info.wind_forecast_published_utc))}, because SEMO hadn't published EirGrid's in time. The day still counts.`
       : `Shaded: Chronos-2's 80% range. Wind forecast used: EirGrid's, published ${irishTime(new Date(newest.info.wind_forecast_published_utc))}.`}</p>
   </div>` : html`<div class="card"><p class="muted" style="margin: 0;">The first forecast is saved overnight, before the 09:00 UTC cut-off, for the next day.</p></div>`;
 
