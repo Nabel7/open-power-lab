@@ -7,6 +7,7 @@ import "./components/shell.js";
 import {COLOURS, eurMwh, percent, gwh, shortDay, irishTime, relativeDay, plotStyle, key} from "./components/format.js";
 import {grid, windForecast} from "./components/weather.js";
 import {startStreaks, windVectors} from "./components/streaks.js";
+import {newest, newsItem} from "./components/news.js";
 
 const pricesDaily = FileAttachment("data/markets/prices_daily.csv").csv({typed: true});
 const systemDaily = FileAttachment("data/markets/system_daily.csv").csv({typed: true});
@@ -14,6 +15,7 @@ const latest = FileAttachment("data/markets/latest.json").json();
 const historyRaw = FileAttachment("generation/dispatch-down/data/history_monthly.csv").csv({typed: true});
 const fleet = FileAttachment("data/batteries/fleet_hh.csv").csv({typed: true});
 const batteryMeta = FileAttachment("data/batteries/meta.json").json();
+const news = FileAttachment("news/items.json").json();
 ```
 
 ```js
@@ -115,7 +117,18 @@ if (wind) {
   </a>
 </div>
 
-<div class="section first">
+```js
+// Market news, once there is any: the six newest items.
+const latestNews = newest(news.items).slice(0, 6);
+if (latestNews.length) {
+  display(html`<div class="section first">
+    <div class="section-head"><h2>Market news</h2><p><a href="./news/">All news →</a></p></div>
+    <div class="news-list">${latestNews.map(newsItem)}</div>
+  </div>`);
+}
+```
+
+<div class="section${latestNews.length ? "" : " first"}">
   <div class="grid grid-cols-2 featured">
     <a class="card feature" href="./generation/dispatch-down/history">
       <span class="label">Dispatch down since 2016</span>
@@ -181,6 +194,7 @@ if (wind) {
       <a href="./markets/day-ahead">Day-ahead prices</a>
       <a href="./generation/wind">Wind &amp; demand</a>
       <a href="./generation/batteries">Batteries</a>
+      <a href="./news/">Market news</a>
     </div>
     <div>
       <p class="label">Dispatch down</p>

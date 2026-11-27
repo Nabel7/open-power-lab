@@ -18,6 +18,10 @@ on:
     # late download.
     - cron: "15 7 * * *" # 07:15 UTC
     - cron: "15 19 * * *" # 19:15 UTC
+  # A merged news update is published straight away, not at the next scheduled build.
+  push:
+    branches: [main]
+    paths: ["src/news/items.json"]
   workflow_dispatch:
     inputs:
       isem_data_ref:
