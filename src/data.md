@@ -68,12 +68,12 @@ const files = [
 | Dispatch down since 2016 | EirGrid's [dispatch down summary report](https://www.eirgrid.ie/sites/default/files/publications/DD-Summary-Report-V24.xlsx) (V24) | Monthly | Since January 2016 | When EirGrid publishes, about six weeks after each month |
 | Wind index for the weather adjustment | ERA5 reanalysis (Copernicus Climate Change Service) via [Open-Meteo](https://open-meteo.com) (CC BY 4.0) | Hourly, 12 points | Since 2000 | With each new EirGrid report |
 | EirGrid's wind forecast, every version (EirGrid's wind forecast, Price forecasts) | SEMO report BM-012, per-farm forecasts, about four versions a day, added up for the island | 15 min | Since August 2026 | Daily |
-| Price forecasts | [Chronos-2](https://huggingface.co/amazon/chronos-2) (Amazon, Apache 2.0) and LightGBM, run with [isem-forecast](https://github.com/Nabel7/isem-forecast) on the data above | 30 min | Since November 2025 | Back-tests by hand; the [live record](https://github.com/Nabel7/isem-live-forecasts) daily |
+| Price forecasts | [Chronos-2](https://huggingface.co/amazon/chronos-2) (Amazon, Apache 2.0) and LightGBM, run with [isem-forecast](https://github.com/Nabel7/isem-forecast) on the data above | 30 min | Since November 2025 | Back-tests periodically; the [live record](https://github.com/Nabel7/isem-live-forecasts) daily |
 | Measured wind (Wind map) | [Met Éireann](https://www.met.ie/) weather stations, fetched by your browser; Met Éireann data are published under CC BY 4.0 | Hourly, 10 m above ground | Latest reading | Every 10 minutes |
 | Wind forecast (Wind map) | [Open-Meteo](https://open-meteo.com), fetched by your browser; "Weather data by Open-Meteo.com" (CC BY 4.0) | Hourly, about 30 km grid | Next 3 days | Each visit |
 
   </div>
-  <p class="muted" style="margin-top: 0.6rem;">Updates are daily, not live. For live system data, use EirGrid's Smart Grid Dashboard.</p>
+  <p class="muted" style="margin-top: 0.6rem;">Data is refreshed twice a day, as each source publishes.</p>
 </div>
 
 <div class="section">
@@ -99,9 +99,9 @@ Inputs.table(
 </div>
 
 <div class="section">
-  <div class="section-head"><h2>Licences and independence</h2></div>
+  <div class="section-head"><h2>Licences and attribution</h2></div>
 
-Supported by EirGrid Group Data, used under the [EirGrid Group Open Data Licence](https://www.smartgriddashboard.com/ni/open-data-license). This site is independent and is not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx. The data is provided as is, and figures here are estimates; for official figures, use EirGrid's and SEMO's own publications.
+Supported by EirGrid Group Data, used under the [EirGrid Group Open Data Licence](https://www.smartgriddashboard.com/ni/open-data-license). Open Power Lab is not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx. The data is provided as is, and figures here are estimates; for official figures, use EirGrid's and SEMO's own publications.
 
 Today's and tomorrow's prices are from the [ENTSO-E Transparency Platform](https://transparency.entsoe.eu). ENTSO-E is not responsible for this site or its use of the data.
 

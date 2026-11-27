@@ -176,9 +176,9 @@ Energy is in MWh, values in euros. In the monthly and daily files, `produced_mwh
 
 <p class="label" style="margin-bottom: 0.8rem;">08</p>
 
-## Licence and independence
+## Licence and attribution
 
-Supported by EirGrid Group Data, used under the [EirGrid Group Open Data Licence](https://www.smartgriddashboard.com/ni/open-data-license). This site is independent and is not affiliated with or endorsed by EirGrid, SONI or SEMO. The data is provided as is, and the figures here are estimates.
+Supported by EirGrid Group Data, used under the [EirGrid Group Open Data Licence](https://www.smartgriddashboard.com/ni/open-data-license). Open Power Lab is not affiliated with or endorsed by EirGrid, SONI or SEMO. The data is provided as is, and the figures here are estimates.
 
 Farm positions and the map background are © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors. The farm positions file is available under the [Open Database Licence](https://opendatacommons.org/licenses/odbl/).
 

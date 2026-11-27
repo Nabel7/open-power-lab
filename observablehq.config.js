@@ -11,7 +11,7 @@ const SITE = "Open Power Lab";
 const HIDE_FROM_SEARCH = false;
 
 const DESCRIPTION =
-  "Independent data and analysis on the Irish electricity market (I-SEM): day-ahead prices, wind, demand, dispatch down and forecasts, built from public data.";
+  "Market intelligence for the all-island electricity market (I-SEM): day-ahead prices, wind, demand, storage, dispatch down and price forecasts.";
 
 // One page per wind farm, from the template src/generation/dispatch-down/farms/[farm].md:
 // one for each data file in src/generation/dispatch-down/data/farms/.
@@ -48,7 +48,7 @@ const MENUS = [
     name: "Forecasts",
     section: "/forecasts",
     items: [
-      {title: "Price forecasts", path: "/forecasts/prices", note: "A pre-trained AI model forecasting tomorrow's prices, scored day by day"},
+      {title: "Price forecasts", path: "/forecasts/prices", note: "Day-ahead price forecasts, scored against every auction"},
       {title: "Wind map", path: "/forecasts/wind-map", note: "Forecast wind over the island, hour by hour, and measured wind now"},
       {title: "EirGrid's wind forecast", path: "/forecasts/wind-forecast", note: "How accurate it is, from hours to days ahead"}
     ]
@@ -127,7 +127,7 @@ export default {
 
   // The EirGrid Group Open Data Licence asks for this credit, and for no suggestion of endorsement.
   footer: `<div class="footer-grid">
-  <div><strong>${SITE}</strong><p>Independent analysis of the Irish electricity market, built from public data. Not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx.</p></div>
+  <div><strong>${SITE}</strong><p>Market intelligence for the all-island electricity market. Open Power Lab is not affiliated with or endorsed by EirGrid, SONI, SEMO or SEMOpx.</p></div>
   <div><strong>Sources</strong><p>Supported by EirGrid Group Data. Farm positions © OpenStreetMap contributors. Figures are estimates; see <a href="/data">Datasets</a>.</p></div>
   <div><strong>Explore</strong><p><a href="/markets/day-ahead">Day-ahead prices</a> · <a href="/generation/wind">Wind &amp; demand</a> · <a href="/generation/dispatch-down/">Dispatch down</a> · <a href="/generation/dispatch-down/history">Since 2016</a> · <a href="/forecasts/prices">Price forecasts</a> · <a href="/forecasts/wind-map">Wind map</a> · <a href="/generation/batteries">Batteries</a></p></div>
 </div>`

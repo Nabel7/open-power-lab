@@ -452,13 +452,6 @@ a.menu-link:hover {
   color: var(--ink-faint);
 }
 
-.strip-note {
-  flex: none;
-  padding-left: 1rem;
-  border-left: 1px solid var(--line);
-  color: var(--ink-faint);
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .ticker-track.moving {
     animation: ticker linear infinite;
@@ -485,12 +478,6 @@ a.menu-link:hover {
 @keyframes ticker {
   to {
     transform: translateX(-50%);
-  }
-}
-
-@media (max-width: 600px) {
-  .strip-note {
-    display: none;
   }
 }
 

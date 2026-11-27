@@ -153,7 +153,7 @@ const lines = order.flatMap((method) => theDay.map((d) => ({time: d.timestamp_ut
   <div class="meta">
     <span>Models: Chronos-2 (amazon/chronos-2), ${meta.context_days} days of history; LightGBM, fitted on every day before</span>
     <span>Scored to ${longDay(new Date(`${meta.wind.last_day}T00:00Z`))}; updated ${irishTime(new Date(meta.made))}</span>
-    <span>Code: <a href="https://github.com/Nabel7/isem-forecast">isem-forecast</a></span>
+    <span>Open-source models: <a href="https://github.com/Nabel7/isem-forecast">isem-forecast</a></span>
   </div>
 </div>
 
