@@ -86,12 +86,9 @@ if (wind) {
 
 <div class="page-head hero-intro">
   <div class="streaks" aria-hidden="true">${streakCanvas}</div>
-  <h1>The Irish electricity market, in public data</h1>
-  <p class="lede">Independent data and analysis on the all-island market: prices, wind, batteries, and how much wind power the grid turns away. Built from SEMO, SEMOpx, EirGrid and ENTSO-E public data, and updated daily.</p>
+  <h1>Market intelligence for the all-island electricity market</h1>
+  <p class="lede">Day-ahead prices, wind, storage and grid constraints across the I-SEM, with price forecasts scored against every auction. Built on data from SEMO, SEMOpx, EirGrid and ENTSO-E.</p>
   <div class="meta">
-    <span>Day-ahead results to ${shortDay(priceDay.day)}</span>
-    <span>System data to ${irishTime(new Date(latest.system_last_utc))}</span>
-    <span>Not live</span>
     ${streakNote}
   </div>
 </div>

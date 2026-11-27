@@ -1,6 +1,6 @@
 # Open Power Lab
 
-Independent data and analysis on electricity markets, built from public data. Ireland's all-island market (I-SEM) is the first: day-ahead prices, wind and demand, batteries, dispatch-down, a wind map and a battery simulator. The name is set in `observablehq.config.js`.
+Market intelligence for electricity markets, built on public data. Ireland's all-island market (I-SEM) is the first: day-ahead prices, wind and demand, batteries, dispatch-down, a wind map and a battery simulator. The name is set in `observablehq.config.js`.
 
 The site is a light, open data tool: dropdown menus (Markets, Dispatch-down, Forecasts, Tools, Data), tabs across the dispatch-down pages, search on every page (⌘K or `/`) over pages, farms and companies, and a strip of the latest figures.
 
@@ -8,7 +8,7 @@ The site is a light, open data tool: dropdown menus (Markets, Dispatch-down, For
 
 A website showing how much power Irish wind farms were told not to produce (dispatch-down), why (constraint or curtailment), where (Ireland or Northern Ireland) and at which farms. It's built from public SEMO data, so figures are out within days of the end of each month. EirGrid's official monthly figures come about six weeks later; for September and October 2026 these were within about half a percentage point of them on the same days (see the Methods page). The "Since 2016" page uses EirGrid's own figures, adjusted for the weather.
 
-Supported by EirGrid Group Data. Independent; not affiliated with or endorsed by EirGrid, SONI or SEMO. Farm positions and map © OpenStreetMap contributors (ODbL).
+Supported by EirGrid Group Data. Open Power Lab is not affiliated with or endorsed by EirGrid, SONI or SEMO. Farm positions and map © OpenStreetMap contributors (ODbL).
 
 ## How it fits together
 

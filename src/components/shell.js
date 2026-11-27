@@ -123,8 +123,7 @@ Promise.all([latestFile.json(), ddFile.csv({typed: true})]).then(([d, dd]) => {
   strip.innerHTML = `<div class="ticker"><div class="ticker-track">
       <div class="ticker-group">${items}</div>
       <div class="ticker-group" aria-hidden="true">${items.replaceAll('<a class="tick"', '<a class="tick" tabindex="-1"')}</div>
-    </div></div>
-    <span class="strip-note">Data to ${at(d.system_last_utc, {day: "numeric", month: "short"})} · not live</span>`;
+    </div></div>`;
   // A steady reading speed whatever the screen width: about 40 pixels a second.
   const track = strip.querySelector(".ticker-track");
   requestAnimationFrame(() => {
