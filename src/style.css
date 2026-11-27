@@ -1457,3 +1457,54 @@ body {
 .table-scroll {
   overflow-x: auto;
 }
+
+/* Market news: the home page's box and the News page. */
+.news-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+}
+@media (max-width: 960px) {
+  .news-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .news-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.news-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--line);
+}
+.news-meta {
+  display: flex;
+  gap: 0.6rem;
+  color: var(--ink-faint);
+  font-size: 12px;
+  font-weight: 500;
+}
+.news-topic {
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.news-item h3 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.news-item p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 13.5px;
+}
+.news-source {
+  margin-top: auto;
+  color: var(--ink-faint);
+  font-size: 12px;
+}
