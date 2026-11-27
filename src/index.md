@@ -87,7 +87,7 @@ if (wind) {
 <div class="page-head hero-intro">
   <div class="streaks" aria-hidden="true">${streakCanvas}</div>
   <h1>Market intelligence for the all-island electricity market</h1>
-  <p class="lede">Day-ahead prices, wind, storage and grid constraints across the I-SEM, with price forecasts scored against every auction. Built on data from SEMO, SEMOpx, EirGrid and ENTSO-E.</p>
+  <p class="lede">Day-ahead prices, wind, storage and grid constraints across the I-SEM, with price forecasts scored against every auction.</p>
   <div class="meta">
     ${streakNote}
   </div>
@@ -98,7 +98,7 @@ if (wind) {
     <span class="label">Day-ahead average · ${shortDay(priceDay.day)}</span>
     <span class="value">${eurMwh(priceDay.avg)}<small>/MWh</small></span>
     <span class="sub"><span class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "▲" : "▼"} ${eurMwh(Math.abs(change))}</span> on ${shortDay(pricePrev.day)} · range ${eurMwh(priceDay.low)} – ${eurMwh(priceDay.high)}</span>
-    ${aheadDay ? html`<span class="sub">${relativeDay(aheadDay.day) || shortDay(new Date(`${aheadDay.day}T00:00Z`))}: <b>${eurMwh(aheadDay.avg)}</b> average, hourly from ENTSO-E</span>` : ""}
+    ${aheadDay ? html`<span class="sub">${relativeDay(aheadDay.day) || shortDay(new Date(`${aheadDay.day}T00:00Z`))}: <b>${eurMwh(aheadDay.avg)}</b> average (hourly)</span>` : ""}
     <div class="spark">${spark(daily30, "day", "avg", COLOURS.price)}</div>
   </a>
   <a class="stat" href="./generation/wind" style="color: inherit; text-decoration: none;">
@@ -110,7 +110,7 @@ if (wind) {
   <a class="stat" href="./generation/dispatch-down/history" style="color: inherit; text-decoration: none;">
     <span class="label">Wind turned down, last 12 months</span>
     <span class="value">${percent(last12.reported)}</span>
-    <span class="sub">${percent(last12.adjusted)} with normal wind · EirGrid, to ${d3.utcFormat("%b %Y")(last12.month)}</span>
+    <span class="sub">${percent(last12.adjusted)} with normal wind · to ${d3.utcFormat("%b %Y")(last12.month)}</span>
     <div class="spark">${spark(rolling.slice(-60), "month", "reported", "var(--ink-muted)")}</div>
   </a>
 </div>
@@ -120,7 +120,7 @@ if (wind) {
     <a class="card feature" href="./generation/dispatch-down/history">
       <span class="label">Dispatch down since 2016</span>
       <strong>Most of the recent rise is the weather</strong>
-      <p>Over the last 12 months the grid turned down ${percent(last12.reported)} of the wind energy available. With normal wind it would have been about ${percent(last12.adjusted)}. Ten years of EirGrid's figures, adjusted for how windy each month was.</p>
+      <p>Over the last 12 months the grid turned down ${percent(last12.reported)} of the wind energy available. With normal wind it would have been about ${percent(last12.adjusted)}. Ten years of official figures, adjusted for how windy each month was.</p>
       ${resize((width) =>
         Plot.plot({
           width,
