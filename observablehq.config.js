@@ -30,7 +30,8 @@ const MENUS = [
     items: [
       {title: "Day-ahead prices", path: "/markets/day-ahead", note: "SEM day-ahead prices and volumes"},
       {title: "Wind & demand", path: "/generation/wind", note: "Output, share of demand, EirGrid's forecast"},
-      {title: "Batteries", path: "/generation/batteries", note: "When the island's batteries charge and discharge"}
+      {title: "Batteries", path: "/generation/batteries", note: "When the island's batteries charge and discharge"},
+      {title: "Market news", path: "/news/", note: "New projects, grid developments, rules and policy"}
     ]
   },
   {
